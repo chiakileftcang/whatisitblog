@@ -1,0 +1,1026 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>
+    PPTP-VPN For CentOS6.4 &laquo; ___道子千秋
+</title>
+<link rel="stylesheet" href="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/style.css" type="text/css" media="screen" />
+<link title="RSS 2.0" type="application/rss+xml" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2" rel="alternate" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/js/DD_belatedPNG.js"></script>
+<script>DD_belatedPNG.fix('.nav li,.searchsm'); </script> 
+<![endif]-->
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="韻秋小道童 &raquo; PPTP-VPN For CentOS6.4评论Feed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2&#038;p=906" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/blog.whatisit.cn\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='https://api.w.org/' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=/' />
+<link rel='prev' title='Windows 7 和 Windows 8* 連接VPN操作步驟' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=896/index.html' />
+<link rel='next' title='CentOS 7系统上架设DNS服务' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=908/index.html' />
+<meta name="generator" content="WordPress 4.6.1 - really-static 0.5" />
+<link rel="canonical" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=906/index.html" />
+<link rel="alternate" type="application/json+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D906%2Findex.html" />
+<link rel="alternate" type="text/xml+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D906%2Findex.html&#038;format=xml" />
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		</head>
+
+<body itemtype="http://schema.org/WebPage" itemscope="">
+
+   <div id="fullwrapper">
+       <div class="wrap">
+           <div class="header">
+               <div class="logo"><p><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/"><font size="8" face="KaiTi">韻秋小道童</font></a></p><font size="5" face="KaiTi">被玩壞的小道童</font></div>
+               	 <ul class="nav">
+                 		<li><a title="首页" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">首页</a></li>
+                 		<li><a title="江湖故事" href="/jhgs-html/">江湖故事</a></li>
+	<li class="page_item page-item-870"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html">IT便利貼</a></li>
+<li class="page_item page-item-837"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=837/index.html">江湖故事</a></li>
+<li class="page_item page-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=9/index.html">我的微博</a></li>
+<li class="page_item page-item-47"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html">自省三聲</a></li>
+                </ul>
+           </div>
+       </div>
+       <div class="wrap">	<div id="content" class="widecolumn" role="main">
+		<div class="content_top conleft"></div>
+	
+		<div class="post-906 post type-post status-publish format-standard hentry category-linux category-serveice-for-net tag-centos tag-centos7 tag-dns tag-linux tag-server" id="post-906">
+			<h2>PPTP-VPN For CentOS6.4</h2>
+				<div class="post_intro">
+					<span>tydqq Post in <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=12/index.html" rel="category">Linux</a>, <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=14/index.html" rel="category">Serveice for Net</a>，Tags: <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/tag=centos/index.html" rel="tag">CentOS</a>, <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/tag=centos7/index.html" rel="tag">CentOS7</a>, <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/tag=dns/index.html" rel="tag">DNS</a>, <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/tag=linux/index.html" rel="tag">Linux</a>, <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/tag=server/index.html" rel="tag">Server</a></span>
+									</div>
+				<div class="content_date">
+					<div class="datebg">
+						<span class="day">03</span>
+						<span>八月</span>
+						<span>2015</span>
+					</div>
+				</div>
+				<div class="comments">
+					<span class="cmt_num"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=906/index.html#respond">0</a></span>
+				</div>
+				
+			<div class="entry">
+				<div style="color: #555555;"><center></center></div>
+<p style="color: #555555;">今天在vps上装pptp ，和以往一样，只不过不是在自己的vps上，上次ssh代理被封ip，对我的身心造成了深深的影响，所以，这次拿网友放我这的vps来搭建vpn环境。pptp的搭建比openvpn容易多了。以下是我的配置过程，其实和网上差不多，<span style="color: #888888;">centos6.4 搭建 centos 6.4 搭建pptp vpn <span id="more-906"></span></p>
+<p></span><span style="color: #008000;">ppp = 2.4.4 is needed by pptpd-1.3.4-2.rhel5.x86_64</span></p>
+<p style="color: #555555;"><span style="color: #ff0000;"><span style="color: #000000;">centos6.4安装搭建pptp vpn服务的</span><strong>大致步骤简介，下面会有详细的步骤</strong><span style="color: #000000;">(我不喜欢写大纲，决定麻烦，但是有人还</span><span style="color: #000000;">是看不懂，所以勉为其难的</span><span style="color: #000000;">写了个，实在不会的，我在文章的后面提供一些网上的<span style="color: #ff0000;">centos pptp vpn 一键安装包</span>，有人写了就不必再写一遍了，一键安装包要是有问题，也别找我，新手想享受自己亲手一步步具</span><span style="color: #000000;">体搭建过程的乐趣，就接着看看吧)<strong><span style="color: #ff0000;">：</span></strong></span></span></p>
+<blockquote style="color: #555555;"><p>1.先检查vps是否满足配置pptp vpn的环境。因为有的openvz的vps被母鸡给禁用了。其实，你在配置前最好向vps的客服发TK，可能客服会帮你开通vpn或者客服那里会给你他们自己定制的vpn一键安装包也有可能。<br />
+2.接着是安装配置pptp vpn的相关软件，<strong>安装ppp和iptables</strong>。<br />
+配置安装好后的pptp软件，这个不像windows那样，安装的过程就是配置的过程。linux的要安装完之后，修改配置文件，才算是完成配置。<br />
+3.启动pptp vpn 服务。此时，就是检验你能够vpn拨号成功，如果你拨号成功了，说明你的pptp vpn的安装配置就算真正的完成了。但是此时只能登录vpn，却不能用来上网。<br />
+4.开启内核和iptables的转发功能。这个步骤是为了让你连上vpn之后，能够上网，上那些yourporn，youtube之类的。这步是最关键的，很多人能成功拨号，登录vpn，但是却不能上网就是因为这个步骤没做好。这步骤完成了，你就可以尽情去国外的网站访问了。</p></blockquote>
+<p style="color: #555555;">#########################################手动搭建配置pptp vpn 详细方法如下########</p>
+<p style="color: #555555;"><strong>第一步</strong>：检测是否符合pptp的搭建环境的要求</p>
+<div style="color: #555555;">服务器版本：CentOs 6.4 <span style="color: #ff0000;">xen vps</span></div>
+<div style="color: #555555;">
+<div></div>
+<div>这里说一下，如果你的linux内核版本<span style="color: #000000;"> 等于或高于 2.6.15 ，内核集成了MPPE。可以用下面命令进行测试内核是否支持</span></div>
+<div>
+<blockquote><p>#modprobe ppp-compress-18 &amp;&amp; echo ok</p></blockquote>
+</div>
+<div>返回“ok”说明测试通过。但是返回报错“FATAL: Module ppp_mppe not found.”，也不能说不支持，因为modprobe命令是去 /lib/modules/`uname -r` 找模块，但是很多时候，这个目录下是空的。所以这个命令没什么太大用处。</div>
+<div></div>
+<div>于是有人又提出一个命令，通过查看内核编译的配置文件config.gz：</div>
+<div>
+<blockquote><p>#zgrep MPPE /proc/config.gz</p></blockquote>
+</div>
+<div>返回CONFIG_PPP_MPPE=y 或 =m说明内核已经编译了MPPE，通过测试。但是呢，这个命令其实也没什么用，因为有的vps空间商会不会备份config.gz文件。所以，config.gz文件都没有，这命令也是废了。</div>
+<div></div>
+<div>所以，最后建议直接使用下面的指令：</div>
+<blockquote><p>#cat /dev/net/tun</p></blockquote>
+<div>如果这条指令显示结果为下面的文本，则表明通过：</div>
+<div>cat: /dev/net/tun: File descriptor in bad state</div>
+<div>上述任意一个命令测试通过，就能安装pptp。否则就只能考虑openvpn。</div>
+<div>确认自己的vps能够支持pptp vpn 或其他类型的vpn。最好的方法是直接问vps空间商，因为没有人比他们更清楚了。没准人家还会提供vpn一键安装包呢！！！</div>
+<div>有部分的vps需要发tk，让vps空间商的技术客服为你的VPS打开TUN/TAP/PPP功能了，而有部分vps控制面板上提供打开TUN/TAP/PPP功能的按钮，自己就能手动开启。</div>
+<div></div>
+<div>
+<div><strong><span style="color: #ff0000;">Centos 6.4内核版本在2.6.15以上，都默认集成了MPPE和PPP，因此下面检查可以忽略：</span></strong></div>
+<div><span style="color: #ffffff;"><strong>http://www.dabu.info/?p=2178</strong></span></div>
+<blockquote><p>#rpm -q ppp //查询当前系统的ppp是否默认集成了，以及ppp的版本</p></blockquote>
+<div></div>
+<div>检查PPP是否支持MPPE</div>
+<div>用以下命令检查PPP是否支持MPPE：</div>
+<blockquote><p>#strings ‘/usr/sbin/pppd’ |grep -i mppe | wc –lines</p></blockquote>
+<div><span style="color: #ffffff;"><strong>http://www.dabu.info/?p=2178</strong></span></div>
+<div>如果以上命令输出为“0”则表示不支持；输出为“30”或更大的数字就表示支持，MPPE（Microsoft Point to Point Encryption，微软点对点加密）。</div>
+</div>
+</div>
+<div style="color: #555555;"></div>
+<div style="color: #555555;"><strong>第二步</strong>：</div>
+<div style="color: #555555;"><strong>1.安装ppp和iptables</strong></div>
+<div style="color: #555555;"></div>
+<div style="color: #555555;">PPTPD要求Linux内核支持mppe，一般来说CentOS安装时已经包含了</div>
+<div style="color: #555555;"><span style="color: #ffffff;"><strong>http://www.dabu.info/?p=2178</strong></span></div>
+<blockquote style="color: #555555;">
+<div>#yum install -y perl ppp iptables //centos默认安装了iptables和ppp</div>
+<div></div>
+</blockquote>
+<div style="color: #555555;"></div>
+<div style="color: #555555;"></div>
+<div style="color: #555555;"><strong>2.安装pptpd</strong></div>
+<div style="color: #555555;">
+<p>刚才用了yum安装了ppp,但是这里有个问题，几乎大部分的人都会在这里遇到ppp和pptpd不兼容的错误。因为yum安装ppp，总是安装最新版本的ppp，而由于安装的ppp的版本不同，那么就需要安装对应版本的pptpd才行。(参考我的文章《<a style="color: #428bca;" title="" href="http://www.dabu.info/ppp-2-4-4-is-needed-by-pptpd-1-3-4-2-rhel5-x86_64-solutions-and-reasons.html" data-original-title="">ppp = 2.4.4 is needed by pptpd-1.3.4-2.rhel5.x86_64的解决办法及原因</a>|<a style="color: #428bca;" title="" href="http://www.dabu.info/" data-original-title="">大步’s blog</a>》)</p>
+<p>我们要先查看已经安装的ppp的版本，在去找对应的pptpd版本。我手头刚好有两个vps，一个是前年装的pptp vpn，一个是一年后装的pptp vpn，所以，装的yum install ppp的版本不同。</p>
+<p>使用下面的命令查看ppp的版本，前提你是yum安装的ppp。</p>
+<p>旧的vps上的ppp版本显示：</p>
+<p>#yum list installed ppp</p>
+<p>显示：</p>
+<blockquote><p>ppp.i386 <strong><span style="color: #ff0000;">2.4.4-2.el5 </span></strong>installed</p></blockquote>
+<p>新的vps上的ppp版本显示；</p>
+<p>#yum list installed ppp</p>
+<p>显示：</p>
+<blockquote><p>ppp.i686 <strong><span style="color: #ff0000;">2.4.5-5.el6 </span></strong>@base</p></blockquote>
+<p>所以，要对根据ppp版本选择对应的pptpd版本。这里我主要列出常用的。</p>
+<blockquote><p><strong><span style="color: #ff0000;">ppp 2.4.4——————&gt;pptpd 1.3.4</span></strong></p>
+<p><strong><span style="color: #ff0000;">ppp 2.4.5——————&gt;pptpd 1.4.0</span></strong></p></blockquote>
+<p>贴个ppp和pptpd各个版本的下载地址；<a style="color: #428bca;" title="" href="http://poptop.sourceforge.net/yum/stable/packages/" target="_blank" rel="nofollow" data-original-title=""><strong><span style="color: #008000;">http://poptop.sourceforge.net/yum/stable/packages/</span></strong></a></p>
+<p>大家下载的时候注意，分清楚你系统的版本是64位的还是32位的。<span style="color: #0000ff;"><strong>我个人建议ppp用yum安装，pptpd用rpm的安装，因为如果全都rpm或者源码安装，依赖关系很是烦人。文件名含有数字64的就是64位版本，没有的就是32位版本。可以用下面的命令查看自己的系统是32位还是64位的。</strong></span></p>
+<blockquote><p>#getconf LONG_BIT</p></blockquote>
+<p>下面假设我这里的ppp是2.4.4版本，然后安装pptpd</p>
+<p><strong><span style="color: #ff0000;">第一种</span></strong>安装pptpd的方法是直接用yum安装，让电脑自动选择对应的版本：</p>
+<p>先<strong><span style="color: #ff0000;">加入yum源</span></strong>：</p>
+<blockquote><p>#rpm -Uvh http://poptop.sourceforge.net/yum/stable/rhel6/pptp-release-current.noarch.rpm</p></blockquote>
+<p>然后用yum安装pptpd：</p>
+<blockquote><p>#yum install pptpd</p></blockquote>
+<p><span style="color: #008000;"><strong>这是最省时间和力气的。余下的和手动安装没什么区别了。</strong></span></p>
+<p>&nbsp;</p>
+<p><span style="color: #ff0000;"><strong>第二种</strong></span>是手动安装pptpd包：</p>
+<blockquote><p>对于32位CentOS，执行</p>
+<p>wget http://acelnmp.googlecode.com/files/pptpd-1.3.4-1.rhel5.1.i386.rpm</p>
+<p>rpm -ivh pptpd-1.3.4-1.rhel5.1.i386.rpm</p>
+<p>对于64位CentOS，执行</p>
+<p>wget http://acelnmp.googlecode.com/files/pptpd-1.3.4-1.rhel5.1.x86_64.rpm</p>
+<p>rpm -ivh pptpd-1.3.4-1.rhel5.1.x86_64.rpm</p>
+<p>这里贴上32位的pptpd的rpm的下载地址：</p>
+<p><a style="color: #428bca;" title="" href="http://www.400gb.com/file/34722122" target="_blank" rel="nofollow" data-original-title="">http://www.400gb.com/file/34722122</a></p></blockquote>
+<h3 style="color: inherit;">64位安装的时候如果出现：<span style="color: #ffffff;"><strong>http://www.dabu.info/?p=2178</strong></span></h3>
+<blockquote><p>warning: pptpd-1.3.4-2.rhel5.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 862acc42: NOKEY<br />
+error: Failed dependencies:<br />
+<strong><span style="color: #339966;">ppp = 2.4.4 is needed by pptpd-1.3.4-2.rhel5.x86_64</span></strong></p>
+<p><span style="color: #ff0000;">原因是pptpd与PPP不兼容，那么，此时用#yum list installed ppp 命令查看ppp版本，极有可能ppp是2.4.5版本的。所以，我们要下载pptp 1.4.0版本才行，而且这里是64位的系统。下载<span style="color: #0000ff;">pptpd-1.4.0-1.el6.x86_64.rpm</span>安装即可。这就是我说的出现版本不兼容的问题，当ppp版本和pptpd版本不兼容时候，就会出现类似的错误。</span></p>
+<p>这里我分享下pptpd 下载地址；</p>
+<p>64位<span style="color: #0000ff;"><strong>pptpd-1.4.0-1.el6.x86_64.rpm</strong></span>的下载地址：<a style="color: #428bca;" title="" href="http://www.400gb.com/file/54124122" rel="nofollow" data-original-title="">http://www.pipipan.com/file/18457333</a></p>
+<p><span style="color: #000000;">32位<strong><span style="color: #0000ff;">pptpd-1.4.0-1.el6.i686.rpm</span></strong>版本下载地址：<a style="color: #428bca;" title="" href="http://www.400gb.com/file/54124192" target="_blank" rel="nofollow" data-original-title="">http://www.400gb.com/file/54124192</a></span></p>
+<p>看到有人建议用–nodeps –force 这个参数，我个人不建议，这个参数可能以后会出现奇怪的问题，但是如果实在不行，你就用吧</p></blockquote>
+<p>&nbsp;</p>
+<p><strong>第三步：修改配置文件</strong></p>
+<p>1.<strong>配置文件/etc/ppp/options.pptpd</strong></p>
+<blockquote><p>#cp /etc/ppp/options.pptpd /etc/ppp/options.pptpd.bak<br />
+#vi /etc/ppp/options.pptpd</p>
+<p>解析：我还建议是在原配置文件上添加内容来配置pptp ，省的不必要的麻烦和问题</p></blockquote>
+<p>&nbsp;</p>
+<p><strong>将如下</strong>内容添加到到<strong>options.pptpd</strong>中：</p>
+<blockquote><p><span style="color: #ff0000;">ms-dns 8.8.8.8</span><br />
+<span style="color: #ff0000;">ms-dns 8.8.4.4</span></p></blockquote>
+<p>然后保存这个文件。</p>
+<p>解析：ms-dns 8.8.8.8， ms-dns 8.8.4.4是使用google的dns服务器。</p>
+<p>2.<strong>配置文件/etc/ppp/chap-secrets</strong></p>
+<blockquote><p>#cp /etc/ppp/chap-secrets   /etc/ppp/chap-secrets.bak<br />
+#vi /etc/ppp/chap-secrets</p></blockquote>
+<p><strong>chap-secrets</strong>内容如下：</p>
+<blockquote><p># Secrets for authentication using CHAP<br />
+# client server secret IP addresses<br />
+myusername <span style="color: #ff0000;">pptpd </span>mypassword <span style="color: #ff0000;">*</span></p>
+<p>//myusername是你的vpn帐号，mypassword是你的vpn的密码，<span style="color: #ff0000;">*</span>表示对任何ip，记得不要丢了这个<span style="color: #ff0000;">星号</span>。我这里根据这个格式，假设我的vpn的帐号是<span style="color: #ff0000;">ksharpdabu</span>，密码是 <span style="color: #ff0000;">sky</span>。那么，应该如下：</p>
+<p><span style="color: #339966;">ksharpdabu pptpd sky *</span></p></blockquote>
+<p>&nbsp;</p>
+<p>3.<strong>配置文件/etc/pptpd.conf</strong></p>
+<p>#cp /etc/pptpd.conf     /etc/pptpd.conf.bak<br />
+#vi /etc/pptpd.conf</p>
+<p><strong>添加下面两行</strong>：</p>
+<blockquote><p>localip 192.168.9.1<br />
+remoteip 192.168.9.11-30 //表示vpn客户端获得ip的范围</p></blockquote>
+<p>&nbsp;</p>
+<p><strong><span style="color: #ff0000;">关键点：<span style="color: #000000;"><strong>pptpd.conf这个配置文件必须保证最后是以空行结尾才行，否则会导致启动pptpd服务时，出现“Starting pptpd:”，一直卡着不动的问题，无法启动服务，切记呀！（相关文档可以查看：<a style="color: #428bca;" title="" href="http://www.dabu.info/starting-pptpd-does-not-run-down-turn.html" rel="bookmark" data-original-title="Starting pptpd: 运行不下去的原因(转)">Starting pptpd: 运行不下去的原因</a>）</strong></span></span></strong></p>
+<p><span style="color: #008000;">ppp = 2.4.4 is needed by pptpd-1.3.4-2.rhel5.x86_64</span></p>
+<p>&nbsp;</p>
+<p>4.<strong>配置文件/etc/sysctl.conf</strong></p>
+<blockquote><p>#vi /etc/sysctl.conf //修改内核设置，使其支持转发</p></blockquote>
+<p>将<span style="color: #008000;">net.ipv4.ip_forward = 0 </span>改成 <span style="color: #008000;">net.ipv4.ip_forward = 1</span></p>
+<p>保存修改后的文件</p>
+<blockquote><p>#/sbin/sysctl -p</p></blockquote>
+<p>&nbsp;</p>
+<p><strong>第四步：启动pptp vpn服务和iptables</strong></p>
+<blockquote><p>#/sbin/service pptpd start 或者 #service pptpd start</p></blockquote>
+<p>经过前面步骤，我们的VPN已经<strong>可以拨号登录</strong>了，但是还不能访问任何网页。最后一步就是添加iptables转发规则了，输入下面的指令：</p>
+<p><span style="color: #ff0000;">启动iptables和nat转发功能，很关键的呀</span>：</p>
+<p>#/sbin/service iptables start //启动iptables</p>
+<p>#/sbin/iptables -t nat -A POSTROUTING <strong><span style="color: #0000ff;">-o eth0</span></strong> -s 192.168.<span style="color: #ff0000;">9</span>.0/24 -j MASQUERADE <strong><span style="color: #ff0000;">或者</span></strong>使用下面的一种：</p>
+<p>#iptables -t nat -A POSTROUTING <strong><span style="color: #0000ff;">-o eth0</span></strong> -s 192.168.<span style="color: #ff0000;">9</span>.0/24 -j SNAT <span style="color: #000000;"><span style="color: #ff0000;">–<span style="color: #339966;">–</span></span></span>to-source <span style="color: #ff0000;">207.210.83.140</span></p>
+<p>//<span style="color: #ff00ff;">注意：</span>命令中的 “<strong>-o eth0</strong>“是指定网卡名称，如果是多个网卡，就根据需要将 <strong>-o eth0</strong> 改成你  -o ethXX (ehtXX是你网卡的名称)   ，可以通过ifconfig 查看有哪那些连通外网的网卡，一般vps都是<strong><span style="color: #ff0000;">单网卡</span></strong>的，而且大都网卡默认名都叫eth0  。但是事情总是多样的，所以如果你的上网的网卡不是 叫 eth0  ，那么就必须去掉 <strong>-o eth0</strong>  。直接让系统判断你用的网卡，所以将上面的命令改成：</p>
+<p>iptables -t nat -A POSTROUTING<strong>   </strong> -s 192.168.<span style="color: #ff0000;">9</span>.0/24 -j SNAT <span style="color: #000000;"><span style="color: #ff0000;">–<span style="color: #339966;">–</span></span></span>to-source <span style="color: #ff0000;">207.210.83.140<br />
+</span></p>
+<p>&nbsp;</p>
+<p>//你需要将207.210.83.140替换成你的<strong><span style="color: #ff0000;">vps的公网ip地址，因为这里我写的是我的。<span style="color: #000000;">还有就是有人说我这–to-source前只有一个横杠，其实是有两个横杠的。文章在编辑模式下显示是<span style="color: #ff0000;">两个横杠</span>，因为用的是英文输入法，所以，发表后就变成了一个横杆，而且在源码下复制粘贴也是一横，只有在编辑模式下才能看清楚是两横。但是可以明显看到to前面的那一横比source前的那横长一些，这些都是我操作记录下的命令，不会有错的。为了防止你们出错，我还是用不同的颜色标记吧。</span></span></strong></p>
+<p>这里我先前写的不是很详细，现在补上：</p>
+<ul>
+<li>需要注意的是，这个指令中的“192.168.9.0/24”是根据之前的配置文件中的“localip”网段来改变的(网上有的教程是192.168.<span style="color: #ff0000;">0</span>.0/24 )，比如你设置的 “10.0.0.1”网段，则应该改为“10.0.0.0/24”。此外还有一点需要注意的是eth0，如果你的外网网卡不是eth0，而是eth1（比 如SoftLayer的服务器就是这样的情况），那么请记得将eth0也更改为对应的网卡编号，不然是上不了网的！</li>
+<li>如果你的linux vps是ppp或者ADSL这种由DHCP动态分配获取ip的方式<span style="color: #008080;">（当然vps的ip基本都是是固定的。如果你是<span style="color: #ff0000;">XEN的vps</span>，那么这个转发规则其实<span style="color: #ff0000;"><strong>也是适用</strong></span></span>的，就是让vps自己判断自己的ip，省去了我们指定。），那么就需要用<span style="color: #ff0000;">-j MASQUERADE</span>这种写法，就是ip伪装。当然如果使用iptables -t nat -A POSTROUTING -o eth0 -s 192.168.<span style="color: #ff0000;">9</span>.0/24 -j SNAT <span style="color: #ff0000;">–</span><span style="color: #339966;">–</span>to-source <span style="color: #ff0000;">XXX.XXX.XXX.XXX </span>这种转发规则其实也是可以的，这样亲自指定自己的vps的ip地址。以后你通过vpn访问网站，显示的就是这个ip了。</li>
+</ul>
+<p>#/etc/init.d/iptables save //保存iptables的转发规则</p>
+<p>#/sbin/service iptables restart //重新启动iptables</p>
+<p>&nbsp;</p>
+<p><strong>最后一步：重启pptp vpn</strong></p>
+<blockquote><p>#service pptpd restart</p></blockquote>
+<p>#############################################3</p>
+<p>客户端如何拨号登陆vpn，我就不写了，大家可以自行google，因为系统那么多，我不可能xp，win7，centos，mac之类的每个都写，何况网上一大堆，只要你pptp vpn服务器搭建好了，客户端登陆的选择就是简单的事。如果这个也不知道，那我就没法了，自己动手吧。</p>
+<p>&nbsp;</p>
+<p><strong>多余的步骤</strong>：设置pptp vpn 开机启动</p>
+<p>有的人懒的重启后手动开启服务，所以下面我再补上开机自动启动pptp vpn 和 iptables的命令</p>
+<p>#chkconfig pptpd on //开机启动pptp vpn服务</p>
+<p>#chkconfig iptables on //开机启动iptables</p>
+<p>&nbsp;</p>
+<p>有问题请先看log，查google，百度，论坛，有的人连软件下载都不自己去搜索，对于这样的人，我也懒得理睬。</p>
+<p>&nbsp;</p>
+<p>贴个openvz的pptp vpn 一件安装包吧：centos，fedora，redhat  6.x 使用的脚本(vps上从没安装过的可以试试这个脚本，不保证一定成功，因为我没测试，只是根据上面的文章内容写的，嫌手动安装难打字):   <a style="color: #428bca;" title="" href="http://www.400gb.com/file/71869260" target="_blank" data-original-title="">点击下载</a></p>
+<div id="crayon-55bf0e8633694981235280" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
+<div class="crayon-plain-wrap"></div>
+<div class="crayon-main">
+<table class="crayon-table">
+<tbody>
+<tr class="crayon-row">
+<td class="crayon-nums " style="color: #5499de !important;" data-settings="show">
+<div class="crayon-nums-content">
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-1">1</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-2">2</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-3">3</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-4">4</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-5">5</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-6">6</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-7">7</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-8">8</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-9">9</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-10">10</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-11">11</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-12">12</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-13">13</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-14">14</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-15">15</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-16">16</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-17">17</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-18">18</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-19">19</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-20">20</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-21">21</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-22">22</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-23">23</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-24">24</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-25">25</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-26">26</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-27">27</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-28">28</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-29">29</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-30">30</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-31">31</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-32">32</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-33">33</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-34">34</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-35">35</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-36">36</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-37">37</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-38">38</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-39">39</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-40">40</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-41">41</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-42">42</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-43">43</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-44">44</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-45">45</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-46">46</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-47">47</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-48">48</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-49">49</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-50">50</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-51">51</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-52">52</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-53">53</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-54">54</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-55">55</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-56">56</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-57">57</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-58">58</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-59">59</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-60">60</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-61">61</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-62">62</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-63">63</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-64">64</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-65">65</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-66">66</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-67">67</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-68">68</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-69">69</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-70">70</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-71">71</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-72">72</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-73">73</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-74">74</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-75">75</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-76">76</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-77">77</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-78">78</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-79">79</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-80">80</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-81">81</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-82">82</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-83">83</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-84">84</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-85">85</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-86">86</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-87">87</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-88">88</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-89">89</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-90">90</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-91">91</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-92">92</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-93">93</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-94">94</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-95">95</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-96">96</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-97">97</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-98">98</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-99">99</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-100">100</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-101">101</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-102">102</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-103">103</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-104">104</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-105">105</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-106">106</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-107">107</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-108">108</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-109">109</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-110">110</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-111">111</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-112">112</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-113">113</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-114">114</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-115">115</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-116">116</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-117">117</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-118">118</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-119">119</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-120">120</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-121">121</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-122">122</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e8633694981235280-123">123</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e8633694981235280-124">124</div>
+</div>
+</td>
+<td class="crayon-code">
+<div class="crayon-pre">
+<div id="crayon-55bf0e8633694981235280-1" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-p" style="font-weight: inherit !important; color: #b85c00 !important;">#!/bin/bash</span></div>
+<div id="crayon-55bf0e8633694981235280-2" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># Interactive pptp vpn  install script for an OpenVZ VPS</span></div>
+<div id="crayon-55bf0e8633694981235280-3" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># surport  : Cenost ,Fedora  6.x </span></div>
+<div id="crayon-55bf0e8633694981235280-4" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># Augest 24, 2014 v1.00</span></div>
+<div id="crayon-55bf0e8633694981235280-5" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;">#url ：   http://www.dabu.info/?p=2178</span></div>
+<div id="crayon-55bf0e8633694981235280-6" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-7" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-8" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Interactive PoPToP Install Script for an OpenVZ VPS&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-9" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e8633694981235280-10" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Make sure to contact your provider and have them enable&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-11" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;IPtables and ppp modules prior to setting up PoPToP.&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-12" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;PPP can also be enabled from SolusVM.&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-13" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e8633694981235280-14" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;You need to set up the server before creating more users.&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-15" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;A separate user is required per connection or machine.&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-16" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-17" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e8633694981235280-18" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e8633694981235280-19" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-20" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Select on option:&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-21" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;1) Set up new PoPToP server AND create one user&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-22" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;2) Create additional users&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-23" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-24" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">read</span><span class="crayon-i" style="font-weight: inherit !important;">x</span></div>
+<div id="crayon-55bf0e8633694981235280-25" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">if</span><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">test</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">$x</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">eq</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">1</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">;</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">then</span></div>
+<div id="crayon-55bf0e8633694981235280-26" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Enter username that you want to create (eg. client1 or john):&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-27" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">read</span><span class="crayon-i" style="font-weight: inherit !important;">u</span></div>
+<div id="crayon-55bf0e8633694981235280-28" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Specify password that you want the server to use:&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-29" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">read</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">p</span></div>
+<div id="crayon-55bf0e8633694981235280-30" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-31" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;">## get the VPS IP</span></div>
+<div id="crayon-55bf0e8633694981235280-32" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;">#ip=`ifconfig venet0:0 | grep &#8216;inet addr&#8217; | awk {&#8216;print $2&#8217;} | sed s/.*://`</span></div>
+<div id="crayon-55bf0e8633694981235280-33" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-34" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e8633694981235280-35" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-36" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Downloading and Installing ppp  and   pptpd  &#8220;</span></div>
+<div id="crayon-55bf0e8633694981235280-37" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-38" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">yum   </span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">install  </span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ppp</span><span class="crayon-h" style="font-weight: inherit !important; color: #006fe0 !important;">   </span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">y</span></div>
+<div id="crayon-55bf0e8633694981235280-39" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">rpm</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">Uvh </span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">http</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">:</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">poptop</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.sourceforge</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.net</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">yum</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">stable</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">rhel6</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">pptp</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">release</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">current</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.noarch</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.rpm</span></div>
+<div id="crayon-55bf0e8633694981235280-40" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">yum    </span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">install  </span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">pptpd</span><span class="crayon-h" style="font-weight: inherit !important; color: #006fe0 !important;">  </span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">y</span></div>
+<div id="crayon-55bf0e8633694981235280-41" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-42" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e8633694981235280-43" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-44" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Creating Server Config&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-45" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-46" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">cp</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ppp</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">options</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.pptpd</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ppp</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">options</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.pptpd</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.bak</span></div>
+<div id="crayon-55bf0e8633694981235280-47" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">sed</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">i</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8217;70a ms-dns 8.8.8.8&#8242;</span><span class="crayon-h" style="font-weight: inherit !important; color: #006fe0 !important;">    </span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ppp</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">options</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.pptpd</span></div>
+<div id="crayon-55bf0e8633694981235280-48" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-49" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-50" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-51" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-52" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-53" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-54" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># setting up pptpd.conf</span></div>
+<div id="crayon-55bf0e8633694981235280-55" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">sed</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">i</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8216;101a localip 192.168.9.1&#8217;</span><span class="crayon-h" style="font-weight: inherit !important; color: #006fe0 !important;">    </span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">pptpd</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.conf</span></div>
+<div id="crayon-55bf0e8633694981235280-56" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">sed</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">i</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8216;102a  remoteip 192.168.9.11-30&#8217;</span><span class="crayon-h" style="font-weight: inherit !important; color: #006fe0 !important;">    </span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">pptpd</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.conf</span></div>
+<div id="crayon-55bf0e8633694981235280-57" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-58" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># adding new user</span></div>
+<div id="crayon-55bf0e8633694981235280-59" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;$u * $p *&#8221;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ppp</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">chap</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">secrets</span></div>
+<div id="crayon-55bf0e8633694981235280-60" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-61" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e8633694981235280-62" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-63" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Forwarding IPv4 and Enabling it on boot&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-64" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-65" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">cat</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">sysctl</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.conf</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&lt;&lt;</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e8633694981235280-66" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">net</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.ipv4</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.ip_forward</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">=</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">1</span></div>
+<div id="crayon-55bf0e8633694981235280-67" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e8633694981235280-68" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">sysctl</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">p</span></div>
+<div id="crayon-55bf0e8633694981235280-69" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-70" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e8633694981235280-71" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-72" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Updating IPtables Routing and Enabling it on boot&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-73" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-74" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">iptables</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">t</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">nat</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">A</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">POSTROUTING</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">o</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">eth0</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">j</span><span class="crayon-h" style="font-weight: inherit !important; color: #006fe0 !important;">  </span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">MASQUERADE</span></div>
+<div id="crayon-55bf0e8633694981235280-75" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># saves iptables routing rules and enables them on-boot</span></div>
+<div id="crayon-55bf0e8633694981235280-76" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">iptables</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">save</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">iptables</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.conf</span></div>
+<div id="crayon-55bf0e8633694981235280-77" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-78" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">cat</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">network</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">if</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">pre</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">up</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.d</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">iptables</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&lt;&lt;</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e8633694981235280-79" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;">#!/bin/sh</span></div>
+<div id="crayon-55bf0e8633694981235280-80" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">iptables</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">restore</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&lt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">iptables</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.conf</span></div>
+<div id="crayon-55bf0e8633694981235280-81" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e8633694981235280-82" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-83" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">chmod</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">+</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">x</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">network</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">if</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">pre</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">up</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.d</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">iptables</span></div>
+<div id="crayon-55bf0e8633694981235280-84" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">cat</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ppp</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ip</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">up</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&lt;&lt;</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e8633694981235280-85" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">ifconfig </span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">ppp0 </span><span class="crayon-i" style="font-weight: inherit !important;">mtu</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">1400</span></div>
+<div id="crayon-55bf0e8633694981235280-86" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e8633694981235280-87" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-88" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e8633694981235280-89" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-90" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Restarting PoPToP&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-91" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-92" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">sleep</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">5</span></div>
+<div id="crayon-55bf0e8633694981235280-93" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">init</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.d</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">pptpd </span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">restart</span></div>
+<div id="crayon-55bf0e8633694981235280-94" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-95" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e8633694981235280-96" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-97" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Server setup complete!&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-98" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Connect to your VPS at $ip with these credentials:&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-99" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Username:$u ##### Password: $p&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-100" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-101" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-102" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># runs this if option 2 is selected</span></div>
+<div id="crayon-55bf0e8633694981235280-103" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">elif</span><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">test</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">$x</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">eq</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">2</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">;</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">then</span></div>
+<div id="crayon-55bf0e8633694981235280-104" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Enter username that you want to create (eg. client1 or john):&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-105" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">read</span><span class="crayon-i" style="font-weight: inherit !important;">u</span></div>
+<div id="crayon-55bf0e8633694981235280-106" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Specify password that you want the server to use:&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-107" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">read</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">p</span></div>
+<div id="crayon-55bf0e8633694981235280-108" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-109" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-110" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-111" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># adding new user</span></div>
+<div id="crayon-55bf0e8633694981235280-112" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;$u * $p *&#8221;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ppp</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">chap</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">secrets</span></div>
+<div id="crayon-55bf0e8633694981235280-113" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-114" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e8633694981235280-115" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-116" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Addtional user added!&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-117" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Connect to your VPS at $ip with these credentials:&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-118" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Username:$u ##### Password: $p&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-119" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-120" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e8633694981235280-121" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">else</span></div>
+<div id="crayon-55bf0e8633694981235280-122" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Invalid selection, quitting.&#8221;</span></div>
+<div id="crayon-55bf0e8633694981235280-123" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">exit</span></div>
+<div id="crayon-55bf0e8633694981235280-124" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">fi</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>复制下面代码到install.sh中，然后 sh isntall.sh。这个是只支持debian和ubuntu系列，centos不支持。</p>
+<div id="crayon-55bf0e86336b0678324988" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover">
+<div class="crayon-plain-wrap"></div>
+<div class="crayon-main">
+<table class="crayon-table">
+<tbody>
+<tr class="crayon-row">
+<td class="crayon-nums " style="color: #5499de !important;" data-settings="show">
+<div class="crayon-nums-content">
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-1">1</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-2">2</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-3">3</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-4">4</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-5">5</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-6">6</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-7">7</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-8">8</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-9">9</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-10">10</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-11">11</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-12">12</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-13">13</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-14">14</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-15">15</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-16">16</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-17">17</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-18">18</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-19">19</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-20">20</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-21">21</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-22">22</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-23">23</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-24">24</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-25">25</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-26">26</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-27">27</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-28">28</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-29">29</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-30">30</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-31">31</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-32">32</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-33">33</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-34">34</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-35">35</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-36">36</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-37">37</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-38">38</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-39">39</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-40">40</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-41">41</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-42">42</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-43">43</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-44">44</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-45">45</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-46">46</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-47">47</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-48">48</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-49">49</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-50">50</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-51">51</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-52">52</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-53">53</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-54">54</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-55">55</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-56">56</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-57">57</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-58">58</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-59">59</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-60">60</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-61">61</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-62">62</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-63">63</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-64">64</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-65">65</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-66">66</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-67">67</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-68">68</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-69">69</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-70">70</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-71">71</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-72">72</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-73">73</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-74">74</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-75">75</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-76">76</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-77">77</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-78">78</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-79">79</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-80">80</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-81">81</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-82">82</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-83">83</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-84">84</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-85">85</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-86">86</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-87">87</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-88">88</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-89">89</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-90">90</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-91">91</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-92">92</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-93">93</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-94">94</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-95">95</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-96">96</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-97">97</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-98">98</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-99">99</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-100">100</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-101">101</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-102">102</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-103">103</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-104">104</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-105">105</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-106">106</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-107">107</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-108">108</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-109">109</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-110">110</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-111">111</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-112">112</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-113">113</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-114">114</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-115">115</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-116">116</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-117">117</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-118">118</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-119">119</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-120">120</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-121">121</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-122">122</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-123">123</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-124">124</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-125">125</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-126">126</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-127">127</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-128">128</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-129">129</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-130">130</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-131">131</div>
+<div class="crayon-num crayon-striped-num" style="font-weight: inherit !important; color: #317cc5 !important;" data-line="crayon-55bf0e86336b0678324988-132">132</div>
+<div class="crayon-num" style="font-weight: inherit !important;" data-line="crayon-55bf0e86336b0678324988-133">133</div>
+</div>
+</td>
+<td class="crayon-code">
+<div class="crayon-pre">
+<div id="crayon-55bf0e86336b0678324988-1" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-p" style="font-weight: inherit !important; color: #b85c00 !important;">#!/bin/bash</span></div>
+<div id="crayon-55bf0e86336b0678324988-2" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># Interactive PoPToP install script for an OpenVZ VPS</span></div>
+<div id="crayon-55bf0e86336b0678324988-3" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># Tested on Debian 5, 6, and Ubuntu 11.04</span></div>
+<div id="crayon-55bf0e86336b0678324988-4" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># April 2, 2013 v1.11</span></div>
+<div id="crayon-55bf0e86336b0678324988-5" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># http://www.putdispenserhere.com/pptp-debian-ubuntu-openvz-setup-script/</span></div>
+<div id="crayon-55bf0e86336b0678324988-6" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-7" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-8" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Interactive PoPToP Install Script for an OpenVZ VPS&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-9" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e86336b0678324988-10" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Make sure to contact your provider and have them enable&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-11" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;IPtables and ppp modules prior to setting up PoPToP.&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-12" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;PPP can also be enabled from SolusVM.&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-13" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e86336b0678324988-14" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;You need to set up the server before creating more users.&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-15" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;A separate user is required per connection or machine.&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-16" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-17" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e86336b0678324988-18" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e86336b0678324988-19" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-20" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Select on option:&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-21" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;1) Set up new PoPToP server AND create one user&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-22" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;2) Create additional users&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-23" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-24" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">read</span><span class="crayon-i" style="font-weight: inherit !important;">x</span></div>
+<div id="crayon-55bf0e86336b0678324988-25" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">if</span><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">test</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">$x</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">eq</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">1</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">;</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">then</span></div>
+<div id="crayon-55bf0e86336b0678324988-26" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Enter username that you want to create (eg. client1 or john):&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-27" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">read</span><span class="crayon-i" style="font-weight: inherit !important;">u</span></div>
+<div id="crayon-55bf0e86336b0678324988-28" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Specify password that you want the server to use:&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-29" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">read</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">p</span></div>
+<div id="crayon-55bf0e86336b0678324988-30" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-31" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># get the VPS IP</span></div>
+<div id="crayon-55bf0e86336b0678324988-32" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ip</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">=</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">`</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">ifconfig </span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">venet0</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">:</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">0</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">|</span><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">grep</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8216;inet addr&#8217;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">|</span><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">awk</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">{</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8216;print $2&#8217;</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">}</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">|</span><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">sed</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">s</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">.</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">*</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">:</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">`</span></div>
+<div id="crayon-55bf0e86336b0678324988-33" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-34" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e86336b0678324988-35" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-36" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Downloading and Installing PoPToP&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-37" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-38" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">apt</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">get</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">update</span></div>
+<div id="crayon-55bf0e86336b0678324988-39" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">apt</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">get</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">y</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">install </span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">pptpd</span></div>
+<div id="crayon-55bf0e86336b0678324988-40" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-41" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e86336b0678324988-42" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-43" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Creating Server Config&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-44" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-45" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">cat</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ppp</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">pptpd</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">options</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&lt;&lt;</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e86336b0678324988-46" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">name </span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">pptpd</span></div>
+<div id="crayon-55bf0e86336b0678324988-47" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">refuse</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">pap</span></div>
+<div id="crayon-55bf0e86336b0678324988-48" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">refuse</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">chap</span></div>
+<div id="crayon-55bf0e86336b0678324988-49" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">refuse</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">mschap</span></div>
+<div id="crayon-55bf0e86336b0678324988-50" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">require</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">mschap</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">v2</span></div>
+<div id="crayon-55bf0e86336b0678324988-51" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">require</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">mppe</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">128</span></div>
+<div id="crayon-55bf0e86336b0678324988-52" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ms</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">dns</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">8.8.8.8</span></div>
+<div id="crayon-55bf0e86336b0678324988-53" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ms</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">dns</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">8.8.4.4</span></div>
+<div id="crayon-55bf0e86336b0678324988-54" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">proxyarp</span></div>
+<div id="crayon-55bf0e86336b0678324988-55" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">nodefaultroute</span></div>
+<div id="crayon-55bf0e86336b0678324988-56" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">lock</span></div>
+<div id="crayon-55bf0e86336b0678324988-57" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">nobsdcomp</span></div>
+<div id="crayon-55bf0e86336b0678324988-58" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e86336b0678324988-59" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-60" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># setting up pptpd.conf</span></div>
+<div id="crayon-55bf0e86336b0678324988-61" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;option /etc/ppp/pptpd-options&#8221;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">pptpd</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.conf</span></div>
+<div id="crayon-55bf0e86336b0678324988-62" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;logwtmp&#8221;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">pptpd</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.conf</span></div>
+<div id="crayon-55bf0e86336b0678324988-63" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;localip $ip&#8221;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">pptpd</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.conf</span></div>
+<div id="crayon-55bf0e86336b0678324988-64" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;remoteip 10.1.0.1-100&#8221;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">pptpd</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.conf</span></div>
+<div id="crayon-55bf0e86336b0678324988-65" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-66" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># adding new user</span></div>
+<div id="crayon-55bf0e86336b0678324988-67" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;$u * $p *&#8221;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ppp</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">chap</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">secrets</span></div>
+<div id="crayon-55bf0e86336b0678324988-68" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-69" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e86336b0678324988-70" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-71" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Forwarding IPv4 and Enabling it on boot&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-72" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-73" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">cat</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">sysctl</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.conf</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&lt;&lt;</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e86336b0678324988-74" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">net</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.ipv4</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.ip_forward</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">=</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">1</span></div>
+<div id="crayon-55bf0e86336b0678324988-75" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e86336b0678324988-76" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">sysctl</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">p</span></div>
+<div id="crayon-55bf0e86336b0678324988-77" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-78" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e86336b0678324988-79" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-80" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Updating IPtables Routing and Enabling it on boot&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-81" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-82" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">iptables</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">t</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">nat</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">A</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">POSTROUTING</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">j</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">SNAT</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8212;</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">to</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">$ip</span></div>
+<div id="crayon-55bf0e86336b0678324988-83" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># saves iptables routing rules and enables them on-boot</span></div>
+<div id="crayon-55bf0e86336b0678324988-84" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">iptables</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">save</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">iptables</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.conf</span></div>
+<div id="crayon-55bf0e86336b0678324988-85" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-86" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">cat</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">network</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">if</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">pre</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">up</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.d</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">iptables</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&lt;&lt;</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e86336b0678324988-87" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;">#!/bin/sh</span></div>
+<div id="crayon-55bf0e86336b0678324988-88" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">iptables</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">restore</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&lt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">iptables</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.conf</span></div>
+<div id="crayon-55bf0e86336b0678324988-89" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e86336b0678324988-90" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-91" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">chmod</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">+</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">x</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">network</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">if</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">pre</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">up</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.d</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">iptables</span></div>
+<div id="crayon-55bf0e86336b0678324988-92" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">cat</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ppp</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ip</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">up</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&lt;&lt;</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e86336b0678324988-93" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">ifconfig </span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">ppp0 </span><span class="crayon-i" style="font-weight: inherit !important;">mtu</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">1400</span></div>
+<div id="crayon-55bf0e86336b0678324988-94" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">END</span></div>
+<div id="crayon-55bf0e86336b0678324988-95" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-96" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e86336b0678324988-97" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-98" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Restarting PoPToP&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-99" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-100" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">sleep</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">5</span></div>
+<div id="crayon-55bf0e86336b0678324988-101" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">init</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">.d</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">pptpd </span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">restart</span></div>
+<div id="crayon-55bf0e86336b0678324988-102" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-103" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e86336b0678324988-104" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-105" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Server setup complete!&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-106" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Connect to your VPS at $ip with these credentials:&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-107" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Username:$u ##### Password: $p&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-108" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-109" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-110" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># runs this if option 2 is selected</span></div>
+<div id="crayon-55bf0e86336b0678324988-111" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">elif</span><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">test</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">$x</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-i" style="font-weight: inherit !important;">eq</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">2</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">;</span><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">then</span></div>
+<div id="crayon-55bf0e86336b0678324988-112" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Enter username that you want to create (eg. client1 or john):&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-113" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">read</span><span class="crayon-i" style="font-weight: inherit !important;">u</span></div>
+<div id="crayon-55bf0e86336b0678324988-114" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Specify password that you want the server to use:&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-115" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">read</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">p</span></div>
+<div id="crayon-55bf0e86336b0678324988-116" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-117" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># get the VPS IP</span></div>
+<div id="crayon-55bf0e86336b0678324988-118" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ip</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">=</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">`</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">ifconfig </span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">venet0</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">:</span><span class="crayon-cn" style="font-weight: inherit !important; color: #ce0000 !important;">0</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">|</span><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">grep</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8216;inet addr&#8217;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">|</span><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">awk</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">{</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8216;print $2&#8217;</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">}</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">|</span><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">sed</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">s</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">.</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">*</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">:</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-sy" style="font-weight: inherit !important; color: #333333 !important;">`</span></div>
+<div id="crayon-55bf0e86336b0678324988-119" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-120" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-c" style="font-weight: inherit !important; color: #ff8000 !important;"># adding new user</span></div>
+<div id="crayon-55bf0e86336b0678324988-121" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;$u * $p *&#8221;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&gt;&gt;</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">etc</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">ppp</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">/</span><span class="crayon-v" style="font-weight: inherit !important; color: #002d7a !important;">chap</span><span class="crayon-o" style="font-weight: inherit !important; color: #006fe0 !important;">&#8211;</span><span class="crayon-e" style="font-weight: inherit !important; color: #004ed0 !important;">secrets</span></div>
+<div id="crayon-55bf0e86336b0678324988-122" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-123" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span></div>
+<div id="crayon-55bf0e86336b0678324988-124" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-125" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Addtional user added!&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-126" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Connect to your VPS at $ip with these credentials:&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-127" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Username:$u ##### Password: $p&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-128" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;######################################################&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-129" class="crayon-line" style="font-weight: inherit !important;"></div>
+<div id="crayon-55bf0e86336b0678324988-130" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">else</span></div>
+<div id="crayon-55bf0e86336b0678324988-131" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">echo</span><span class="crayon-s" style="font-weight: inherit !important; color: #008000 !important;">&#8220;Invalid selection, quitting.&#8221;</span></div>
+<div id="crayon-55bf0e86336b0678324988-132" class="crayon-line crayon-striped-line" style="font-weight: inherit !important;"><span class="crayon-r" style="font-weight: inherit !important; color: #800080 !important;">exit</span></div>
+<div id="crayon-55bf0e86336b0678324988-133" class="crayon-line" style="font-weight: inherit !important;"><span class="crayon-st" style="font-weight: inherit !important; color: #800080 !important;">fi</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>&nbsp;</p>
+</div>
+<div style="color: #555555;">############################完#############################</div>
+<div style="color: #555555;">如果一件安装包都不知道用，那就真的没法子了</div>
+<div style="color: #555555;">
+<p><strong>FAQ：</strong></p>
+<p>1.报错：重启时候提示</p>
+<p># service pptpd restart<br />
+Shutting down pptpd: [失败]<br />
+Starting pptpd: [失败]<br />
+Warning: a pptpd restart does not terminate existing<br />
+connections, so new connections may be assigned the same IP<br />
+address and cause unexpected results. Use restart-kill to<br />
+destroy existing connections during a restart.</p>
+<p><span style="color: #ff0000;">解决办法：</span>根据提示，可能是你重启pptpd服务的时候，没有切断已经存在的连接，所以新的连接会被分配为相同的ip地址，导致一些不可预料的问题。所以你重启 pptpd服务前，先用下面的命令断开当前存在的连接：#service pptpd restart-kill，然后再#service pptpd start</p>
+<p>2.有的vps不支持加密连接，导致不能拨号成功登陆vpn。</p>
+<p style="color: #444444;">解决办法：是<span class="entry">编辑/etc/ppp/options.pptpd（vim /etc/ppp/options.pptpd），在require-mppe-128前面加个#（# require-mppe-128）；</span></p>
+<p style="color: #444444;"><span class="entry">在windows的VPN连接属性里，加密方式选择为可选加密，并允许未加密的密码。</span></p>
+<p>&nbsp;</p>
+<p>3.能够直接用域名作为vpn的拨号地址，而不用vps的ip。因为ip不方便记忆，我自己也记不住自己的服务器的ip。</p>
+<p><span style="color: #ff0000;">解决办法：</span>去dns里面设置，将<span style="color: #ff0000;">域名设置为A记录</span>，这样就可以直接用域名作为vpn的服务器的地址了。</p>
+<p>4.有的链接 pptp vpn时候失败，提示619.</p>
+<p>解决办法：执行下面的命令：</p>
+<p># rm -r /dev/ppp</p>
+<p># mknod /dev/ppp c 108 0 然后重启VPS即可。</p>
+<p>也可以参考这片文章《<a style="color: #428bca;" title="" href="http://www.hkcdn.net/23.html" data-original-title="">VPN连接时提示619错误处理办法及vpn连接成功后无法上网解决办法</a>》</p>
+</div>
+				<span class="align_left">&laquo; Prev：<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=896/index.html" rel="prev">Windows 7 和 Windows 8* 連接VPN操作步驟</a></span>
+				<span class="align_right"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=908/index.html" rel="next">CentOS 7系统上架设DNS服务</a>：Next &raquo;</span>
+			</div>
+		</div>
+
+	<!-- You can start editing here. -->
+
+		
+<div class="comments-navi"></div>
+
+
+<div id="respond">
+<form action="http://blog.whatisit.cn/wp-comments-post.php" method="post" id="commentform">
+<h4 class="clear">Leave a Reply</h4>
+
+
+
+<div id="author_info">
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author">Name  </label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email">Mail (will not be published)  </label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url">Website</label></p>
+	</div>
+	
+<p><textarea name="comment" id="comment" cols="5" rows="10" tabindex="4" onkeydown="if(event.ctrlKey&&event.keyCode==13){document.getElementById('submit').click();return false};"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" class="subin" value="" />
+ <input type='hidden' name='comment_post_ID' value='906' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+ 
+</p><div id="cancel_reply"><a rel="nofollow" id="cancel-comment-reply-link" href="/?p=906#respond" style="display:none;">点击这里取消回复。</a></div>
+</form>
+</div>
+
+	
+            <div class="content_foot conleft"></div>
+        </div>
+        
+	<div id="sidebar" role="complementary">
+		<!-- Search Start -->
+		<div id="search">
+			<form method="get" id="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<span class="st"><input type="text" value="" name="s" id="s" class="searchtxt" /></span><span class="ss"><input type="submit" name="submit" value="" class="searchsm" /></span>
+			</form>
+		</div>
+		<div class="clear"></div>
+		<!-- Search End -->
+		<ul>
+			<li id="search-2" class="widget widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<div>
+					<label class="screen-reader-text" for="s">搜索：</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="搜索" />
+				</div>
+			</form></li>
+		<li id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widgettitle">近期文章</h2>
+		<ul>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1137/index.html">Windows下降权MYSQL和apche的运行级别</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1135/index.html">[转]windows2008 mysql 提权</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1133/index.html">PHP一句话</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1130/index.html">[轉]怎样在CentOS 7.0上安装和配置VNC服务器</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1128/index.html">Shadowsocks优化方案</a>
+						</li>
+				</ul>
+		</li>
+		<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">近期评论</h2>
+<ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-85">自省三聲</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-100">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-99">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-98">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-84">自省三聲</a>》</li></ul></li>
+<li id="archives-2" class="widget widget_archive"><h2 class="widgettitle">文章归档</h2>
+		<ul>
+			<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201604/index.html'>2016年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201603/index.html'>2016年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201602/index.html'>2016年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201601/index.html'>2016年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201512/index.html'>2015年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201511/index.html'>2015年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201510/index.html'>2015年十月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201509/index.html'>2015年九月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201508/index.html'>2015年八月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201507/index.html'>2015年七月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201505/index.html'>2015年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201504/index.html'>2015年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201503/index.html'>2015年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201502/index.html'>2015年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201501/index.html'>2015年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201412/index.html'>2014年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201411/index.html'>2014年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201405/index.html'>2014年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201404/index.html'>2014年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201403/index.html'>2014年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201402/index.html'>2014年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201401/index.html'>2014年一月</a></li>
+		</ul>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">分类目录</h2>
+		<ul>
+	<li class="cat-item cat-item-11"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=11/index.html" >Development</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=12/index.html" >Linux</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=13/index.html" >Safe for Network</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=14/index.html" >Serveice for Net</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=15/index.html" >Server For Win</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=1/index.html" >未分类</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=3/index.html" title="江湖恩怨几时休
+策马相依四海游
+几度春秋
+终是一朝泯恩仇
+
+">江湖舊事</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=4/index.html" >江湖軼卷</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=5/index.html" >浮生度秋技術宅</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=6/index.html" >破塵妖月</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=8/index.html" title="汝道 天道 道之所道
+吾道 心道 道汝道之所道">道是道痕</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=9/index.html" >附庸風雅</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=10/index.html" >麗魅魍魎</a>
+</li>
+		</ul>
+</li>
+<li id="meta-2" class="widget widget_meta"><h2 class="widgettitle">功能</h2>
+			<ul>
+						<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/wp-login.php">登录</a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2">文章<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=comments-rss2">评论<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://cn.wordpress.org/" title="基于WordPress，一个优美、先进的个人信息发布平台。">WordPress.org</a></li>			</ul>
+			</li>
+					</ul>
+  </div>
+       </div>
+
+<div id="footer" class="clear">
+       	 <div class="wrap">
+             <span><font  color="#d0d0d0"> 41 queries in 0.463 seconds.</font></span>
+         </div>
+</div>
+</div>
+<div id="wp-auto-top"><div id="wp-auto-top-top"></div><div id="wp-auto-top-comment"></div><div id="wp-auto-top-bottom"></div></div>
+<script> var commentPositionId = '#comments';var wpAutoTopSpeed = 1;</script><style>
+   #wp-auto-top{position:fixed;top:80%;right:50%;display:block;margin-right:-43%; z-index:9999;}
+   #wp-auto-top-top,#wp-auto-top-comment,#wp-auto-top-bottom{background:url(http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/img/23.png) no-repeat;position:relative;cursor:pointer;height:25px;width:29px;margin:10px 0 0;}
+   #wp-auto-top-comment{background-position:left -30px;height:32px;}#wp-auto-top-bottom{background-position:left -68px;}
+   #wp-auto-top-comment:hover{background-position:right -30px;}
+   #wp-auto-top-top:hover{background-position:right 0;}
+   #wp-auto-top-bottom:hover{background-position:right -68px ;}
+   </style><script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/wp-auto-top.js?ver=4.6.1'></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?99868b1eadabc674ab444818b2d365cb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.461 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2016-11-15 20:31:11 -->

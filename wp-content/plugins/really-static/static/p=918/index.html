@@ -1,0 +1,488 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>
+    Centos 7 安装 l2tp/ipsec vpn &laquo; ___道子千秋
+</title>
+<link rel="stylesheet" href="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/style.css" type="text/css" media="screen" />
+<link title="RSS 2.0" type="application/rss+xml" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2" rel="alternate" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/js/DD_belatedPNG.js"></script>
+<script>DD_belatedPNG.fix('.nav li,.searchsm'); </script> 
+<![endif]-->
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="韻秋小道童 &raquo; Centos 7 安装 l2tp/ipsec vpn评论Feed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2&#038;p=918" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/blog.whatisit.cn\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='https://api.w.org/' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=/' />
+<link rel='prev' title='centos7连接vpn方法' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=910/index.html' />
+<link rel='next' title='windows apache 配置多个服务站点' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=924/index.html' />
+<meta name="generator" content="WordPress 4.6.1 - really-static 0.5" />
+<link rel="canonical" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=918/index.html" />
+<link rel="alternate" type="application/json+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D918%2Findex.html" />
+<link rel="alternate" type="text/xml+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D918%2Findex.html&#038;format=xml" />
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		</head>
+
+<body itemtype="http://schema.org/WebPage" itemscope="">
+
+   <div id="fullwrapper">
+       <div class="wrap">
+           <div class="header">
+               <div class="logo"><p><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/"><font size="8" face="KaiTi">韻秋小道童</font></a></p><font size="5" face="KaiTi">被玩壞的小道童</font></div>
+               	 <ul class="nav">
+                 		<li><a title="首页" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">首页</a></li>
+                 		<li><a title="江湖故事" href="/jhgs-html/">江湖故事</a></li>
+	<li class="page_item page-item-870"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html">IT便利貼</a></li>
+<li class="page_item page-item-837"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=837/index.html">江湖故事</a></li>
+<li class="page_item page-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=9/index.html">我的微博</a></li>
+<li class="page_item page-item-47"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html">自省三聲</a></li>
+                </ul>
+           </div>
+       </div>
+       <div class="wrap">	<div id="content" class="widecolumn" role="main">
+		<div class="content_top conleft"></div>
+	
+		<div class="post-918 post type-post status-publish format-standard hentry category-linux category-serveice-for-net" id="post-918">
+			<h2>Centos 7 安装 l2tp/ipsec vpn</h2>
+				<div class="post_intro">
+					<span>tydqq Post in <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=12/index.html" rel="category">Linux</a>, <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=14/index.html" rel="category">Serveice for Net</a>，</span>
+									</div>
+				<div class="content_date">
+					<div class="datebg">
+						<span class="day">05</span>
+						<span>八月</span>
+						<span>2015</span>
+					</div>
+				</div>
+				<div class="comments">
+					<span class="cmt_num"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=918/index.html#respond">0</a></span>
+				</div>
+				
+			<div class="entry">
+				<h2 style="color: #000000;">1.安装 l2tp ipsec 所需要的软件包</h2>
+<blockquote style="color: #000000;"><p>yum install epel-release</p>
+<p>yum install openswan xl2tpd ppp lsof</p></blockquote>
+<p><span id="more-918"></span></p>
+<h2 style="color: #000000;">2.设置ipsec</h2>
+<blockquote style="color: #000000;">
+<h3>2.1 编辑 /etc/ipsec.conf</h3>
+<blockquote><p>vi /etc/ipsec.conf<br />
+把下面xx.xxx.xxx.xxx换成你自己主机实际的外网固定IP。其他的不动。</p>
+<p>&nbsp;</p>
+<p>config setup</p>
+<p>protostack=netkey</p>
+<p>dumpdir=/var/run/pluto/</p>
+<p>nat_traversal=yes</p>
+<p>virtual_private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12,%v4:25.0.0.0/8,%v4:100.64.0.0/10,%v6:fd00::/8,%v6:fe80::/10</p>
+<p>conn L2TP-PSK-NAT</p>
+<p>rightsubnet=vhost:%priv</p>
+<p>also=L2TP-PSK-noNAT</p>
+<p>conn L2TP-PSK-noNAT</p>
+<p>authby=secret</p>
+<p>pfs=no</p>
+<p>auto=add</p>
+<p>keyingtries=3</p>
+<p>dpddelay=30</p>
+<p>dpdtimeout=120</p>
+<p>dpdaction=clear</p>
+<p>rekey=no</p>
+<p>ikelifetime=8h</p>
+<p>keylife=1h</p>
+<p>type=transport</p>
+<p>left=xxx.xxx.xxx.xxx</p>
+<p>leftprotoport=17/1701</p>
+<p>right=%any</p>
+<p>rightprotoport=17/%any</p></blockquote>
+<h3>2.2 编辑/etc/ipsec.secrets</h3>
+<blockquote><p>vi /etc/ipsec.secrets</p>
+<p>include /etc/ipsec.d/*.secrets</p>
+<p>/etc/ipsec.secrets 文件里面默认有一句包含 /etc/ipsec.d/*.secrets 的语句.所以可以直接在 /etc/ipsec.d 目录下新建一自己的个 *.secrets 文件.也可以直接把它注释掉,添加下面的配置语句.</p>
+<p>vi /etc/ipsec.d/my.secrets</p>
+<p>&nbsp;</p>
+<pre>xxx.xxx.xxx.xxx %any: PSK "kuaile"</pre>
+<p>&nbsp;</p>
+<p>xx.xxx.xxx.xxx换成你自己VPS实际的外网固定IP, YourPsk你自己定一个，到时候连VPN的时候用，比如可以填csdn.net, 注意空格。</p></blockquote>
+<h3>2.3 修改/添加 /etc/sysctl.conf</h3>
+<blockquote><p>vi /etc/sysctl.conf<br />
+确保下面的字段都有，对应的值或下面一样。省事的话直接在/etc/sysctl.conf的末尾直接把下面内容的粘过去。</p>
+<p>&nbsp;</p>
+<pre>net.ipv4.ip_forward = 1</pre>
+<pre>net.ipv4.conf.default.accept_redirects = 0</pre>
+<pre>net.ipv4.conf.default.send_redirects = 0
+net.ipv4.conf.eth0.rp_filter = 0</pre>
+<pre>net.ipv4.conf.default.rp_filter = 0</pre>
+</blockquote>
+<h3>2.4 让修改后的sysctl.conf生效</h3>
+<blockquote><p>
+sysctl -p</p>
+<p>&nbsp;</p></blockquote>
+<h3>2.5 验证ipsec运行状态</h3>
+<blockquote><p>ipsec setup start</p>
+<p>ipsec verify<br />
+verify的内容如下所示，那么就离成功不远了。没有 红色 的fail 就可以了.</p>
+<p>&nbsp;</p>
+<p>[root@Centos7 ~]# ipsec verify</p>
+<p>Verifying installed system and configuration files</p>
+<p>Version check and ipsec on-path                       [OK]</p>
+<p>Libreswan 3.8 (netkey) on 3.10.0-123.9.3.el7.x86_64</p>
+<p>Checking for IPsec support in kernel                  [OK]</p>
+<p>NETKEY: Testing XFRM related proc values</p>
+<p>ICMP default/send_redirects                  [OK]</p>
+<p>ICMP default/accept_redirects                [OK]</p>
+<p>XFRM larval drop                             [OK]</p>
+<p>Pluto ipsec.conf syntax                               [OK]</p>
+<p>Hardware random device                                [N/A]</p>
+<p>Checking rp_filter                                    [OK]</p>
+<p>Checking that pluto is running                        [OK]</p>
+<p>Pluto listening for IKE on udp 500                   [OK]</p>
+<p>Pluto listening for IKE/NAT-T on udp 4500            [OK]</p>
+<p>Pluto ipsec.secret syntax                            [OK]</p>
+<p>Checking NAT and MASQUERADEing                        [TEST INCOMPLETE]</p>
+<p>Checking &#8216;ip&#8217; command                                 [OK]</p>
+<p>Checking &#8216;iptables&#8217; command                           [OK]</p>
+<p>Checking &#8216;prelink&#8217; command does not interfere with FIPSChecking for obsolete ipsec.conf options              [OK]</p>
+<p>Opportunistic Encryption                              [DISABLED]</p>
+<p>[root@Centos7 ~]#</p></blockquote>
+</blockquote>
+<h2 style="color: #000000;">3. 设置 l2tp</h2>
+<blockquote style="color: #000000;">
+<h3>3.1 编辑 /etc/xl2tpd/xl2tpd.conf</h3>
+<blockquote><p>vim /etc/xl2tpd/xl2tpd.conf</p>
+<p>&nbsp;</p>
+<p>[global]</p>
+<p>ipsec saref = yes</p>
+<p>listen-addr = xxx.xxx.xxx.xxx         ;这里是你的主机外网ip地址,;号是注释,和一般的配置文件不同</p>
+<p>; Use refinfo of 22 if using an SAref kernel patch based on openswan 2.6.35 or</p>
+<p>;  when using any of the SAref kernel patches for kernels up to 2.6.35.</p>
+<p>; saref refinfo = 30</p>
+<p>;</p>
+<p>force userspace = yes</p>
+<p>;</p>
+<p>; debug tunnel = yes</p>
+<p>[lns default]</p>
+<p>ip range = 10.0.10.2-10.0.10.100      ;这里是VPN client的内网ip地址范围</p>
+<p>local ip = 10.0.10.1                  ;这里是VPN server的内网地址</p>
+<p>refuse chap = yes</p>
+<p>refuse pap = yes</p>
+<p>require authentication = yes</p>
+<p>name = LinuxVPNserver</p>
+<p>ppp debug = yes</p>
+<p>pppoptfile = /etc/ppp/options.xl2tpd</p>
+<p>length bit = yes</p>
+<h3></h3>
+</blockquote>
+<h3>3.2 编辑 /etc/ppp/options.xl2tpd</h3>
+<blockquote><p>vi /etc/ppp/options.xl2tpd</p>
+<p>&nbsp;</p>
+<p><span style="color: #ff0000;">name l2tpd</span></p>
+<p><span style="color: #ff0000;">require-mschap-v2</span></p>
+<p><span style="color: #ff0000;">ms-dns 8.8.8.8</span></p>
+<p><span style="color: #ff0000;">ms-dns 8.8.4.4</span></p>
+<p><span style="color: #ff0000;">ipcp-accept-local</span></p>
+<p><span style="color: #ff0000;">ipcp-accept-remote</span></p>
+<p><span style="color: #ff0000;">#ms-dns  8.8.8.8</span></p>
+<p><span style="color: #ff0000;">noccp</span></p>
+<p><span style="color: #ff0000;">auth</span></p>
+<p><span style="color: #ff0000;">crtscts</span></p>
+<p><span style="color: #ff0000;">idle 1800</span></p>
+<p><span style="color: #ff0000;">mtu 1410</span></p>
+<p><span style="color: #ff0000;">mru 1410</span></p>
+<p><span style="color: #ff0000;">nodefaultroute</span></p>
+<p><span style="color: #ff0000;">debug</span></p>
+<p><span style="color: #ff0000;">lock</span></p>
+<p><span style="color: #ff0000;">proxyarp</span></p>
+<p><span style="color: #ff0000;">connect-delay 5000</span></p>
+<p>&nbsp;</p></blockquote>
+</blockquote>
+<blockquote style="color: #000000;">
+<h3>3.3 配置用户名,密码:编辑 /etc/ppp/chap-secrets</h3>
+</blockquote>
+<blockquote style="color: #000000;">
+<blockquote><p>vim /etc/ppp/chap-secrets<br />
+client和secret自己填，server和IP留*号，l2tp 可以用上面自己设定的 l2tpd .* 通用</p>
+<p><span style="color: #ff0000;"># Secrets for authentication using CHAP</span></p>
+<p><span style="color: #ff0000;"># client        server  secret                  IP addresses</span></p>
+<p><span style="color: #ff0000;">username * userpass *</span></p></blockquote>
+<h3>3.4 启动xl2tp</h3>
+<blockquote>
+<pre>service xl2tpd start</pre>
+</blockquote>
+</blockquote>
+<p style="color: #000000;">
+<h2 style="color: #000000;">4. 开放端口以及转发</h2>
+<blockquote style="color: #000000;"><p>原样执行下面所有命令</p>
+<p>&nbsp;</p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p udp -m policy &#8211;dir in &#8211;pol ipsec -m udp &#8211;dport 1701 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p udp -m udp &#8211;dport 1701 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p udp -m udp &#8211;dport 500 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p udp -m udp &#8211;dport 4500 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p esp -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -m policy &#8211;dir in &#8211;pol ipsec -j ACCEPT</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="color: #ff0000;">/sbin/iptables -A FORWARD -d 10.0.10.0/24 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A FORWARD -s 10.0.10.0/24 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A FORWARD -i ppp+ -m state &#8211;state NEW,RELATED,ESTABLISHED -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A FORWARD -m state &#8211;state RELATED,ESTABLISHED -j ACCEPT</span></p>
+<p>&nbsp;</p>
+<p><span style="color: #ff0000;">/sbin/iptables -t nat -A POSTROUTING -s 10.0.10.0/24 -o eth0 -j MASQUERADE</span></p>
+<p>&nbsp;</p></blockquote>
+<p style="color: #000000;">
+<blockquote style="color: #000000;"><p>再执行下面保存iptables</p>
+<p>service iptables save</p>
+<p>service iptables restart</p></blockquote>
+<p style="color: #000000;">
+<blockquote style="color: #000000;"><p>添加开机自启动</p>
+<p>systemd enabled ipsec</p>
+<p>systemd enabled xl2tpd</p></blockquote>
+<p style="color: #000000;">
+如果连接不上的话, 先关掉iptalbes试试 service iptables stop</p>
+<p style="color: #000000;">如果这时还连不上了，那么就是iptables的问题了</p>
+<p style="color: #000000;">特别注意iptables里的顺序， INPUT和FORWARD里的REJECT一定是写在最后面，否则写在他们之后的port就都被REJECT了！</p>
+<p style="color: #000000;">下面是我自己的iptables，可供参考</p>
+<p style="color: #000000;">##########################################################################################</p>
+<p style="color: #000000;">
+<blockquote style="color: #000000;">
+<blockquote><p><span style="color: #ff0000;">#! /bin/bash</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -F INPUT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -Z INPUT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -P INPUT ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -m state &#8211;state INVALID -j DROP</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p icmp -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -i lo -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p tcp -m state &#8211;state NEW,RELATED,ESTABLISHED -m tcp &#8211;dport 22 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p tcp -m state &#8211;state NEW,RELATED,ESTABLISHED -m tcp &#8211;dport 80 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p tcp -m state &#8211;state NEW,RELATED,ESTABLISHED -m tcp &#8211;dport 1723 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p gre -m state &#8211;state NEW,RELATED,ESTABLISHED -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p udp -m policy &#8211;dir in &#8211;pol ipsec -m udp &#8211;dport 1701 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p udp -m udp &#8211;dport 1701 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p udp -m udp &#8211;dport 500 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p udp -m udp &#8211;dport 4500 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -p esp -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -m policy &#8211;dir in &#8211;pol ipsec -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -m state &#8211;state RELATED,ESTABLISHED -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A INPUT -j REJECT &#8211;reject-with icmp-host-prohibited</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -F FORWARD</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -Z FORWARD</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -P FORWARD ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A FORWARD -m state &#8211;state INVALID -j DROP</span></p>
+<p><span style="color: #ff0000;">#/sbin/iptables -A FORWARD -m policy &#8211;dir in &#8211;pol ipsec -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A FORWARD -d 10.0.10.0/24 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A FORWARD -s 10.0.10.0/24 -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A FORWARD -i ppp+ -m state &#8211;state NEW,RELATED,ESTABLISHED -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A FORWARD -m state &#8211;state RELATED,ESTABLISHED -j ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A FORWARD -j REJECT &#8211;reject-with icmp-host-prohibited</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -F OUTPUT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -Z OUTPUT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -P OUTPUT ACCEPT</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -A OUTPUT -m state &#8211;state INVALID -j DROP</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -F -t nat</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -Z -t nat</span></p>
+<p><span style="color: #ff0000;">/sbin/iptables -t nat -A POSTROUTING -s 10.0.10.0/24 -o eth0 -j MASQUERADE</span></p></blockquote>
+</blockquote>
+				<span class="align_left">&laquo; Prev：<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=910/index.html" rel="prev">centos7连接vpn方法</a></span>
+				<span class="align_right"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=924/index.html" rel="next">windows apache 配置多个服务站点</a>：Next &raquo;</span>
+			</div>
+		</div>
+
+	<!-- You can start editing here. -->
+
+		
+<div class="comments-navi"></div>
+
+
+<div id="respond">
+<form action="http://blog.whatisit.cn/wp-comments-post.php" method="post" id="commentform">
+<h4 class="clear">Leave a Reply</h4>
+
+
+
+<div id="author_info">
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author">Name  </label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email">Mail (will not be published)  </label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url">Website</label></p>
+	</div>
+	
+<p><textarea name="comment" id="comment" cols="5" rows="10" tabindex="4" onkeydown="if(event.ctrlKey&&event.keyCode==13){document.getElementById('submit').click();return false};"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" class="subin" value="" />
+ <input type='hidden' name='comment_post_ID' value='918' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+ 
+</p><div id="cancel_reply"><a rel="nofollow" id="cancel-comment-reply-link" href="/?p=918#respond" style="display:none;">点击这里取消回复。</a></div>
+</form>
+</div>
+
+	
+            <div class="content_foot conleft"></div>
+        </div>
+        
+	<div id="sidebar" role="complementary">
+		<!-- Search Start -->
+		<div id="search">
+			<form method="get" id="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<span class="st"><input type="text" value="" name="s" id="s" class="searchtxt" /></span><span class="ss"><input type="submit" name="submit" value="" class="searchsm" /></span>
+			</form>
+		</div>
+		<div class="clear"></div>
+		<!-- Search End -->
+		<ul>
+			<li id="search-2" class="widget widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<div>
+					<label class="screen-reader-text" for="s">搜索：</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="搜索" />
+				</div>
+			</form></li>
+		<li id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widgettitle">近期文章</h2>
+		<ul>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1137/index.html">Windows下降权MYSQL和apche的运行级别</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1135/index.html">[转]windows2008 mysql 提权</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1133/index.html">PHP一句话</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1130/index.html">[轉]怎样在CentOS 7.0上安装和配置VNC服务器</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1128/index.html">Shadowsocks优化方案</a>
+						</li>
+				</ul>
+		</li>
+		<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">近期评论</h2>
+<ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-85">自省三聲</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-100">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-99">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-98">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-84">自省三聲</a>》</li></ul></li>
+<li id="archives-2" class="widget widget_archive"><h2 class="widgettitle">文章归档</h2>
+		<ul>
+			<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201604/index.html'>2016年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201603/index.html'>2016年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201602/index.html'>2016年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201601/index.html'>2016年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201512/index.html'>2015年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201511/index.html'>2015年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201510/index.html'>2015年十月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201509/index.html'>2015年九月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201508/index.html'>2015年八月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201507/index.html'>2015年七月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201505/index.html'>2015年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201504/index.html'>2015年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201503/index.html'>2015年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201502/index.html'>2015年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201501/index.html'>2015年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201412/index.html'>2014年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201411/index.html'>2014年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201405/index.html'>2014年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201404/index.html'>2014年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201403/index.html'>2014年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201402/index.html'>2014年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201401/index.html'>2014年一月</a></li>
+		</ul>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">分类目录</h2>
+		<ul>
+	<li class="cat-item cat-item-11"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=11/index.html" >Development</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=12/index.html" >Linux</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=13/index.html" >Safe for Network</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=14/index.html" >Serveice for Net</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=15/index.html" >Server For Win</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=1/index.html" >未分类</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=3/index.html" title="江湖恩怨几时休
+策马相依四海游
+几度春秋
+终是一朝泯恩仇
+
+">江湖舊事</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=4/index.html" >江湖軼卷</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=5/index.html" >浮生度秋技術宅</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=6/index.html" >破塵妖月</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=8/index.html" title="汝道 天道 道之所道
+吾道 心道 道汝道之所道">道是道痕</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=9/index.html" >附庸風雅</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=10/index.html" >麗魅魍魎</a>
+</li>
+		</ul>
+</li>
+<li id="meta-2" class="widget widget_meta"><h2 class="widgettitle">功能</h2>
+			<ul>
+						<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/wp-login.php">登录</a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2">文章<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=comments-rss2">评论<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://cn.wordpress.org/" title="基于WordPress，一个优美、先进的个人信息发布平台。">WordPress.org</a></li>			</ul>
+			</li>
+					</ul>
+  </div>
+       </div>
+
+<div id="footer" class="clear">
+       	 <div class="wrap">
+             <span><font  color="#d0d0d0"> 41 queries in 0.205 seconds.</font></span>
+         </div>
+</div>
+</div>
+<div id="wp-auto-top"><div id="wp-auto-top-top"></div><div id="wp-auto-top-comment"></div><div id="wp-auto-top-bottom"></div></div>
+<script> var commentPositionId = '#comments';var wpAutoTopSpeed = 1;</script><style>
+   #wp-auto-top{position:fixed;top:80%;right:50%;display:block;margin-right:-43%; z-index:9999;}
+   #wp-auto-top-top,#wp-auto-top-comment,#wp-auto-top-bottom{background:url(http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/img/23.png) no-repeat;position:relative;cursor:pointer;height:25px;width:29px;margin:10px 0 0;}
+   #wp-auto-top-comment{background-position:left -30px;height:32px;}#wp-auto-top-bottom{background-position:left -68px;}
+   #wp-auto-top-comment:hover{background-position:right -30px;}
+   #wp-auto-top-top:hover{background-position:right 0;}
+   #wp-auto-top-bottom:hover{background-position:right -68px ;}
+   </style><script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/wp-auto-top.js?ver=4.6.1'></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?99868b1eadabc674ab444818b2d365cb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.201 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2016-11-15 20:31:08 -->

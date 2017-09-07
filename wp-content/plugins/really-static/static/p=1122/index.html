@@ -1,0 +1,1338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>
+    各平台VPS快速搭建SHADOWSOCKS及优化总结 &laquo; ___道子千秋
+</title>
+<link rel="stylesheet" href="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/style.css" type="text/css" media="screen" />
+<link title="RSS 2.0" type="application/rss+xml" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2" rel="alternate" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/js/DD_belatedPNG.js"></script>
+<script>DD_belatedPNG.fix('.nav li,.searchsm'); </script> 
+<![endif]-->
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="韻秋小道童 &raquo; 各平台VPS快速搭建SHADOWSOCKS及优化总结评论Feed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2&#038;p=1122" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/blog.whatisit.cn\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='https://api.w.org/' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=/' />
+<link rel='prev' title='[转]葫芦娃的爷爷叫什么' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1118/index.html' />
+<link rel='next' title='更换LINUX内核优化锐速,为SHADOWSOCKS和IKEV2加速' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1124/index.html' />
+<meta name="generator" content="WordPress 4.6.1 - really-static 0.5" />
+<link rel="canonical" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1122/index.html" />
+<link rel="alternate" type="application/json+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D1122%2Findex.html" />
+<link rel="alternate" type="text/xml+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D1122%2Findex.html&#038;format=xml" />
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		</head>
+
+<body itemtype="http://schema.org/WebPage" itemscope="">
+
+   <div id="fullwrapper">
+       <div class="wrap">
+           <div class="header">
+               <div class="logo"><p><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/"><font size="8" face="KaiTi">韻秋小道童</font></a></p><font size="5" face="KaiTi">被玩壞的小道童</font></div>
+               	 <ul class="nav">
+                 		<li><a title="首页" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">首页</a></li>
+                 		<li><a title="江湖故事" href="/jhgs-html/">江湖故事</a></li>
+	<li class="page_item page-item-870"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html">IT便利貼</a></li>
+<li class="page_item page-item-837"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=837/index.html">江湖故事</a></li>
+<li class="page_item page-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=9/index.html">我的微博</a></li>
+<li class="page_item page-item-47"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html">自省三聲</a></li>
+                </ul>
+           </div>
+       </div>
+       <div class="wrap">	<div id="content" class="widecolumn" role="main">
+		<div class="content_top conleft"></div>
+	
+		<div class="post-1122 post type-post status-publish format-standard hentry category-linux category-serveice-for-net" id="post-1122">
+			<h2>各平台VPS快速搭建SHADOWSOCKS及优化总结</h2>
+				<div class="post_intro">
+					<span>tydqq Post in <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=12/index.html" rel="category">Linux</a>, <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=14/index.html" rel="category">Serveice for Net</a>，</span>
+									</div>
+				<div class="content_date">
+					<div class="datebg">
+						<span class="day">23</span>
+						<span>三月</span>
+						<span>2016</span>
+					</div>
+				</div>
+				<div class="comments">
+					<span class="cmt_num"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1122/index.html#respond">0</a></span>
+				</div>
+				
+			<div class="entry">
+				<p>本文主要列举了几种vps(OpenVZ、Xen、KVM)一键搭建<span class="wp_keywordlink_affiliate"><a style="color: #37a096;" title="View all posts in shadowsocks" href="https://quericy.me/tag/shadowsocks" target="_blank">shadowsocks</a></span>服务端,<span class="wp_keywordlink_affiliate"><a style="color: #37a096;" title="View all posts in 优化" href="https://quericy.me/tag/%e4%bc%98%e5%8c%96" target="_blank">优化</a></span>TCP,<span class="wp_keywordlink_affiliate"><a style="color: #37a096;" title="View all posts in 优化" href="https://quericy.me/tag/%e4%bc%98%e5%8c%96" target="_blank">优化</a></span>内核中的拥塞算法以提升<span class="wp_keywordlink_affiliate"><a style="color: #37a096;" title="View all posts in shadowsocks" href="https://quericy.me/tag/shadowsocks" target="_blank">shadowsocks</a></span>效率和速度的方法.<span id="more-1122"></span></p>
+<div class="dw-box dw-box-download" style="color: #3a87ad;"><i class="dwicon-download"></i>一键安装</div>
+<p>一键安装脚本这里参照的是”秋水逸冰”的博文及脚本,出于低内存占用考虑,均为shadowsocks-libev.这里以操作系统的版本为分类进行阐述:</p>
+<h4 style="font-weight: 300;"><strong>Debian或Ubuntu下:</strong></h4>
+<p>安装方法:</p>
+<div id="highlighter_31040" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev-debian.sh</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">chmod</code> <code class="plain">+x shadowsocks-libev-debian.sh</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">3</code></td>
+<td class="content"><code class="plain">./shadowsocks-libev-debian.sh 2&gt;&amp;1 | </code><code class="functions" style="color: #ff1493 !important;">tee</code> <code class="plain">shadowsocks-libev-debian.log</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>脚本备份(点击展开):</p>
+<div id="highlighter_656593" class="syntaxhighlighter collapsed toolbarheight30px ">
+<div class="bar ">
+<div class="toolbar"><a class="item expandSource" style="color: #a0a0a0 !important;" title="show source" href="https://quericy.me/blog/495#expandSource">show source</a></div>
+</div>
+</div>
+<p>卸载方法:</p>
+<div id="highlighter_636149" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">./shadowsocks-libev.sh uninstall</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>配置文件路径:<br />
+/etc/shadowsocks/config.json</p>
+<p>启动(安装完成后已设置开机自启动):</p>
+<div id="highlighter_15296" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">nohup</code> <code class="plain">/usr/</code><code class="functions" style="color: #ff1493 !important;">local</code><code class="plain">/bin/ss-server -c /etc/shadowsocks/config.json &gt; /dev/null 2&gt;&amp;1 &amp;</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>停止:</p>
+<div id="highlighter_772434" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">ps</code> <code class="plain">-ef | </code><code class="functions" style="color: #ff1493 !important;">grep</code> <code class="plain">-</code><code class="functions" style="color: #ff1493 !important;">v</code> <code class="functions" style="color: #ff1493 !important;">grep</code> <code class="plain">| </code><code class="functions" style="color: #ff1493 !important;">grep</code> <code class="plain">-</code><code class="functions" style="color: #ff1493 !important;">v</code> <code class="functions" style="color: #ff1493 !important;">ps</code> <code class="plain">| </code><code class="functions" style="color: #ff1493 !important;">grep</code> <code class="plain">-i </code><code class="string" style="color: blue !important;">'/usr/local/bin/ss-server'</code> <code class="plain">| </code><code class="functions" style="color: #ff1493 !important;">awk</code> <code class="string" style="color: blue !important;">'{print $2}'</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>上面的命令获得一个数字(pid),然后再使用kill+空格+这个数字 即可.</p>
+<h4 style="font-weight: 300;"><strong>CentOS下:</strong></h4>
+<p>安装方法:</p>
+<div id="highlighter_493458" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev.sh</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">chmod</code> <code class="plain">+x shadowsocks-libev.sh</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">3</code></td>
+<td class="content"><code class="plain">./shadowsocks-libev.sh 2&gt;&amp;1 | </code><code class="functions" style="color: #ff1493 !important;">tee</code> <code class="plain">shadowsocks-libev.log</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>脚本备份(点击展开):</p>
+<div id="highlighter_925201" class="syntaxhighlighter collapsed toolbarheight30px ">
+<div class="bar">
+<div class="toolbar"><a class="item expandSource" style="color: #a0a0a0 !important;" title="show source" href="https://quericy.me/blog/495#expandSource">show source</a></div>
+</div>
+</div>
+<p>卸载方法:</p>
+<div id="highlighter_129730" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">./shadowsocks-libev.sh uninstall</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>配置文件路径:</p>
+<div id="highlighter_299761" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">/etc/shadowsocks-libev/config.json</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>常用指令:</p>
+<div id="highlighter_188858" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#启动:</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="plain">/etc/init.d/shadowsocks start</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">3</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#停止:</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">4</code></td>
+<td class="content"><code class="plain">/etc/init.d/shadowsocks stop</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">5</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#重启:</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">6</code></td>
+<td class="content"><code class="plain">/etc/init.d/shadowsocks restart</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">7</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#查看状态:</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">8</code></td>
+<td class="content"><code class="plain">/etc/init.d/shadowsocks status</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="dw-box dw-box-alert" style="color: #b94a48;"><i class="dwicon-alert"></i>TCP性能<span class="wp_keywordlink_affiliate"><a style="color: #37a096;" title="View all posts in 优化" href="https://quericy.me/tag/%e4%bc%98%e5%8c%96" target="_blank">优化</a></span>:</div>
+<p>这里参照北落师门的方案,按<span class="wp_keywordlink_affiliate"><a style="color: #37a096;" title="View all posts in VPS" href="https://quericy.me/tag/vps" target="_blank">VPS</a></span>的技术类型对Xen、KVM和OpenVZ分开阐述:</p>
+<h4 style="font-weight: 300;"><strong>Xen、KVM:</strong></h4>
+<p>修改/etc/sysctl.conf文件,增加以下项目:</p>
+<div id="highlighter_499011" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">fs.</code><code class="functions" style="color: #ff1493 !important;">file</code><code class="plain">-max = 51200</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#提高整个系统的文件限制</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">3</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_syncookies = 1</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">4</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#表示开启SYN Cookies。当出现SYN等待队列溢出时，启用cookies来处理，可防范少量SYN攻击，默认为0，表示关闭；</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">5</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_tw_reuse = 1</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">6</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#表示开启重用。允许将TIME-WAIT sockets重新用于新的TCP连接，默认为0，表示关闭；</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">7</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_tw_recycle = 0</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">8</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#表示开启TCP连接中TIME-WAIT sockets的快速回收，默认为0，表示关闭；</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">9</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#为了对NAT设备更友好，建议设置为0。</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">10</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_fin_timeout = 30</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">11</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#修改系統默认的 TIMEOUT 时间。</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">12</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_keepalive_time = 1200</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">13</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#表示当keepalive起用的时候，TCP发送keepalive消息的频度。缺省是2小时，改为20分钟。</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">14</code></td>
+<td class="content"><code class="plain">net.ipv4.ip_local_port_range = 10000 65000 </code><code class="comments" style="color: #008200 !important;">#表示用于向外连接的端口范围。缺省情况下很小：32768到61000，改为10000到65000。（注意：这里不要将最低值设的太低，否则可能会占用掉正常的端口！）</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">15</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_max_syn_backlog = 8192</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">16</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#表示SYN队列的长度，默认为1024，加大队列长度为8192，可以容纳更多等待连接的网络连接数。</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">17</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_max_tw_buckets = 5000</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">18</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#表示系统同时保持TIME_WAIT的最大数量，如果超过这个数字，TIME_WAIT将立刻被清除并打印警告信息。</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">19</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;">#额外的，对于内核版本新于**3.7.1**的，我们可以开启tcp_fastopen：</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">20</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_fastopen = 3</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">21</code></td>
+<td class="content"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">22</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;"># increase TCP max buffer size settable using setsockopt()</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">23</code></td>
+<td class="content"><code class="plain">net.core.rmem_max = 67108864</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">24</code></td>
+<td class="content"><code class="plain">net.core.wmem_max = 67108864</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">25</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;"># increase Linux autotuning TCP buffer limit</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">26</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_rmem = 4096 87380 67108864</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">27</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_wmem = 4096 65536 67108864</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">28</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;"># increase the length of the processor input queue</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">29</code></td>
+<td class="content"><code class="plain">net.core.netdev_max_backlog = 250000</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">30</code></td>
+<td class="content"><code class="comments" style="color: #008200 !important;"># recommended for hosts with jumbo frames enabled</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">31</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_mtu_probing=1</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>保存并退出该文件,然后使用以下指令使配置生效:</p>
+<div id="highlighter_44419" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">sysctl -p</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>如果显示出了生效信息且没有显示出错信息,则优化完成.</p>
+<h4 style="font-weight: 300;"><strong>OpenVZ:</strong></h4>
+<p>对于OpenVZ,如果直接使用以上方法修改,当sysctl -p会发现一堆的permission denied出错信息.<br />
+谷歌了下,据说是因为OpenVZ模版的限制比较多直接修改sysctl会被拒绝，<del datetime="2015-01-29T14:29:59+00:00">(网上有部分文章有关于openvz去除sysctl.conf报错的文章,其实只是自我安慰的疗法)</del>因此以上优化方案在OpenVZ下不可用.</p>
+<p>&nbsp;</p>
+<div class="dw-box dw-box-tip" style="color: #468847;"><i class="dwicon-tip"></i>使用锐速对ss进行显著提速</div>
+<p>详情请见本人的另外一篇文章:<a style="color: #37a096;" title="更换Linux内核优化锐速,为shadowsocks和IkeV2加速" href="http://quericy.me/blog/750" target="_blank">更换Linux内核优化锐速,为shadowsocks和IkeV2加速</a></p>
+<p>&nbsp;</p>
+<div class="dw-box dw-box-info"><i class="dwicon-info"></i>优化拥塞算法<span class="wp_keywordlink_affiliate"><a style="color: #37a096;" title="View all posts in Hybla" href="https://quericy.me/tag/hybla" target="_blank">Hybla</a></span> :</div>
+<p>这部分参照了V2EX上的tcp_hybla 编译内核模块的教程.<br />
+这一步本人在Linode上实验成功.(Linode是Xen的),系统为Ubuntu,其他系统没有尝试.<del datetime="2015-01-05T02:36:22+00:00">当然据说</del>Digital Ocean (DO是KVM模板)上的ubuntu官方内核自带了,可略去编译部分,直接调用hybla算法.(<strong>补充:</strong>经本人测试,Digital Ocan上,直接在/etc/sysctl.conf文件中加入hybla参数就可以直接调用了.如果你是Digital Ocan的话,恭喜你,直接跳到下面方法的第九步)</p>
+<p>由于本人对此部分了解有限,完全是照着原文操作成功的,现转载此部分内容,以作备用:</p>
+<p>1. 查看你的机器内核版本：</p>
+<div id="highlighter_896696" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">uname</code> <code class="plain">-r</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>显示结果如: 3.11.6-x86_64-linode35</p>
+<p>2. 去 https://www.kernel.org/pub/linux/kernel/v3.0/ 下载相同版本的源码到任意目录，解压</p>
+<div id="highlighter_192736" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">mkdir</code> <code class="plain">/root/mykernel</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">cd</code> <code class="plain">/root/mykernel</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">3</code></td>
+<td class="content"><code class="plain">wget https://www.kernel.org/pub/linux/kernel/v3.0/linux-3.11.6.</code><code class="functions" style="color: #ff1493 !important;">tar</code><code class="plain">.gz</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">4</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">tar</code> <code class="plain">xzvf linux-3.11.6.</code><code class="functions" style="color: #ff1493 !important;">tar</code><code class="plain">.gz</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>3. 安装内核编译工具</p>
+<div id="highlighter_405135" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">apt-get update &amp;&amp; apt-get </code><code class="functions" style="color: #ff1493 !important;">install</code> <code class="plain">-y build-essential libncurses5-dev</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>4. 复制Linode原来的内核编译配置文件到源码根目录，在CONFIG_TCP_CONG_CUBIC=y下面增加一行 CONFIG_TCP_CONG_HYBLA=y，再生成编译模块需要的内核</p>
+<div id="highlighter_338280" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">cd</code> <code class="plain">linux-3.11.6</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="plain">zcat /proc/config.gz &gt; .config</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">3</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">vi</code> <code class="plain">.config</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>查找CONFIG_TCP_CONG_CUBIC=y，在下面增加一行 CONFIG_TCP_CONG_HYBLA=y，保存</p>
+<div id="highlighter_816717" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">make</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>5. 耐心等待编译内核完成，单核编译大约需15分钟，完成后，进入模块所在的目录，编写Makefile</p>
+<div id="highlighter_25073" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">cd</code> <code class="plain">net/ipv4/</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">mv</code> <code class="plain">Makefile Makefile.old</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">3</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">vi</code> <code class="plain">Makefile</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>以下是Makefle的内容，注意要把KDIR修改为你自己的源码路径，其他则照抄就可以了</p>
+<div id="highlighter_68278" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">Makefile </code><code class="keyword" style="font-weight: bold !important; color: #006699 !important;">for</code> <code class="plain">tcp_hybla.ko</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="plain">obj-m := tcp_hybla.o</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">3</code></td>
+<td class="content"><code class="plain">KDIR := /root/mykernel/linux-3.11.6</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">4</code></td>
+<td class="content"><code class="plain">PWD := $(shell </code><code class="functions" style="color: #ff1493 !important;">pwd</code><code class="plain">)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">5</code></td>
+<td class="content"><code class="plain">default:</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">6</code></td>
+<td class="content"><code class="plain">$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>6.进入源码根目录，编译模块</p>
+<div id="highlighter_172681" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">cd</code> <code class="plain">/root/mykernel/linux-3.11.6/</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">make</code> <code class="plain">modules</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>7.进入到模块所在目录，复制生成的 tcp_hybla.ko 到加载目录，测试加载模块</p>
+<div id="highlighter_687401" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">cd</code> <code class="plain">/root/mykernel/linux-3.11.6/net/ipv4</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">cp</code> <code class="plain">tcp_hybla.ko /root/mykernel/</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">3</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">cd</code> <code class="plain">/root/mykernel/</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>加载前</p>
+<div id="highlighter_99863" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">sysctl net.ipv4.tcp_available_congestion_control</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_available_congestion_control = cubic reno</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">3</code></td>
+<td class="content"><code class="plain">insmod tcp_hybla.ko</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>加载后</p>
+<div id="highlighter_673001" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">sysctl net.ipv4.tcp_available_congestion_control</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_available_congestion_control = cubic reno hybla</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>设置hybal为优先</p>
+<div id="highlighter_473526" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">sysctl net.ipv4.tcp_congestion_control=hybla</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>8.设置开机自动加载模块，把tcp_hybla.ko 复制到 /lib/modules/3.11.6-x86_64-linode35/kernel/net/ipv4</p>
+<div id="highlighter_562004" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">cd</code> <code class="plain">/lib/modules/3.11.6-x86_64-linode35</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">mkdir</code> <code class="plain">-p kernel/net/ipv4</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">3</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">cd</code> <code class="plain">kernel/net/ipv4</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">4</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">cp</code> <code class="plain">/root/mykernel/tcp_hybla.ko ./</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">5</code></td>
+<td class="content"><code class="functions" style="color: #ff1493 !important;">cd</code> <code class="plain">/lib/modules/3.11.6-x86_64-linode35</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">6</code></td>
+<td class="content"><code class="plain">depmod -a</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>9.修改/etc/sysctl.conf 开机自动设置hybal为优先</p>
+<div id="highlighter_926447" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">vim /etc/sysctl.conf</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="line alt2">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">2</code></td>
+<td class="content"><code class="plain">net.ipv4.tcp_congestion_control = hybla</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>保存并退出该文件,然后使用以下指令使配置生效:</p>
+<div id="highlighter_604929" class="syntaxhighlighter toolbarheight30px ">
+<div class="lines">
+<div class="line alt1">
+<table>
+<tbody>
+<tr>
+<td class="number" style="color: #afafaf !important;"><code style="color: #666666;">1</code></td>
+<td class="content"><code class="plain">sysctl -p</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>参考链接:<br />
+<a class="ext-link ext-icon-6" style="color: #37a096;" title="" href="http://teddysun.com/358.html" rel="external nofollow" data-wpel-target="_blank">Debian下shadowsocks-libev一键安装脚本</a></p>
+<p><a class="ext-link ext-icon-6" style="color: #37a096;" title="" href="http://teddysun.com/357.html" rel="external nofollow" data-wpel-target="_blank">CentOS下shadowsocks-libev一键安装脚本</a></p>
+<p><a class="ext-link ext-icon-6" style="color: #37a096;" title="" href="https://xulog.com/2014/07/31/openvz-vps-build-shadowsocks-and-optimization.html" rel="external nofollow" data-wpel-target="_blank">OpenVZ VPS搭建shadowsocks及优化</a></p>
+<p><a class="ext-link ext-icon-6" style="color: #37a096;" title="" href="http://hong.im/2013/04/20/linux-tcp-tuning/" rel="external nofollow" data-wpel-target="_blank">高流量大并发Linux TCP 性能调优</a></p>
+<p><a class="ext-link ext-icon-6" style="color: #37a096;" title="" href="http://v2ex.com/t/114788" rel="external nofollow" data-wpel-target="_blank">编译 Linode 内核模块小白教程，以 tcp_hybla 为例</a></p>
+<hr />
+<div style="font-style: italic;">
+<p><strong>原创文章，转载请注明：</strong> 转载自<a style="color: #37a096;" href="https://quericy.me/">quericy Eden*</a>的<a style="color: #37a096;" href="https://quericy.me/blog">博客</a></p>
+</div>
+				<span class="align_left">&laquo; Prev：<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1118/index.html" rel="prev">[转]葫芦娃的爷爷叫什么</a></span>
+				<span class="align_right"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1124/index.html" rel="next">更换LINUX内核优化锐速,为SHADOWSOCKS和IKEV2加速</a>：Next &raquo;</span>
+			</div>
+		</div>
+
+	<!-- You can start editing here. -->
+
+		
+<div class="comments-navi"></div>
+
+
+<div id="respond">
+<form action="http://blog.whatisit.cn/wp-comments-post.php" method="post" id="commentform">
+<h4 class="clear">Leave a Reply</h4>
+
+
+
+<div id="author_info">
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author">Name  </label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email">Mail (will not be published)  </label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url">Website</label></p>
+	</div>
+	
+<p><textarea name="comment" id="comment" cols="5" rows="10" tabindex="4" onkeydown="if(event.ctrlKey&&event.keyCode==13){document.getElementById('submit').click();return false};"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" class="subin" value="" />
+ <input type='hidden' name='comment_post_ID' value='1122' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+ 
+</p><div id="cancel_reply"><a rel="nofollow" id="cancel-comment-reply-link" href="/?p=1122#respond" style="display:none;">点击这里取消回复。</a></div>
+</form>
+</div>
+
+	
+            <div class="content_foot conleft"></div>
+        </div>
+        
+	<div id="sidebar" role="complementary">
+		<!-- Search Start -->
+		<div id="search">
+			<form method="get" id="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<span class="st"><input type="text" value="" name="s" id="s" class="searchtxt" /></span><span class="ss"><input type="submit" name="submit" value="" class="searchsm" /></span>
+			</form>
+		</div>
+		<div class="clear"></div>
+		<!-- Search End -->
+		<ul>
+			<li id="search-2" class="widget widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<div>
+					<label class="screen-reader-text" for="s">搜索：</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="搜索" />
+				</div>
+			</form></li>
+		<li id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widgettitle">近期文章</h2>
+		<ul>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1137/index.html">Windows下降权MYSQL和apche的运行级别</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1135/index.html">[转]windows2008 mysql 提权</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1133/index.html">PHP一句话</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1130/index.html">[轉]怎样在CentOS 7.0上安装和配置VNC服务器</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1128/index.html">Shadowsocks优化方案</a>
+						</li>
+				</ul>
+		</li>
+		<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">近期评论</h2>
+<ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-85">自省三聲</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-100">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-99">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-98">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-84">自省三聲</a>》</li></ul></li>
+<li id="archives-2" class="widget widget_archive"><h2 class="widgettitle">文章归档</h2>
+		<ul>
+			<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201604/index.html'>2016年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201603/index.html'>2016年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201602/index.html'>2016年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201601/index.html'>2016年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201512/index.html'>2015年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201511/index.html'>2015年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201510/index.html'>2015年十月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201509/index.html'>2015年九月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201508/index.html'>2015年八月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201507/index.html'>2015年七月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201505/index.html'>2015年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201504/index.html'>2015年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201503/index.html'>2015年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201502/index.html'>2015年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201501/index.html'>2015年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201412/index.html'>2014年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201411/index.html'>2014年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201405/index.html'>2014年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201404/index.html'>2014年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201403/index.html'>2014年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201402/index.html'>2014年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201401/index.html'>2014年一月</a></li>
+		</ul>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">分类目录</h2>
+		<ul>
+	<li class="cat-item cat-item-11"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=11/index.html" >Development</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=12/index.html" >Linux</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=13/index.html" >Safe for Network</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=14/index.html" >Serveice for Net</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=15/index.html" >Server For Win</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=1/index.html" >未分类</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=3/index.html" title="江湖恩怨几时休
+策马相依四海游
+几度春秋
+终是一朝泯恩仇
+
+">江湖舊事</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=4/index.html" >江湖軼卷</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=5/index.html" >浮生度秋技術宅</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=6/index.html" >破塵妖月</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=8/index.html" title="汝道 天道 道之所道
+吾道 心道 道汝道之所道">道是道痕</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=9/index.html" >附庸風雅</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=10/index.html" >麗魅魍魎</a>
+</li>
+		</ul>
+</li>
+<li id="meta-2" class="widget widget_meta"><h2 class="widgettitle">功能</h2>
+			<ul>
+						<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/wp-login.php">登录</a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2">文章<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=comments-rss2">评论<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://cn.wordpress.org/" title="基于WordPress，一个优美、先进的个人信息发布平台。">WordPress.org</a></li>			</ul>
+			</li>
+					</ul>
+  </div>
+       </div>
+
+<div id="footer" class="clear">
+       	 <div class="wrap">
+             <span><font  color="#d0d0d0"> 41 queries in 0.224 seconds.</font></span>
+         </div>
+</div>
+</div>
+<div id="wp-auto-top"><div id="wp-auto-top-top"></div><div id="wp-auto-top-comment"></div><div id="wp-auto-top-bottom"></div></div>
+<script> var commentPositionId = '#comments';var wpAutoTopSpeed = 1;</script><style>
+   #wp-auto-top{position:fixed;top:80%;right:50%;display:block;margin-right:-43%; z-index:9999;}
+   #wp-auto-top-top,#wp-auto-top-comment,#wp-auto-top-bottom{background:url(http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/img/23.png) no-repeat;position:relative;cursor:pointer;height:25px;width:29px;margin:10px 0 0;}
+   #wp-auto-top-comment{background-position:left -30px;height:32px;}#wp-auto-top-bottom{background-position:left -68px;}
+   #wp-auto-top-comment:hover{background-position:right -30px;}
+   #wp-auto-top-top:hover{background-position:right 0;}
+   #wp-auto-top-bottom:hover{background-position:right -68px ;}
+   </style><script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/wp-auto-top.js?ver=4.6.1'></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?99868b1eadabc674ab444818b2d365cb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.221 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2016-11-15 20:30:43 -->

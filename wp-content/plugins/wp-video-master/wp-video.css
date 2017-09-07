@@ -1,0 +1,14 @@
+body{
+	height:100%;
+}
+
+.wp_video{
+	text-align: center; 
+	height:100%;
+}
+
+.wp_video embed, video {
+	max-width: 100%;
+	background-color: #000;
+	border-radius: 10px;
+}

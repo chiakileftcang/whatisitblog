@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>
+    [轉] Shadowsocks連接教程 &laquo; ___道子千秋
+</title>
+<link rel="stylesheet" href="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/style.css" type="text/css" media="screen" />
+<link title="RSS 2.0" type="application/rss+xml" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2" rel="alternate" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/js/DD_belatedPNG.js"></script>
+<script>DD_belatedPNG.fix('.nav li,.searchsm'); </script> 
+<![endif]-->
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="韻秋小道童 &raquo; [轉] Shadowsocks連接教程评论Feed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2&#038;p=1050" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/blog.whatisit.cn\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='https://api.w.org/' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=/' />
+<link rel='prev' title='[转]史上最详尽Shadowsocks从零开始一站式翻墙教程' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1048/index.html' />
+<link rel='next' title='Centos6 部署 PPTP + L2TP/IPSec 一键教程' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1054/index.html' />
+<meta name="generator" content="WordPress 4.6.1 - really-static 0.5" />
+<link rel="canonical" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1050/index.html" />
+<link rel="alternate" type="application/json+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D1050%2Findex.html" />
+<link rel="alternate" type="text/xml+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D1050%2Findex.html&#038;format=xml" />
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		</head>
+
+<body itemtype="http://schema.org/WebPage" itemscope="">
+
+   <div id="fullwrapper">
+       <div class="wrap">
+           <div class="header">
+               <div class="logo"><p><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/"><font size="8" face="KaiTi">韻秋小道童</font></a></p><font size="5" face="KaiTi">被玩壞的小道童</font></div>
+               	 <ul class="nav">
+                 		<li><a title="首页" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">首页</a></li>
+                 		<li><a title="江湖故事" href="/jhgs-html/">江湖故事</a></li>
+	<li class="page_item page-item-870"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html">IT便利貼</a></li>
+<li class="page_item page-item-837"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=837/index.html">江湖故事</a></li>
+<li class="page_item page-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=9/index.html">我的微博</a></li>
+<li class="page_item page-item-47"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html">自省三聲</a></li>
+                </ul>
+           </div>
+       </div>
+       <div class="wrap">	<div id="content" class="widecolumn" role="main">
+		<div class="content_top conleft"></div>
+	
+		<div class="post-1050 post type-post status-publish format-standard hentry category-serveice-for-net" id="post-1050">
+			<h2>[轉] Shadowsocks連接教程</h2>
+				<div class="post_intro">
+					<span>tydqq Post in <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=14/index.html" rel="category">Serveice for Net</a>，</span>
+									</div>
+				<div class="content_date">
+					<div class="datebg">
+						<span class="day">12</span>
+						<span>十二月</span>
+						<span>2015</span>
+					</div>
+				</div>
+				<div class="comments">
+					<span class="cmt_num"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1050/index.html#respond">0</a></span>
+				</div>
+				
+			<div class="entry">
+				<h4 style="color: #2f2f2f;">Shadowsocks是什么？</h4>
+<p style="color: #2f2f2f; padding-left: 30px;">码农对于shadowsocks应该不陌生，而一般普通网民可能知之甚少。shadowsocks实质上也是一种socks5代理服务，类似于ssh代理。与vpn的全局代理不同，shadowsocks仅针对浏览器代理，不能代理应用软件，比如youtube、twitter客户端软件。如果把vpn比喻为一把屠龙刀，那么shadowsocks就是一把瑞士军刀，轻巧方便，功能却非常强大。</p>
+<p><span id="more-1050"></span></p>
+<h4 style="color: #2f2f2f;">喜欢上shadowsocks的理由</h4>
+<p style="color: #2f2f2f; padding-left: 30px;">很多时候，我们仅仅只是需要上一下google，收个gmail邮件，或者打开某个网站瞄一眼看看有无更新。这种情况下，vpn可以做到吗，可以，但是很麻烦，连个vpn，qq也得掉一次线，有时候还连半天连不上。而通过ss的话呢，后台运行一个小程序，然后浏览器点击切换一下SS的网络，就可以了。不用的时候，再切回来。这也就是其轻巧的地方。</p>
+<h4 style="color: #2f2f2f;">如何使用shadowsocks？</h4>
+<p style="color: #2f2f2f; padding-left: 30px;">首先，你需要有一个shadowsocks账号，这里有<a style="color: #4094c7;" href="http://www.ishadowsocks.com/" target="_blank">免费shadowsocks账号</a>（会换密码），也可以购买，比如<a style="color: #4094c7;" href="http://www.godusevpn.net/" target="_blank">这里</a>（免费试用3天）。</p>
+<h5 style="color: #2f2f2f; padding-left: 30px;">windows平台</h5>
+<p style="color: #2f2f2f; padding-left: 60px;">1.下载一个shadowsocks的客户端程序<br />
+<a style="color: #4094c7;" href="http://pan.baidu.com/s/1o6KF4vw" target="_blank">Win7及以下百度网盘下载地址</a><br />
+<a style="color: #4094c7;" href="http://pan.baidu.com/s/1gdvlsif" target="_blank">Win8及以上百度网盘下载地址</a><br />
+不需要安装，解压就可以用。<br />
+2.运行解压后文件夹中的“shadowsocks.exe”<br />
+3.右下角找到程序图标，右键图标，“服务器”&#8211;“编辑服务器”，如下图，设置好shadowsocks的账号信息，点确定；</p>
+<div class="image-package imagebubble" style="color: #2f2f2f; padding-left: 60px;">
+<p style="padding-left: 60px;"><img class="imagebubble-image" src="http://upload-images.jianshu.io/upload_images/29832-46181f83d46e0d4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg" alt="" data-original-src="http://upload-images.jianshu.io/upload_images/29832-46181f83d46e0d4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/format/jpg" /></p>
+<div class="image-caption" style="font-style: italic; color: #999999; padding-left: 60px;">shadowsocks_win_01.png</div>
+</div>
+<p style="color: #2f2f2f; padding-left: 60px;">4.再次右键程序图标，勾选“启用系统代理”。</p>
+<div class="image-package imagebubble" style="color: #2f2f2f; padding-left: 60px;">
+<p style="padding-left: 60px;"><img class="imagebubble-image" src="http://upload-images.jianshu.io/upload_images/29832-00d735589b1de3b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg" alt="" data-original-src="http://upload-images.jianshu.io/upload_images/29832-00d735589b1de3b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/format/jpg" /></p>
+<div class="image-caption" style="font-style: italic; color: #999999; padding-left: 60px;">shadowsocks_win_02.png</div>
+</div>
+<p style="color: #2f2f2f; padding-left: 60px;">5.接下来，可以在chrome中直接打开youtube试试，测试OK，没问题。</p>
+<div class="image-package imagebubble" style="color: #2f2f2f; padding-left: 60px;">
+<p style="padding-left: 60px;"><img class="imagebubble-image" src="http://upload-images.jianshu.io/upload_images/29832-6923a476322c8a59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg" alt="" data-original-src="http://upload-images.jianshu.io/upload_images/29832-6923a476322c8a59.png?imageMogr2/auto-orient/strip%7CimageView2/2/format/jpg" /></p>
+<div class="image-caption" style="font-style: italic; color: #999999; padding-left: 60px;">shadowsocks_youtube.png</div>
+</div>
+<p style="color: #2f2f2f; padding-left: 60px;">Tips：</p>
+<ul style="color: #2f2f2f; padding-left: 60px;">
+<li>原GUI版本需要配合浏览器插件才能使用，新版无需浏览器插件配合，直接启用系统代理，配置好后就可以上网了。</li>
+<li>系统代理模式一项，可以选择“PAC模式”和“全局模式”。PAC模式即需要代理的网站才代理，不需要代理的则通过本地网络访问，可以理解为，访问国内网站还是和你原来的网络一样，只有访问部分国外网站，才通过shadowsocks服务器。全局模式则是访问所有网站都通过shadowsocks服务器。</li>
+<li>如何关闭shadowsocks呢？shadowsocks程序直接关闭就行了。</li>
+</ul>
+<h5 style="color: #2f2f2f; padding-left: 30px;">Mac OS X平台</h5>
+<p style="color: #2f2f2f; padding-left: 60px;">还是先下载mac下的客户端程序（<a style="color: #4094c7;" href="http://pan.baidu.com/s/1gdIRTnl" target="_blank">百度网盘下载</a>），后面的过程和win是一样的，设置好以后，打开浏览器上网就O了，新版支持海外和全局的选项，一般默认选海外，基本感觉不到Wall的存在。</p>
+<h5 style="color: #2f2f2f; padding-left: 30px;">iOS平台</h5>
+<p style="color: #2f2f2f; padding-left: 60px;">Surge这款App的推出，使得iOS9设备无需越狱即可完美使用Shadowsocks，详见<a style="color: #4094c7;" href="http://www.jianshu.com/p/de1eb844915d" target="_blank">傻白甜教程</a>。<br />
+直接在appstore搜索下载shadowsocks（<a style="color: #4094c7;" href="https://itunes.apple.com/cn/app/shadowsocks/id665729974?mt=8" target="_blank">safari直接进入下载</a>），app打开后就是一个浏览器，内置了公共服务器，可以直接输入网址打开youtube了。当然，有时候公共服务器会出现不稳定的情况，这时可以设置自己的服务器使用，设置方法和windows一样。相比Android<br />
+版，iOS版只支持浏览器，有点弱爆了的感觉。iOS上还是VPN更方便<br />
+前往<a style="color: #4094c7;" href="http://www.jianshu.com/p/90e18e1e40a7" target="_blank">iOS上那些好用的VPN应用</a></p>
+<div class="image-package imagebubble" style="color: #2f2f2f; padding-left: 60px;">
+<p style="padding-left: 60px;"><img class="imagebubble-image" src="http://upload-images.jianshu.io/upload_images/29832-827fa353bf0cd12d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg" alt="" data-original-src="http://upload-images.jianshu.io/upload_images/29832-827fa353bf0cd12d.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/format/jpg" /></p>
+<div class="image-caption" style="font-style: italic; color: #999999; padding-left: 60px;">shadowsocks_ios.jpg</div>
+</div>
+<h5 style="color: #2f2f2f; padding-left: 30px;">Android平台</h5>
+<p style="color: #2f2f2f; padding-left: 60px;">安卓下的软件名称为“<strong>影梭</strong>”（<a style="color: #4094c7;" href="https://play.google.com/store/apps/details?id=com.github.shadowsocks" target="_blank">GooglePlay下载</a> <a style="color: #4094c7;" href="http://pan.baidu.com/s/1kTEacbt" target="_blank">百度网盘</a>），下载后无需root，设置好服务器和帐号信息后即可直接使用。</p>
+<p style="color: #2f2f2f; padding-left: 60px;">与iOS版本不同，android版是以VPN的方式运行的，也就是说不仅支持浏览器，而且支持其他App，简直好用到没朋友。</p>
+<div class="image-package imagebubble" style="color: #2f2f2f; padding-left: 60px;">
+<p style="padding-left: 60px;"><img class="imagebubble-image" src="http://upload-images.jianshu.io/upload_images/29832-193d8eea5f47c600.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg" alt="" data-original-src="http://upload-images.jianshu.io/upload_images/29832-193d8eea5f47c600.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/format/jpg" /></p>
+<div class="image-caption" style="font-style: italic; color: #999999; padding-left: 30px;">shadowsocks_android.jpg</div>
+</div>
+				<span class="align_left">&laquo; Prev：<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1048/index.html" rel="prev">[转]史上最详尽Shadowsocks从零开始一站式翻墙教程</a></span>
+				<span class="align_right"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1054/index.html" rel="next">Centos6 部署 PPTP + L2TP/IPSec 一键教程</a>：Next &raquo;</span>
+			</div>
+		</div>
+
+	<!-- You can start editing here. -->
+
+		
+<div class="comments-navi"></div>
+
+
+<div id="respond">
+<form action="http://blog.whatisit.cn/wp-comments-post.php" method="post" id="commentform">
+<h4 class="clear">Leave a Reply</h4>
+
+
+
+<div id="author_info">
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author">Name  </label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email">Mail (will not be published)  </label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url">Website</label></p>
+	</div>
+	
+<p><textarea name="comment" id="comment" cols="5" rows="10" tabindex="4" onkeydown="if(event.ctrlKey&&event.keyCode==13){document.getElementById('submit').click();return false};"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" class="subin" value="" />
+ <input type='hidden' name='comment_post_ID' value='1050' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+ 
+</p><div id="cancel_reply"><a rel="nofollow" id="cancel-comment-reply-link" href="/?p=1050#respond" style="display:none;">点击这里取消回复。</a></div>
+</form>
+</div>
+
+	
+            <div class="content_foot conleft"></div>
+        </div>
+        
+	<div id="sidebar" role="complementary">
+		<!-- Search Start -->
+		<div id="search">
+			<form method="get" id="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<span class="st"><input type="text" value="" name="s" id="s" class="searchtxt" /></span><span class="ss"><input type="submit" name="submit" value="" class="searchsm" /></span>
+			</form>
+		</div>
+		<div class="clear"></div>
+		<!-- Search End -->
+		<ul>
+			<li id="search-2" class="widget widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<div>
+					<label class="screen-reader-text" for="s">搜索：</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="搜索" />
+				</div>
+			</form></li>
+		<li id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widgettitle">近期文章</h2>
+		<ul>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1137/index.html">Windows下降权MYSQL和apche的运行级别</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1135/index.html">[转]windows2008 mysql 提权</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1133/index.html">PHP一句话</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1130/index.html">[轉]怎样在CentOS 7.0上安装和配置VNC服务器</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1128/index.html">Shadowsocks优化方案</a>
+						</li>
+				</ul>
+		</li>
+		<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">近期评论</h2>
+<ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-85">自省三聲</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-100">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-99">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-98">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-84">自省三聲</a>》</li></ul></li>
+<li id="archives-2" class="widget widget_archive"><h2 class="widgettitle">文章归档</h2>
+		<ul>
+			<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201604/index.html'>2016年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201603/index.html'>2016年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201602/index.html'>2016年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201601/index.html'>2016年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201512/index.html'>2015年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201511/index.html'>2015年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201510/index.html'>2015年十月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201509/index.html'>2015年九月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201508/index.html'>2015年八月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201507/index.html'>2015年七月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201505/index.html'>2015年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201504/index.html'>2015年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201503/index.html'>2015年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201502/index.html'>2015年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201501/index.html'>2015年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201412/index.html'>2014年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201411/index.html'>2014年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201405/index.html'>2014年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201404/index.html'>2014年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201403/index.html'>2014年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201402/index.html'>2014年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201401/index.html'>2014年一月</a></li>
+		</ul>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">分类目录</h2>
+		<ul>
+	<li class="cat-item cat-item-11"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=11/index.html" >Development</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=12/index.html" >Linux</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=13/index.html" >Safe for Network</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=14/index.html" >Serveice for Net</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=15/index.html" >Server For Win</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=1/index.html" >未分类</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=3/index.html" title="江湖恩怨几时休
+策马相依四海游
+几度春秋
+终是一朝泯恩仇
+
+">江湖舊事</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=4/index.html" >江湖軼卷</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=5/index.html" >浮生度秋技術宅</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=6/index.html" >破塵妖月</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=8/index.html" title="汝道 天道 道之所道
+吾道 心道 道汝道之所道">道是道痕</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=9/index.html" >附庸風雅</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=10/index.html" >麗魅魍魎</a>
+</li>
+		</ul>
+</li>
+<li id="meta-2" class="widget widget_meta"><h2 class="widgettitle">功能</h2>
+			<ul>
+						<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/wp-login.php">登录</a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2">文章<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=comments-rss2">评论<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://cn.wordpress.org/" title="基于WordPress，一个优美、先进的个人信息发布平台。">WordPress.org</a></li>			</ul>
+			</li>
+					</ul>
+  </div>
+       </div>
+
+<div id="footer" class="clear">
+       	 <div class="wrap">
+             <span><font  color="#d0d0d0"> 41 queries in 0.194 seconds.</font></span>
+         </div>
+</div>
+</div>
+<div id="wp-auto-top"><div id="wp-auto-top-top"></div><div id="wp-auto-top-comment"></div><div id="wp-auto-top-bottom"></div></div>
+<script> var commentPositionId = '#comments';var wpAutoTopSpeed = 1;</script><style>
+   #wp-auto-top{position:fixed;top:80%;right:50%;display:block;margin-right:-43%; z-index:9999;}
+   #wp-auto-top-top,#wp-auto-top-comment,#wp-auto-top-bottom{background:url(http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/img/23.png) no-repeat;position:relative;cursor:pointer;height:25px;width:29px;margin:10px 0 0;}
+   #wp-auto-top-comment{background-position:left -30px;height:32px;}#wp-auto-top-bottom{background-position:left -68px;}
+   #wp-auto-top-comment:hover{background-position:right -30px;}
+   #wp-auto-top-top:hover{background-position:right 0;}
+   #wp-auto-top-bottom:hover{background-position:right -68px ;}
+   </style><script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/wp-auto-top.js?ver=4.6.1'></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?99868b1eadabc674ab444818b2d365cb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.190 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2016-11-15 20:30:54 -->

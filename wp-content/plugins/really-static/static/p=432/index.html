@@ -1,0 +1,581 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>
+    安装 Kali Linux 后需要做的 20 件事 &laquo; ___道子千秋
+</title>
+<link rel="stylesheet" href="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/style.css" type="text/css" media="screen" />
+<link title="RSS 2.0" type="application/rss+xml" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2" rel="alternate" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/js/DD_belatedPNG.js"></script>
+<script>DD_belatedPNG.fix('.nav li,.searchsm'); </script> 
+<![endif]-->
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="韻秋小道童 &raquo; 安装 Kali Linux 后需要做的 20 件事评论Feed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2&#038;p=432" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/blog.whatisit.cn\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='https://api.w.org/' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=/' />
+<link rel='prev' title='PHPMYSQL注入语法精选' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=424/index.html' />
+<link rel='next' title='執生' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=521/index.html' />
+<meta name="generator" content="WordPress 4.6.1 - really-static 0.5" />
+<link rel="canonical" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=432/index.html" />
+<link rel="alternate" type="application/json+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D432%2Findex.html" />
+<link rel="alternate" type="text/xml+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D432%2Findex.html&#038;format=xml" />
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		</head>
+
+<body itemtype="http://schema.org/WebPage" itemscope="">
+
+   <div id="fullwrapper">
+       <div class="wrap">
+           <div class="header">
+               <div class="logo"><p><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/"><font size="8" face="KaiTi">韻秋小道童</font></a></p><font size="5" face="KaiTi">被玩壞的小道童</font></div>
+               	 <ul class="nav">
+                 		<li><a title="首页" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">首页</a></li>
+                 		<li><a title="江湖故事" href="/jhgs-html/">江湖故事</a></li>
+	<li class="page_item page-item-870"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html">IT便利貼</a></li>
+<li class="page_item page-item-837"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=837/index.html">江湖故事</a></li>
+<li class="page_item page-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=9/index.html">我的微博</a></li>
+<li class="page_item page-item-47"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html">自省三聲</a></li>
+                </ul>
+           </div>
+       </div>
+       <div class="wrap">	<div id="content" class="widecolumn" role="main">
+		<div class="content_top conleft"></div>
+	
+		<div class="post-432 post type-post status-publish format-standard hentry category-linux" id="post-432">
+			<h2>安装 Kali Linux 后需要做的 20 件事</h2>
+				<div class="post_intro">
+					<span>tydqq Post in <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=12/index.html" rel="category">Linux</a>，</span>
+									</div>
+				<div class="content_date">
+					<div class="datebg">
+						<span class="day">02</span>
+						<span>一月</span>
+						<span>2015</span>
+					</div>
+				</div>
+				<div class="comments">
+					<span class="cmt_num"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=432/index.html#respond">0</a></span>
+				</div>
+				
+			<div class="entry">
+				<p>本文含有我觉得有用的每一件事情。本文分为三大部分：</p>
+<ul>
+<li><strong>专门针对Kali用户</strong></li>
+</ul>
+<p>Kali Linux是来自Debian的一个特殊版本，Kali Linux同样存在Debian Linux的许多问题。<span id="more-432"></span>这部分为读者介绍如何解决那些问题。它们并不是Kali Linux特有的问题，你可以不用理它们；不过我看到错误，强迫症就会发作，非解决错误不可。</p>
+<ul>
+<li><strong>实用工具和软件</strong></li>
+</ul>
+<p>这部分汇集了我觉得有用的一批实用工具和软件。这些是大多数其他Linux发行版里面也有的日常软件，或者至少我认为它们应作为默认安装系统的一部分而出现。</p>
+<ul>
+<li><strong>改进和辅助功能</strong></li>
+</ul>
+<p>Kali Linux天生具有启动速度快、占用资源少的特点。但如果你有一些CPU和GPU能力可用，不妨试着让Kali Linix的外观更靓丽一些。</p>
+<p><strong>专门针对Kali用户</strong></p>
+<p><strong>1. 解决有线网络的&#8221;设备无法托管&#8221;错误</strong></p>
+<p>如果你希望NetworkManager（网络管理器）处理在/etc/network/interfaces中启用的接口，只要在/etc/NetworkManager/NetworkManager.conf中设置managed=true。所以，该文件看起来就像：</p>
+<ol>
+<li>[main]</li>
+<li>plugins=ifupdown,keyfile</li>
+<li>[ifupdown]</li>
+<li>managed=true</li>
+</ol>
+<p><a href="http://s9.51cto.com/wyfs02/M02/27/A3/wKioL1N0Hy-i06pCAAAgIjTDXr8423.jpg" target="_blank"><img src="http://s9.51cto.com/wyfs02/M02/27/A3/wKioL1N0Hy-i06pCAAAgIjTDXr8423.jpg" alt="" width="371" height="170" border="0" /></a></p>
+<p>请阅读全文：《<a href="http://www.blackmoreops.com/2013/11/25/how-to-fix-wired-network-interface-device-not-managed-error/" target="_blank">Debian或Kali Linux中解决有线网络接口的&#8221;设备无法托管&#8221;错误</a>》。</p>
+<p><strong>2. 修复默认的软件库</strong></p>
+<p>最简单的办法就是，编辑/etc/apt/sources.list，去掉每一行或在开头用#注释每一行，并添加下面这几行：</p>
+<ol>
+<li>leafpad /etc/apt/sources.list</li>
+</ol>
+<p>用下面几行，注释或去掉现有的配置：</p>
+<ol>
+<li>## Regular repositories</li>
+<li>deb http://http.kali.org/kali kali main non-free contrib</li>
+<li>deb http://security.kali.org/kali-security kali/updates main contrib non-free</li>
+<li>## Source repositories</li>
+<li>deb-src http://http.kali.org/kali kali main non-free contrib</li>
+<li>deb-src http://security.kali.org/kali-security kali/updates main contrib non-free</li>
+</ol>
+<p>保存并关闭文件。想了解相关细节和介绍，请参阅《<a href="http://www.blackmoreops.com/2013/10/30/add-official-kali-linux-repositories/" target="_blank">添加官方的Kali Linux软件库</a>》一文。</p>
+<p><strong>3. 更新、升级和发行版升级</strong></p>
+<p>对你安装的Kali进行清洁、更新、升级和发行版升级等处理。</p>
+<ol>
+<li>apt-get clean &amp;&amp; apt-get update &amp;&amp; apt-get upgrade -y &amp;&amp; apt-get dist-upgrade -y</li>
+</ol>
+<p><strong>4. 解决PulseAudio警告问题</strong></p>
+<p>我的Kali经常弹出这个警告信息：</p>
+<ol>
+<li>[warn] PulseAudio configured for per-user sessions &#8230; (warning).</li>
+</ol>
+<p>Debian变种版本也会在启动过程中弹出类似的警告信息。为了解决这个问题，键入下面这个命令：</p>
+<ol>
+<li>leafpad /etc/default/pulseaudio</li>
+</ol>
+<p>找到这一行：</p>
+<ol>
+<li>PULSEAUDIO_SYSTEM_START=0</li>
+</ol>
+<p>把0换成1：</p>
+<ol>
+<li>PULSEAUDIO_SYSTEM_START=1</li>
+</ol>
+<p>其中，0表示系统模式下不启动PulseAudio，1表示系统模式下启动PulseAudio。</p>
+<ol>
+<li>reboot</li>
+</ol>
+<p>想了解相关细节和介绍，请参阅《<a href="http://www.blackmoreops.com/2013/10/12/fixing-pulseaudio-configured-for-per-user-sessions-warning-in-kali-linux/" target="_blank">解决Kali Linux中的PulseAudio configured for per-user sessions &#8230;（warning）</a>》一文。</p>
+<p><strong>5. 确保启动时发出声音</strong></p>
+<p>遵照下列步骤，即可解决Kali Linux中启动时没有声音的问题。</p>
+<ol>
+<li>apt-get install alsa-utils -y</li>
+</ol>
+<p>在GNOME桌面（默认是Kali桌面）中：</p>
+<p>鼠标右击小小的音量图标，选择Sound Preferences（声音首选项）。</p>
+<p>此外，你还可以依次进入到Applications（应用程序）&gt; System Tools（系统工具）&gt; Preferences（首选项）&gt; System Settings（系统设置）&gt; Sound（声音），即可调出同样的选项。</p>
+<p>将Output volume（输出音量）滑块切换到ON（打开），类似下面的屏幕截图。这就是你要做的。关闭Sound（声音）窗口。</p>
+<p><a href="http://s2.51cto.com/wyfs02/M01/27/A3/wKiom1N0IObgDue-AACpKMTi3-c960.jpg" target="_blank"><img src="http://s2.51cto.com/wyfs02/M01/27/A3/wKiom1N0IObgDue-AACpKMTi3-c960.jpg" alt="" width="400" /></a></p>
+<p>想了解相关细节和介绍，请参阅《<a href="http://www.blackmoreops.com/2014/01/16/fix-sound-mute-kali-linux-boot/" target="_blank">解决Kali Linux中启动时没有声音这个问题</a>》一文。</p>
+<p><strong>实用工具和软件</strong></p>
+<p><strong>6. 安装Java</strong></p>
+<p>进入到下面这个链接，下载jdk7。截至本文截稿时，jdk版本是jdk-7u45-linux-x64。注意：我使用的是x64，即64位版本。32位版本用户应选择相应的版本。这其实不难！</p>
+<p><a href="http://s6.51cto.com/wyfs02/M00/27/A3/wKiom1N0IRTQukfGAAArMCRuLXE293.jpg" target="_blank"><img src="http://s6.51cto.com/wyfs02/M00/27/A3/wKiom1N0IRTQukfGAAArMCRuLXE293.jpg" alt="" width="301" height="301" border="0" /></a></p>
+<p>下面是我使用的方法。截至本文截稿时，可用版本是jdk-7u45-linux-x64.tar.gz。下载该文件，并保存在/root目录中。</p>
+<ol>
+<li>tar -xzvf /root/jdk-7u45-linux-x64.tar.gz</li>
+<li>mv jdk1.7.0_45 /opt</li>
+<li>cd /opt/jdk1.7.0_45</li>
+</ol>
+<p>这一步将已下载的Java版本登记为替代版本，将其改成作为默认版本来使用：</p>
+<ol>
+<li>update-alternatives &#8211;install /usr/bin/java java /opt/jdk1.7.0_45/bin/java 1</li>
+<li>update-alternatives &#8211;install /usr/bin/javac javac /opt/jdk1.7.0_45/bin/javac 1</li>
+<li>update-alternatives &#8211;install /usr/lib/mozilla/plugins/libjavaplugin.so mozilla-javaplugin.s</li>
+<li>/opt/jdk1.7.0_45/jre/lib/amd64/libnpjp2.so 1</li>
+<li>update-alternatives &#8211;set java /opt/jdk1.7.0_45/bin/java</li>
+<li>update-alternatives &#8211;set javac /opt/jdk1.7.0_45/bin/javac</li>
+<li>update-alternatives &#8211;set mozilla-javaplugin.so /opt/jdk1.7.0_45/jre/lib/amd64/libnpjp2.so</li>
+</ol>
+<p>参阅《<a href="http://www.blackmoreops.com/2013/10/26/how-to-install-java-jdk-in-kali-linux/" target="_blank">在Kali Linux中安装Java JDK</a>》一文，即可详细了解逐步操作和测试选项。</p>
+<p><strong>7. 安装Flash</strong></p>
+<p>这件事情相当简单、容易，对大多数人来说应该没有问题：在终端中，键入这个命令：</p>
+<ol>
+<li>apt-get install flashplugin-nonfree</li>
+</ol>
+<p>然后键入：</p>
+<ol>
+<li>update-flashplugin-nonfree &#8211; -install</li>
+</ol>
+<p>就是这样。你的flash现在应该能够正常工作了。</p>
+<p><a href="http://s6.51cto.com/wyfs02/M01/27/A4/wKioL1N0It3TyKrZAAAaS9wNA8A431.jpg" target="_blank"><img src="http://s6.51cto.com/wyfs02/M01/27/A4/wKioL1N0It3TyKrZAAAaS9wNA8A431.jpg" alt="" width="300" height="280" border="0" /></a></p>
+<p>参阅《<a href="http://www.blackmoreops.com/2013/10/26/how-to-install-flash-in-kali-linux/" target="_blank">在Kali Linux中安装Flash</a>》一文，以便了解逐步操作和测试选项。如果有些人使用上述方法安装失败，该文还给出了Flash手动安装步骤。</p>
+<p><strong>8. 安装File Roller（归档管理器）</strong></p>
+<p>Kali Linux缺少一个真正的GUI归档管理器。使用下面这个命令来安装归档管理器（File Roller）：</p>
+<ol>
+<li>apt-get install unrar unace rar unrar p7zip zip unzip p7zip-full p7zip-rar file-roller -y</li>
+</ol>
+<p>现在你可以在Applications（应用程序）&gt; Accessories（附件）&gt; Archive Manager（归档管理器）中找到归档管理器。</p>
+<p><strong>9. 添加标准用户</strong></p>
+<p>默认情况下，Kali Linux只有root用户。虽然大多数应用程序需要root访问权，但添加第二个用户总归是个好主意。打开终端，键入下面这个命令，即可创建新用户（把user1换成你想要的用户名称）。</p>
+<ol>
+<li>useradd -m user1</li>
+</ol>
+<p>（注意：-m意味着创建通常是/home/username的主目录）</p>
+<p><a href="http://s6.51cto.com/wyfs02/M02/27/A4/wKioL1N0IvbjIKVZAAA7MAScvTA573.jpg" target="_blank"><img src="http://s6.51cto.com/wyfs02/M02/27/A4/wKioL1N0IvbjIKVZAAA7MAScvTA573.jpg" alt="" width="400" /></a></p>
+<p>现在为该用户设置密码：</p>
+<ol>
+<li>passwd user1</li>
+</ol>
+<p>将所需密码输入两次。添加用户到sudo群组（允许用户进行安装软件、允许打印、使用特权模式等操作）。</p>
+<ol>
+<li>usermod -a -G sudo user1</li>
+</ol>
+<p>（注意：-a意味着附加或添加，-G意味着指定一个群组/多个群组）。将之前创建的用户的默认外壳改成bash：</p>
+<ol>
+<li>chsh -s /bin/bash user1</li>
+</ol>
+<p>想了解更多内容，请参阅这篇详细而深入的文章：《如何在Kali Linux中添加/删除用户（标准用户/非root用户）》，参阅http://www.blackmoreops.com/2013/11/27/how-to-add-remove-user-standard-user-non-root-in-kali-linux/。该文解释了了如何添加用户，而所有的用户目录也已经到位（因而避免了&#8221;无法更新.ICEauthority var/lib/gdm3/.ICEauthority&#8221;或含有.ICEauthority或一般权限的任何错误。）</p>
+<p><strong>10. 添加add-apt-repository</strong></p>
+<p>Debian让用户可以通过一个名为add-apt-repository的应用程序，添加和使用PPA软件库，不过Kali Linux在其默认的程序包列表中并不含有该应用程序。就Kali而言，由于这是个特殊用途的应用程序，已进行了某些改动，以便让它适用于最擅长的地方（渗透测试）。想通过add-apt-repository应用程序启用PPA软件库，遵照下面几个步骤。</p>
+<p>首先安装Python软件属性程序包。</p>
+<ol>
+<li>apt-get install python-software-properties</li>
+</ol>
+<p>接下来安装apt-file。</p>
+<ol>
+<li>apt-get install apt-file</li>
+</ol>
+<p>更新apt-file。</p>
+<ol>
+<li>apt-file update</li>
+</ol>
+<p>这需要一点时间，所以万一你的apt-file更新起来很慢，可能想试试一并解决这个问题。（注意：我的/etc/apt/sources.list文件中有repo.kali.org，而不是http.kali.org。）一旦apt-file更新完毕，你应该能够搜索它了。</p>
+<ol>
+<li>apt-file search add-apt-repository</li>
+</ol>
+<p>你的输出结果应该看起来类似这样：</p>
+<ol>
+<li>python-software-properties: /usr/bin/add-apt-repository</li>
+<li>python-software-properties: /usr/share/man/man1/add-apt-repository.1.gz</li>
+</ol>
+<p>位于/usr/bin/add-apt-repository的默认add-apt-repository应用程序适用于Debian。所以，如果你使用Kali，它很可能无法工作。我在本文末尾处添加了一个巧妙的解决办法，如果你喜欢的话，可以在VirtualBox上一下。但我发现，我们完全可以模仿Ubuntu Oneiric，让add-apt-repository正常工作。</p>
+<ol>
+<li>cd /usr/sbin</li>
+<li>vi add-apt-repository</li>
+</ol>
+<p>添加下列代码，并保存文件。</p>
+<ol>
+<li>#!/bin/bash</li>
+<li>if [ $# -eq 1 ]</li>
+<li>NM=`uname -a &amp;&amp; date`</li>
+<li>NAME=`echo $NM | md5sum | cut -f1 -d&#8221; &#8220;`</li>
+<li>then</li>
+<li>ppa_name=`echo &#8220;$1&#8243; | cut -d&#8221;:&#8221; -f2 -s`</li>
+<li>if [ -z &#8220;$ppa_name&#8221; ]</li>
+<li>then</li>
+<li>echo &#8220;PPA name not found&#8221;</li>
+<li>echo &#8220;Utility to add PPA repositories in your debian machine&#8221;</li>
+<li>echo &#8220;$0 ppa:user/ppa-name&#8221;</li>
+<li>else</li>
+<li>echo &#8220;$ppa_name&#8221;</li>
+<li>echo &#8220;deb http://ppa.launchpad.net/$ppa_name/ubuntu oneiric main&#8221; &gt;&gt; /etc/apt/sources.list</li>
+<li>apt-get update &gt;&gt; /dev/null 2&gt; /tmp/${NAME}_apt_add_key.txt</li>
+<li>key=`cat /tmp/${NAME}_apt_add_key.txt | cut -d&#8221;:&#8221; -f6 | cut -d&#8221; &#8221; -f3`</li>
+<li>apt-key adv &#8211;keyserver keyserver.ubuntu.com &#8211;recv-keys $key</li>
+<li>rm -rf /tmp/${NAME}_apt_add_key.txt</li>
+<li>fi</li>
+<li>else</li>
+<li>echo &#8220;Utility to add PPA repositories in your debian machine&#8221;</li>
+<li>echo &#8220;$0 ppa:user/ppa-name&#8221;</li>
+<li>fi</li>
+</ol>
+<p>注意：在echo &#8220;deb http://ppa.launchpad.net/$ppa_name/ubuntu oneiric main&#8221; &gt;&gt; /etc/apt/sources.list这一行中，我使用了Oneiric。你可以根据自己的选择，试着使用Lucid、Raring或Saucy。现在，使用chmod和chown这两个命令，对文件进行相应的操作。</p>
+<ol>
+<li>chmod +x /usr/sbin/add-apt-repository</li>
+<li>chown root:root /usr/sbin/add-apt-repository</li>
+</ol>
+<p>由于我们已添加了正确的代码，我们就可以使用add-apt-repository，添加PPA软件库。我试着输入下面这两个命令，在Kali Linux中添加主题和自定义图标。</p>
+<ol>
+<li>/usr/sbin/add-apt-repository ppa:noobslab/themes</li>
+<li>/usr/sbin/add-apt-repository ppa:alecive/antigone</li>
+</ol>
+<p><a href="http://s7.51cto.com/wyfs02/M00/27/A3/wKiom1N0I0DjXhX2AAFne0roxq4680.jpg" target="_blank"><img src="http://s7.51cto.com/wyfs02/M00/27/A3/wKiom1N0I0DjXhX2AAFne0roxq4680.jpg" alt="" width="400" /></a></p>
+<p>我删除了本文中的所有屏幕截图，但如果你想看个清楚，了解具体是如何工作的，建议你参阅《<a href="http://www.blackmoreops.com/2014/02/21/kali-linux-add-ppa-repository-add-apt-repository/" target="_blank">在Kali Linux中添加PPA软件库add-apt-repository</a>》一文，了解更多细节。</p>
+<p><strong>11. 安装Tor</strong></p>
+<p>Tor是自由软件，也是一种开放网络，可以帮助你防御流量分析。流量分析是一种网络监视行为，会危及个人自由和隐私、机密性的商业活动和关系以及国家安全。该指南为你详细介绍了在Kali Linux中安装Tor的步骤。Tor保护你的方法是，通过由全球广大志愿者运营的一个分布式中转网络，传递你的通信内容：它可以防止有人监视你的互联网连接、进而了解你访问哪些网站，它还可以防止你访问的网站了解你的实际位址。</p>
+<p><a href="http://s9.51cto.com/wyfs02/M01/27/A4/wKiom1N0I2GBapXSAACLWDMY0dw505.jpg" target="_blank"><img src="http://s9.51cto.com/wyfs02/M01/27/A4/wKiom1N0I2GBapXSAACLWDMY0dw505.jpg" alt="" width="400" /></a></p>
+<p>Tor在Kali软件库中就用；想直接从软件库安装它，只要打开终端，键入这个命令：</p>
+<ol>
+<li>apt-get install tor</li>
+</ol>
+<p>从命令行启用Tor服务：</p>
+<ol>
+<li>service tor start</li>
+</ol>
+<p>使用proxychains命令和Tor，实现安全浏览：</p>
+<ol>
+<li>proxychains iceweasel</li>
+</ol>
+<p>为了在本文中确保行文简单，我只显示了使用Tor的一方面。你可以在《在Kali Linux中安装Tor》一文中详细阅读完整细节，详见http://www.blackmoreops.com/2013/12/16/installing-tor-kali-linux/。</p>
+<p><strong>12. 安装Filezilla FTP客户端</strong></p>
+<p>要是缺少功能完备的FTP客户端，任何Linux安装都谈不上是完整的。Filezilla是最好的FTP客户端，所以使用下面这个命令，安装Filezilla：</p>
+<ol>
+<li>apt-get install filezilla filezilla-common -y</li>
+</ol>
+<p><strong>13. 安装HTOP和NetHogs</strong></p>
+<p>HTOP是个特别的工具，显示了运行中的进程和所使用的内存，包括更多的详细信息。（你也可以使用top命令，但HTOP完全有用得多。）NetHogs也很有用，它按接口显示了应用程序所用的流量。使用下面这个命令，安装这两个工具：</p>
+<ol>
+<li>apt-get install htop nethogs -y</li>
+</ol>
+<p>你现在可以使用下面几个命令来运行它们了：</p>
+<ol>
+<li>htop</li>
+<li>nethogs eth0</li>
+<li>nethogs wlan0</li>
+</ol>
+<p>你会喜欢使用这些小巧工具的，这点我几乎可以肯定。</p>
+<p><strong>14. 为显卡安装专有的驱动程序</strong></p>
+<p>你可能需要安装专有的驱动程序，以发掘更多的功能特性，这取决于你使用哪种显卡（ADM还是英伟达）。我写过一篇详细的文章，介绍了<a href="http://www.blackmoreops.com/2014/02/11/install-amd-ati-proprietary-driver-fglrx-in-kali-linux-1-0-6-running-kernel-version-3-12-6/" target="_blank">如何在Kali Linux中安装AMD ATI专有驱动程序（fglrx）</a>。</p>
+<p><a href="http://s4.51cto.com/wyfs02/M00/27/A4/wKioL1N0I1KQufG6AACOljq0ol4768.jpg" target="_blank"><img src="http://s4.51cto.com/wyfs02/M00/27/A4/wKioL1N0I1KQufG6AACOljq0ol4768.jpg" alt="" width="400" /></a></p>
+<p>英伟达用户完全可以遵照安装英伟达驱动程序的<a href="http://docs.kali.org/general-use/install-nvidia-drivers-on-kali-linux" target="_blank">官方说明文档</a>。要是官方说明文档不管用，或者你已无计可施，不妨关注我写过的这另一篇文章：《<a href="http://www.blackmoreops.com/2013/10/20/how-to-install-nvidia-kernel-module-cuda-and-pyrit/" target="_blank">如何手动安装英伟达二进制驱动程序</a>》。</p>
+<p><a href="http://s5.51cto.com/wyfs02/M02/27/A4/wKiom1N0I5-QfEBhAABIf_rComI556.jpg" target="_blank"><img src="http://s5.51cto.com/wyfs02/M02/27/A4/wKiom1N0I5-QfEBhAABIf_rComI556.jpg" alt="" width="400" /></a></p>
+<p><strong>15. 安装Recordmydesktop和Reminna远程桌面客户端</strong></p>
+<p>Recordmydesktop让你能够录制在Kali Linux中的活动，并制作视频。Remmina类似Windows远程桌面客户端。两者都非常实用。可以使用下面这个命令安装它们：</p>
+<ol>
+<li>apt-get install gtk-recordmydesktop recordmydesktop remmina -y</li>
+</ol>
+<p><strong>16. 安装GDebi程序包管理器</strong></p>
+<p>dpkg是一个功能强大的工具，但它并不自动安装依赖项。为此，我们需要某种程序包安装工具，以便在安装.deb程序包的同时，可以去获取所有必要的依赖项。眼下最出色的程序包安装工具非gdebi莫属。使用下面这个命令来安装它：</p>
+<ol>
+<li>apt-get install gdebi -y</li>
+</ol>
+<p><a href="http://s7.51cto.com/wyfs02/M01/27/A4/wKioL1N0I47SrBAOAAEB_M5IxdQ529.jpg" target="_blank"><img src="http://s7.51cto.com/wyfs02/M01/27/A4/wKioL1N0I47SrBAOAAEB_M5IxdQ529.jpg" alt="" width="400" /></a></p>
+<p>改进和辅助功能</p>
+<p><strong>17. 安装主题</strong></p>
+<p>安装主题、美化桌面是个好主意。Kali的默认桌面单调而乏味。你可以使用两种不同的方法来更改主题。</p>
+<ul>
+<li>手动安装主题</li>
+<li>通过PPA软件库安装主题</li>
+</ul>
+<p><a href="http://www.blackmoreops.com/2014/02/27/change-install-theme-kali-linux-gtk-3-themes/" target="_blank">请阅读此处的细节</a>，即可了解如何在Kali Linux中更改或安装GTK3主题。</p>
+<p><a href="http://s5.51cto.com/wyfs02/M00/27/A4/wKiom1N0I9Xi8fM0AACYvIEHZfo419.jpg" target="_blank"><img src="http://s5.51cto.com/wyfs02/M00/27/A4/wKiom1N0I9Xi8fM0AACYvIEHZfo419.jpg" alt="" width="400" /></a></p>
+<p><strong>18. 安装一种新的桌面环境（我青睐XFCE）</strong></p>
+<p>我青睐XFCE桌面，但你可以试着在Kali Linux中安装/删除不同的桌面环境或窗口管理器。根据你的需要，选择下列链接：</p>
+<p>1.《如何在Kali Linux中安装/删除XFCE桌面环境？》，参阅<a href="http://www.blackmoreops.com/2013/10/29/how-to-install-remove-xfce-desktop-environment-in-kali-linux/" target="_blank">http://www.blackmoreops.com/2013/10/29/how-to-install-remove-xfce-desktop-environment-in-kali-linux/</a>。</p>
+<p>2. 《如何在Kali Linux中安装/删除不同的KDE桌面环境？》，参阅<a href="http://www.blackmoreops.com/2013/10/29/how-to-install-remove-different-kde-desktop-environments-in-kali-linux/" target="_blank">http://www.blackmoreops.com/2013/10/29/how-to-install-remove-different-kde-desktop-environments-in-kali-linux/</a>。</p>
+<p>3. 《如何在Kali Linux中安装/删除LXDE桌面环境？》，参阅<a href="http://www.blackmoreops.com/2013/10/29/how-to-install-remove-lxde-desktop-environment-in-kali-linux/" target="_blank">http://www.blackmoreops.com/2013/10/29/how-to-install-remove-lxde-desktop-environment-in-kali-linux/</a>。</p>
+<p>4. 《如何在Kali Linux中安装/删除GNOME桌面环境？》，参阅<a href="http://www.blackmoreops.com/2013/10/29/how-to-install-remove-gnome-desktop-environment-on-kali-linux/" target="_blank">http://www.blackmoreops.com/2013/10/29/how-to-install-remove-gnome-desktop-environment-on-kali-linux/</a>。</p>
+<p>5. 《如何在Kali Linux中安装/删除Cinnamon桌面环境？》，参阅<a href="http://www.blackmoreops.com/2013/10/29/how-to-install-remove-cinnamon-desktop-environment-in-kali-linux/" target="_blank">http://www.blackmoreops.com/2013/10/29/how-to-install-remove-cinnamon-desktop-environment-in-kali-linux/</a>。</p>
+<p>6. 《如何在Kali Linux中安装/删除MATE桌面环境？》，参阅<a href="http://www.blackmoreops.com/2013/10/29/how-to-install-remove-mate-desktop-environment-in-kali-linux/" target="_blank">http://www.blackmoreops.com/2013/10/29/how-to-install-remove-mate-desktop-environment-in-kali-linux/</a>。</p>
+<p>最后，遵照这些操作步骤，永久性地<a href="http://www.blackmoreops.com/2013/10/29/permanently-switch-desktop-environments/" target="_blank">更换桌面环境</a>（也就是启动进入到XFCE，而不是GNOME）。</p>
+<p><a href="http://s6.51cto.com/wyfs02/M02/27/A4/wKioL1N0I8Gjr6zsAACQejk0gHM378.jpg" target="_blank"><img src="http://s6.51cto.com/wyfs02/M02/27/A4/wKioL1N0I8Gjr6zsAACQejk0gHM378.jpg" alt="" width="400" /></a></p>
+<p><strong>19. 启用自动登录用户</strong></p>
+<p>这是个简单的变更。只要打开并编辑名为/etc/gdm3/daemon.conf的文件，假设你在使用GNOME显示管理器（gmd3）作为主要的显示管理器。你可能想要另外也能试一下其他桌面。下面这个链接介绍了《如何在Kali Linux中添加/删除不同的桌面管理器》，详见http://www.blackmoreops.com/2013/10/11/how-to-installremove-different-desktop-environment-or-window-manager-in-kali-linux-1-x/。</p>
+<ol>
+<li>root@kali:~# leafpad /etc/gdm3/daemon.conf</li>
+</ol>
+<p>在daemon即守护程序部分，将用于自动登录的那两行代码取消注释。它最后应该看起来像这样：</p>
+<ol>
+<li>[daemon]</li>
+<li># Enabling automatic login</li>
+<li>AutomaticLoginEnable = true</li>
+<li>AutomaticLogin = root</li>
+</ol>
+<p>就是这样，容易得很。要是你想知道如何使用不同于root用户的用户，方法如下：</p>
+<ol>
+<li>[daemon]</li>
+<li># Enabling automatic login</li>
+<li>AutomaticLoginEnable = true</li>
+<li>AutomaticLogin = myanotheruser</li>
+</ol>
+<p><a href="http://s1.51cto.com/wyfs02/M01/27/A4/wKiom1N0JBDBe1VvAADDRIbD5CU947.jpg" target="_blank"><img src="http://s1.51cto.com/wyfs02/M01/27/A4/wKiom1N0JBDBe1VvAADDRIbD5CU947.jpg" alt="" width="400" /></a></p>
+<p>最后但并非最不重要的是，重启系统，核实一下是否管用。（这会管用，因为它是Linux，Kali很出色。）</p>
+<ol>
+<li>reboot</li>
+</ol>
+<p>你可能想要采取进一步行动，或者如果你是KDE用户，那么这里的操作步骤介绍了如何在Kali Linux中，系统启动时，让root用户自动登录（GNOME和KDE），详见http://www.blackmoreops.com/2013/12/19/auto-login-root-user-system-start-kali-linux-gnome-kde/。该文还介绍了如何让不同的非root用户实现自动登录，相当方便。</p>
+<p>下面这部分解释了如何更充分地发挥你系统的功能，尤其是发挥显卡的功能。</p>
+<p><strong>20. 发掘GPU处理的能力</strong></p>
+<p>最后但并非最不重要的是，在你试图破解密码时，GPU处理速度要快得多。你可以选择下面介绍的几种方法，具体取决于所使用的显卡：</p>
+<p><em>a. AMD显卡</em></p>
+<p>《在Kali Linux 1.x中安装AMD ATI驱动程序（fglrx）》，参阅：<a href="http://www.blackmoreops.com/2013/10/22/install-amd-ati-driver-fglrx-in-kali-linux-1-x/" target="_blank">http://www.blackmoreops.com/2013/10/22/install-amd-ati-driver-fglrx-in-kali-linux-1-x/</a>。</p>
+<p>然后参阅其余指南文章：</p>
+<ul>
+<li>《<a href="http://www.blackmoreops.com/2013/11/22/install-amd-app-sdk-kali-linux/" target="_blank">如何在Kali Linux中安装AMD APP SDK？</a>》</li>
+<li>《<a href="http://www.blackmoreops.com/2013/11/22/install-pyrit-in-kali-linux/" target="_blank">如何在Kali Linux中安装Pyrit？</a>》</li>
+<li>《<a href="http://www.blackmoreops.com/2013/11/22/install-cal-kali-linux/" target="_blank">如何在Kali Linux中安装CAL++？</a>》</li>
+</ul>
+<p><em>b. 英伟达显卡</em></p>
+<p>英伟达显卡用户完全可以参阅安装英伟达驱动程序的<a href="http://docs.kali.org/general-use/install-nvidia-drivers-on-kali-linux" target="_blank">官方说明文档</a>。如果官方说明文档不管用或者你已无计可施，不妨参阅我写过的另一篇文章，介绍如何手动安装英伟达显卡二进制驱动程序。</p>
+<p>《如何在Kali Linux中安装英伟达内核模块Cuda和Pyrit？》，参阅<a href="http://www.blackmoreops.com/2013/10/20/how-to-install-nvidia-kernel-module-cuda-and-pyrit/" target="_blank">http://www.blackmoreops.com/2013/10/20/how-to-install-nvidia-kernel-module-cuda-and-pyrit/</a>。</p>
+<p><strong>结束语</strong></p>
+<p>希望你觉得这些事情很有用。你可能没必要做所有这些事情，但有些事情绝对值得一做。谢谢阅读！欢迎分享！</p>
+<p>==================================</p>
+<p>轉載自：51cto.com</p>
+<p>原作者：布加迪</p>
+				<span class="align_left">&laquo; Prev：<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=424/index.html" rel="prev">PHPMYSQL注入语法精选</a></span>
+				<span class="align_right"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=521/index.html" rel="next">執生</a>：Next &raquo;</span>
+			</div>
+		</div>
+
+	<!-- You can start editing here. -->
+
+		
+<div class="comments-navi"></div>
+
+
+<div id="respond">
+<form action="http://blog.whatisit.cn/wp-comments-post.php" method="post" id="commentform">
+<h4 class="clear">Leave a Reply</h4>
+
+
+
+<div id="author_info">
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author">Name  </label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email">Mail (will not be published)  </label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url">Website</label></p>
+	</div>
+	
+<p><textarea name="comment" id="comment" cols="5" rows="10" tabindex="4" onkeydown="if(event.ctrlKey&&event.keyCode==13){document.getElementById('submit').click();return false};"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" class="subin" value="" />
+ <input type='hidden' name='comment_post_ID' value='432' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+ 
+</p><div id="cancel_reply"><a rel="nofollow" id="cancel-comment-reply-link" href="/?p=432#respond" style="display:none;">点击这里取消回复。</a></div>
+</form>
+</div>
+
+	
+            <div class="content_foot conleft"></div>
+        </div>
+        
+	<div id="sidebar" role="complementary">
+		<!-- Search Start -->
+		<div id="search">
+			<form method="get" id="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<span class="st"><input type="text" value="" name="s" id="s" class="searchtxt" /></span><span class="ss"><input type="submit" name="submit" value="" class="searchsm" /></span>
+			</form>
+		</div>
+		<div class="clear"></div>
+		<!-- Search End -->
+		<ul>
+			<li id="search-2" class="widget widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<div>
+					<label class="screen-reader-text" for="s">搜索：</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="搜索" />
+				</div>
+			</form></li>
+		<li id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widgettitle">近期文章</h2>
+		<ul>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1137/index.html">Windows下降权MYSQL和apche的运行级别</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1135/index.html">[转]windows2008 mysql 提权</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1133/index.html">PHP一句话</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1130/index.html">[轉]怎样在CentOS 7.0上安装和配置VNC服务器</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1128/index.html">Shadowsocks优化方案</a>
+						</li>
+				</ul>
+		</li>
+		<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">近期评论</h2>
+<ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-85">自省三聲</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-100">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-99">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-98">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-84">自省三聲</a>》</li></ul></li>
+<li id="archives-2" class="widget widget_archive"><h2 class="widgettitle">文章归档</h2>
+		<ul>
+			<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201604/index.html'>2016年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201603/index.html'>2016年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201602/index.html'>2016年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201601/index.html'>2016年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201512/index.html'>2015年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201511/index.html'>2015年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201510/index.html'>2015年十月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201509/index.html'>2015年九月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201508/index.html'>2015年八月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201507/index.html'>2015年七月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201505/index.html'>2015年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201504/index.html'>2015年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201503/index.html'>2015年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201502/index.html'>2015年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201501/index.html'>2015年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201412/index.html'>2014年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201411/index.html'>2014年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201405/index.html'>2014年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201404/index.html'>2014年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201403/index.html'>2014年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201402/index.html'>2014年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201401/index.html'>2014年一月</a></li>
+		</ul>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">分类目录</h2>
+		<ul>
+	<li class="cat-item cat-item-11"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=11/index.html" >Development</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=12/index.html" >Linux</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=13/index.html" >Safe for Network</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=14/index.html" >Serveice for Net</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=15/index.html" >Server For Win</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=1/index.html" >未分类</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=3/index.html" title="江湖恩怨几时休
+策马相依四海游
+几度春秋
+终是一朝泯恩仇
+
+">江湖舊事</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=4/index.html" >江湖軼卷</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=5/index.html" >浮生度秋技術宅</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=6/index.html" >破塵妖月</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=8/index.html" title="汝道 天道 道之所道
+吾道 心道 道汝道之所道">道是道痕</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=9/index.html" >附庸風雅</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=10/index.html" >麗魅魍魎</a>
+</li>
+		</ul>
+</li>
+<li id="meta-2" class="widget widget_meta"><h2 class="widgettitle">功能</h2>
+			<ul>
+						<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/wp-login.php">登录</a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2">文章<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=comments-rss2">评论<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://cn.wordpress.org/" title="基于WordPress，一个优美、先进的个人信息发布平台。">WordPress.org</a></li>			</ul>
+			</li>
+					</ul>
+  </div>
+       </div>
+
+<div id="footer" class="clear">
+       	 <div class="wrap">
+             <span><font  color="#d0d0d0"> 41 queries in 0.213 seconds.</font></span>
+         </div>
+</div>
+</div>
+<div id="wp-auto-top"><div id="wp-auto-top-top"></div><div id="wp-auto-top-comment"></div><div id="wp-auto-top-bottom"></div></div>
+<script> var commentPositionId = '#comments';var wpAutoTopSpeed = 1;</script><style>
+   #wp-auto-top{position:fixed;top:80%;right:50%;display:block;margin-right:-43%; z-index:9999;}
+   #wp-auto-top-top,#wp-auto-top-comment,#wp-auto-top-bottom{background:url(http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/img/23.png) no-repeat;position:relative;cursor:pointer;height:25px;width:29px;margin:10px 0 0;}
+   #wp-auto-top-comment{background-position:left -30px;height:32px;}#wp-auto-top-bottom{background-position:left -68px;}
+   #wp-auto-top-comment:hover{background-position:right -30px;}
+   #wp-auto-top-top:hover{background-position:right 0;}
+   #wp-auto-top-bottom:hover{background-position:right -68px ;}
+   </style><script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/wp-auto-top.js?ver=4.6.1'></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?99868b1eadabc674ab444818b2d365cb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.209 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2016-11-15 20:31:32 -->

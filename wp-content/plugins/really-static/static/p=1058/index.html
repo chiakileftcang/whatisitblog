@@ -1,0 +1,542 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>
+    比较全面的CURL函数库中文说明 &laquo; ___道子千秋
+</title>
+<link rel="stylesheet" href="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/style.css" type="text/css" media="screen" />
+<link title="RSS 2.0" type="application/rss+xml" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2" rel="alternate" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://blog.whatisit.cn/wp-content/themes/ink-and-wash/js/DD_belatedPNG.js"></script>
+<script>DD_belatedPNG.fix('.nav li,.searchsm'); </script> 
+<![endif]-->
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="韻秋小道童 &raquo; 比较全面的CURL函数库中文说明评论Feed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2&#038;p=1058" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/blog.whatisit.cn\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='https://api.w.org/' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=/' />
+<link rel='prev' title='Centos6 部署 PPTP + L2TP/IPSec 一键教程' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1054/index.html' />
+<link rel='next' title='[轉]SSL certificate problem: unable to get local issuer certificate SOLVED' href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1062/index.html' />
+<meta name="generator" content="WordPress 4.6.1 - really-static 0.5" />
+<link rel="canonical" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1058/index.html" />
+<link rel="alternate" type="application/json+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D1058%2Findex.html" />
+<link rel="alternate" type="text/xml+oembed" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?rest_route=%2Foembed%2F1.0%2Fembed&#038;url=http%3A%2F%2Fblog.whatisit.cn%2Fwp-content%2Fplugins%2Freally-static%2Fstatic%2Fp%3D1058%2Findex.html&#038;format=xml" />
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		</head>
+
+<body itemtype="http://schema.org/WebPage" itemscope="">
+
+   <div id="fullwrapper">
+       <div class="wrap">
+           <div class="header">
+               <div class="logo"><p><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/"><font size="8" face="KaiTi">韻秋小道童</font></a></p><font size="5" face="KaiTi">被玩壞的小道童</font></div>
+               	 <ul class="nav">
+                 		<li><a title="首页" href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">首页</a></li>
+                 		<li><a title="江湖故事" href="/jhgs-html/">江湖故事</a></li>
+	<li class="page_item page-item-870"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html">IT便利貼</a></li>
+<li class="page_item page-item-837"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=837/index.html">江湖故事</a></li>
+<li class="page_item page-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=9/index.html">我的微博</a></li>
+<li class="page_item page-item-47"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html">自省三聲</a></li>
+                </ul>
+           </div>
+       </div>
+       <div class="wrap">	<div id="content" class="widecolumn" role="main">
+		<div class="content_top conleft"></div>
+	
+		<div class="post-1058 post type-post status-publish format-standard hentry category-development" id="post-1058">
+			<h2>比较全面的CURL函数库中文说明</h2>
+				<div class="post_intro">
+					<span>tydqq Post in <a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=11/index.html" rel="category">Development</a>，</span>
+									</div>
+				<div class="content_date">
+					<div class="datebg">
+						<span class="day">23</span>
+						<span>十二月</span>
+						<span>2015</span>
+					</div>
+				</div>
+				<div class="comments">
+					<span class="cmt_num"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1058/index.html#respond">0</a></span>
+				</div>
+				
+			<div class="entry">
+				<p><span style="color: #323232;">比较全面的CURL函数库中文说明</span><br style="color: #323232;" /><span style="color: #323232;">省略了，有需要的朋友请查看原文</span><a style="color: #72b939;" href="http://www.jb100.net/html/content-22-736-1.html" target="_blank">http://www.jb100.net/html/content-22-736-1.html</a><code class="prettyprint linenums lang-php prettyprinted" style="color: #323232;"></code></p>
+<ol class="linenums" style="color: #2ba5d8;"><span id="more-1058"></span></p>
+<li class="L0"><span class="pln" style="color: #000000;">PHP</span><span class="pun" style="color: #666600;">中的</span><span class="pln" style="color: #000000;">CURL</span><span class="pun" style="color: #666600;">函数库（</span><span class="typ" style="color: #660066;">Client</span><span class="pln" style="color: #000000;"> URL </span><span class="typ" style="color: #660066;">Library</span><span class="pln" style="color: #000000;"> </span><span class="typ" style="color: #660066;">Function</span><span class="pun" style="color: #666600;">）</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">curl_close </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">关闭一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">会话；</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;">curl_copy_handle </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">拷贝一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">连接资源的所有内容和参数；</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;">curl_errno </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">返回一个包含当前会话错误信息的数字编号；</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">curl_error </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">返回一个包含当前会话错误信息的字符串；</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">curl_exec </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">执行一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">会话；</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">curl_getinfo </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">获取一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">连接资源句柄的信息；</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;">curl_init </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">初始化一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">会话；</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;">curl_multi_add_handle </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">向</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">批处理会话中添加单独的</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">句柄资源；</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">curl_multi_close </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">关闭一个批处理句柄资源；</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">curl_multi_exec </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">解析一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">批处理句柄；</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">curl_multi_getcontent </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">返回获取的输出的文本流；</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;">curl_multi_info_read </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">获取当前解析的</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">的相关传输信息；</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;">curl_multi_init </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">初始化一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">批处理句柄资源；</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">curl_multi_remove_handle </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">移除</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">批处理句柄资源中的某个句柄资源；</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">curl_multi_select </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="typ" style="color: #660066;">Get</span><span class="pln" style="color: #000000;"> all the sockets associated </span><span class="kwd" style="color: #000088;">with</span><span class="pln" style="color: #000000;"> the cURL extension</span><span class="pun" style="color: #666600;">,</span><span class="pln" style="color: #000000;"> which can </span><span class="kwd" style="color: #000088;">then</span><span class="pln" style="color: #000000;"> be </span><span class="str" style="color: #008800;">&#8220;selected&#8221;</span><span class="pun" style="color: #666600;">；</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">curl_setopt_array </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">以数组的形式为一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">设置会话参数；</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;">curl_setopt </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">为一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">设置会话参数；</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;">curl_version </span><span class="pun" style="color: #666600;">—</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">获取</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">相关的版本信息；</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">curl_init</span><span class="pun" style="color: #666600;">()函数的作用初始化一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">会话，</span><span class="pln" style="color: #000000;">curl_init</span><span class="pun" style="color: #666600;">()函数唯一的一个参数是可选的，表示一个</span><span class="pln" style="color: #000000;">url</span><span class="pun" style="color: #666600;">地址；</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">curl_exec</span><span class="pun" style="color: #666600;">()函数的作用是执行一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">会话，唯一的参数是</span><span class="pln" style="color: #000000;">curl_init</span><span class="pun" style="color: #666600;">()函数返回的句柄；</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">curl_close</span><span class="pun" style="color: #666600;">()函数的作用是关闭一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">会话，唯一的参数是</span><span class="pln" style="color: #000000;">curl_init</span><span class="pun" style="color: #666600;">()函数返回的句柄；</span></li>
+<li class="L3"><span class="pln" style="color: #000000;"> </span></li>
+<li class="L4"><span class="pln" style="color: #000000;">curl_version</span><span class="pun" style="color: #666600;">()函数的作用是获取</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">相关的版本信息，</span><span class="pln" style="color: #000000;">curl_version</span><span class="pun" style="color: #666600;">()函数有一个参数，不清楚是做什么的；</span></li>
+<li class="L5"><span class="pln" style="color: #000000;"> </span></li>
+<li class="L6"><span class="pln" style="color: #000000;">curl_getinfo</span><span class="pun" style="color: #666600;">()函数的作用是获取一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">连接资源句柄的信息，</span><span class="pln" style="color: #000000;">curl_getinfo</span><span class="pun" style="color: #666600;">()函数有两个参数，第一个参数是</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">的资源句柄，第二个参数是下面一些常量：</span></li>
+<li class="L7"><span class="pln" style="color: #000000;"> </span></li>
+<li class="L8"></li>
+<li class="L9"><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">可选的常量包括：</span></li>
+<li class="L0"></li>
+<li class="L1"><span class="pln" style="color: #000000;">CURLINFO_EFFECTIVE_URL</span><span class="pun" style="color: #666600;">：最后一个有效的</span><span class="pln" style="color: #000000;">url</span><span class="pun" style="color: #666600;">地址；</span></li>
+<li class="L2"></li>
+<li class="L3"><span class="pln" style="color: #000000;">CURLINFO_HTTP_CODE</span><span class="pun" style="color: #666600;">：最后一个收到的</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">代码；</span></li>
+<li class="L4"></li>
+<li class="L5"><span class="pln" style="color: #000000;">CURLINFO_FILETIME</span><span class="pun" style="color: #666600;">：远程获取文档的时间，如果无法获取，则返回值为“-</span><span class="lit" style="color: #006666;">1</span><span class="pun" style="color: #666600;">”；</span></li>
+<li class="L6"></li>
+<li class="L7"><span class="pln" style="color: #000000;">CURLINFO_TOTAL_TIME</span><span class="pun" style="color: #666600;">：最后一次传输所消耗的时间；</span></li>
+<li class="L8"></li>
+<li class="L9"><span class="pln" style="color: #000000;">CURLINFO_NAMELOOKUP_TIME</span><span class="pun" style="color: #666600;">：名称解析所消耗的时间；</span></li>
+<li class="L0"></li>
+<li class="L1"><span class="pln" style="color: #000000;">CURLINFO_CONNECT_TIME</span><span class="pun" style="color: #666600;">：建立连接所消耗的时间；</span></li>
+<li class="L2"></li>
+<li class="L3"><span class="pln" style="color: #000000;">CURLINFO_PRETRANSFER_TIME</span><span class="pun" style="color: #666600;">：从建立连接到准备传输所使用的时间；</span></li>
+<li class="L4"></li>
+<li class="L5"><span class="pln" style="color: #000000;">CURLINFO_STARTTRANSFER_TIME</span><span class="pun" style="color: #666600;">：从建立连接到传输开始所使用的时间；</span></li>
+<li class="L6"></li>
+<li class="L7"><span class="pln" style="color: #000000;">CURLINFO_REDIRECT_TIME</span><span class="pun" style="color: #666600;">：在事务传输开始前重定向所使用的时间；</span></li>
+<li class="L8"></li>
+<li class="L9"><span class="pln" style="color: #000000;">CURLINFO_SIZE_UPLOAD</span><span class="pun" style="color: #666600;">：上传数据量的总值；</span></li>
+<li class="L0"></li>
+<li class="L1"><span class="pln" style="color: #000000;">CURLINFO_SIZE_DOWNLOAD</span><span class="pun" style="color: #666600;">：下载数据量的总值；</span></li>
+<li class="L2"></li>
+<li class="L3"><span class="pln" style="color: #000000;">CURLINFO_SPEED_DOWNLOAD</span><span class="pun" style="color: #666600;">：平均下载速度；</span></li>
+<li class="L4"></li>
+<li class="L5"><span class="pln" style="color: #000000;">CURLINFO_SPEED_UPLOAD</span><span class="pun" style="color: #666600;">：平均上传速度；</span></li>
+<li class="L6"></li>
+<li class="L7"><span class="pln" style="color: #000000;">CURLINFO_HEADER_SIZE</span><span class="pun" style="color: #666600;">：</span><span class="pln" style="color: #000000;">header</span><span class="pun" style="color: #666600;">部分的大小；</span></li>
+<li class="L8"></li>
+<li class="L9"><span class="pln" style="color: #000000;">CURLINFO_HEADER_OUT</span><span class="pun" style="color: #666600;">：发送请求的字符串；</span></li>
+<li class="L0"></li>
+<li class="L1"><span class="pln" style="color: #000000;">CURLINFO_REQUEST_SIZE</span><span class="pun" style="color: #666600;">：在</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">请求中有问题的请求的大小；</span></li>
+<li class="L2"></li>
+<li class="L3"><span class="pln" style="color: #000000;">CURLINFO_SSL_VERIFYRESULT</span><span class="pun" style="color: #666600;">：</span><span class="typ" style="color: #660066;">Result</span><span class="pln" style="color: #000000;"> of SSL certification verification requested </span><span class="kwd" style="color: #000088;">by</span><span class="pln" style="color: #000000;"> setting CURLOPT_SSL_VERIFYPEER</span><span class="pun" style="color: #666600;">；</span></li>
+<li class="L4"></li>
+<li class="L5"><span class="pln" style="color: #000000;">CURLINFO_CONTENT_LENGTH_DOWNLOAD</span><span class="pun" style="color: #666600;">：从</span><span class="typ" style="color: #660066;">Content</span><span class="pun" style="color: #666600;">&#8211;</span><span class="typ" style="color: #660066;">Length</span><span class="pun" style="color: #666600;">:</span><span class="pln" style="color: #000000;"> field</span><span class="pun" style="color: #666600;">中读取的下载内容长度；</span></li>
+<li class="L6"></li>
+<li class="L7"><span class="pln" style="color: #000000;">CURLINFO_CONTENT_LENGTH_UPLOAD</span><span class="pun" style="color: #666600;">：上传内容大小的说明；</span></li>
+<li class="L8"></li>
+<li class="L9"><span class="pln" style="color: #000000;">CURLINFO_CONTENT_TYPE</span><span class="pun" style="color: #666600;">：下载内容的“</span><span class="typ" style="color: #660066;">Content</span><span class="pun" style="color: #666600;">&#8211;</span><span class="pln" style="color: #000000;">type</span><span class="pun" style="color: #666600;">”值，</span><span class="pln" style="color: #000000;">NULL</span><span class="pun" style="color: #666600;">表示服务器没有发送有效的“</span><span class="typ" style="color: #660066;">Content</span><span class="pun" style="color: #666600;">&#8211;</span><span class="typ" style="color: #660066;">Type</span><span class="pun" style="color: #666600;">:</span><span class="pln" style="color: #000000;"> header</span><span class="pun" style="color: #666600;">”；</span></li>
+<li class="L0"></li>
+<li class="L1"><span class="pln" style="color: #000000;">curl_setopt</span><span class="pun" style="color: #666600;">()函数的作用是为一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">设置会话参数。</span><span class="pln" style="color: #000000;">curl_setopt_array</span><span class="pun" style="color: #666600;">()函数的作用是以数组的形式为一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">设置会话参数；</span></li>
+<li class="L2"></li>
+<li class="L3"><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">可设置的参数有：</span></li>
+<li class="L4"></li>
+<li class="L5"><span class="pln" style="color: #000000;">CURLOPT_AUTOREFERER</span><span class="pun" style="color: #666600;">：自动设置</span><span class="pln" style="color: #000000;">header</span><span class="pun" style="color: #666600;">中的</span><span class="pln" style="color: #000000;">referer</span><span class="pun" style="color: #666600;">信息；</span></li>
+<li class="L6"></li>
+<li class="L7"><span class="pln" style="color: #000000;">CURLOPT_BINARYTRANSFER</span><span class="pun" style="color: #666600;">：在启用</span><span class="pln" style="color: #000000;">CURLOPT_RETURNTRANSFER</span><span class="pun" style="color: #666600;">时候将获取数据返回；</span></li>
+<li class="L8"></li>
+<li class="L9"><span class="pln" style="color: #000000;">CURLOPT_COOKIESESSION</span><span class="pun" style="color: #666600;">：启用时</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">会仅仅传递一个</span><span class="pln" style="color: #000000;">session cookie</span><span class="pun" style="color: #666600;">，忽略其他的</span><span class="pln" style="color: #000000;">cookie</span><span class="pun" style="color: #666600;">，默认状况下</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">会将所有的</span><span class="pln" style="color: #000000;">cookie</span><span class="pun" style="color: #666600;">返回给服务端。</span><span class="pln" style="color: #000000;">session cookie</span><span class="pun" style="color: #666600;">是指那些用来判断服务器端的</span><span class="pln" style="color: #000000;">session</span><span class="pun" style="color: #666600;">是否有效而存在的</span><span class="pln" style="color: #000000;">cookie</span><span class="pun" style="color: #666600;">；</span></li>
+<li class="L0"></li>
+<li class="L1"><span class="pln" style="color: #000000;">CURLOPT_CRLF</span><span class="pun" style="color: #666600;">：启用时将</span><span class="typ" style="color: #660066;">Unix</span><span class="pun" style="color: #666600;">的换行符转换成回车换行符；</span></li>
+<li class="L2"></li>
+<li class="L3"><span class="pln" style="color: #000000;">CURLOPT_DNS_USE_GLOBAL_CACHE</span><span class="pun" style="color: #666600;">：启用时会启用一个全局的</span><span class="pln" style="color: #000000;">DNS</span><span class="pun" style="color: #666600;">缓存，此项为线程安全的，并且默认为</span><span class="kwd" style="color: #000088;">true</span><span class="pun" style="color: #666600;">；</span></li>
+<li class="L4"></li>
+<li class="L5"><span class="pln" style="color: #000000;">CURLOPT_FAILONERROR</span><span class="pun" style="color: #666600;">：显示</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">状态码，默认行为是忽略编号小于等于</span><span class="lit" style="color: #006666;">400</span><span class="pun" style="color: #666600;">的</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">信息；</span></li>
+<li class="L6"></li>
+<li class="L7"><span class="pln" style="color: #000000;">CURLOPT_FILETIME</span><span class="pun" style="color: #666600;">：启用时会尝试修改远程文档中的信息。结果信息会通过</span><span class="pln" style="color: #000000;">curl_getinfo</span><span class="pun" style="color: #666600;">()函数的</span><span class="pln" style="color: #000000;">CURLINFO_FILETIME</span><span class="pun" style="color: #666600;">选项返回；</span></li>
+<li class="L8"></li>
+<li class="L9"><span class="pln" style="color: #000000;">CURLOPT_FOLLOWLOCATION</span><span class="pun" style="color: #666600;">：启用时会将服务器服务器返回的“</span><span class="typ" style="color: #660066;">Location</span><span class="pun" style="color: #666600;">:”放在</span><span class="pln" style="color: #000000;">header</span><span class="pun" style="color: #666600;">中递归的返回给服务器，使用</span><span class="pln" style="color: #000000;">CURLOPT_MAXREDIRS</span><span class="pun" style="color: #666600;">可以限定递归返回的数量；</span></li>
+<li class="L0"></li>
+<li class="L1"><span class="pln" style="color: #000000;">CURLOPT_FORBID_REUSE</span><span class="pun" style="color: #666600;">：在完成交互以后强迫断开连接，不能重用；</span></li>
+<li class="L2"></li>
+<li class="L3"><span class="pln" style="color: #000000;">CURLOPT_FRESH_CONNECT</span><span class="pun" style="color: #666600;">：强制获取一个新的连接，替代缓存中的连接；</span></li>
+<li class="L4"></li>
+<li class="L5"><span class="pln" style="color: #000000;">CURLOPT_HEADER</span><span class="pun" style="color: #666600;">：启用时会将头文件的信息作为数据流输出；</span></li>
+<li class="L6"></li>
+<li class="L7"><span class="pln" style="color: #000000;">CURLOPT_HTTPGET</span><span class="pun" style="color: #666600;">：启用时会设置</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">的</span><span class="pln" style="color: #000000;">method</span><span class="pun" style="color: #666600;">为</span><span class="pln" style="color: #000000;">GET</span><span class="pun" style="color: #666600;">，因为</span><span class="pln" style="color: #000000;">GET</span><span class="pun" style="color: #666600;">是默认是，所以只在被修改的情况下使用；</span></li>
+<li class="L8"></li>
+<li class="L9"><span class="pln" style="color: #000000;">CURLOPT_HTTPPROXYTUNNEL</span><span class="pun" style="color: #666600;">：启用时会通过</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">代理来传输；</span></li>
+<li class="L0"></li>
+<li class="L1"><span class="pln" style="color: #000000;">CURLOPT_MUTE</span><span class="pun" style="color: #666600;">：讲</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">函数中所有修改过的参数恢复默认值；</span></li>
+<li class="L2"></li>
+<li class="L3"><span class="pln" style="color: #000000;">CURLOPT_NETRC</span><span class="pun" style="color: #666600;">：在连接建立以后，访问~/.</span><span class="pln" style="color: #000000;">netrc</span><span class="pun" style="color: #666600;">文件获取用户名和密码信息连接远程站点；</span></li>
+<li class="L4"></li>
+<li class="L5"><span class="pln" style="color: #000000;">CURLOPT_NOBODY</span><span class="pun" style="color: #666600;">：启用时将不对</span><span class="pln" style="color: #000000;">HTML</span><span class="pun" style="color: #666600;">中的</span><span class="pln" style="color: #000000;">body</span><span class="pun" style="color: #666600;">部分进行输出；</span></li>
+<li class="L6"></li>
+<li class="L7"><span class="pln" style="color: #000000;">CURLOPT_NOPROGRESS</span><span class="pun" style="color: #666600;">：启用时关闭</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">传输的进度条，此项的默认设置为</span><span class="kwd" style="color: #000088;">true</span><span class="pun" style="color: #666600;">；</span></li>
+<li class="L8"></li>
+<li class="L9"><span class="pln" style="color: #000000;">CURLOPT_NOSIGNAL</span><span class="pun" style="color: #666600;">：启用时忽略所有的</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">传递给</span><span class="pln" style="color: #000000;">php</span><span class="pun" style="color: #666600;">进行的信号。在</span><span class="pln" style="color: #000000;">SAPI</span><span class="pun" style="color: #666600;">多线程传输时此项被默认打开；</span></li>
+<li class="L0"></li>
+<li class="L1"><span class="pln" style="color: #000000;">CURLOPT_POST</span><span class="pun" style="color: #666600;">：启用时会发送一个常规的</span><span class="pln" style="color: #000000;">POST</span><span class="pun" style="color: #666600;">请求，类型为：</span><span class="pln" style="color: #000000;">application</span><span class="pun" style="color: #666600;">/</span><span class="pln" style="color: #000000;">x</span><span class="pun" style="color: #666600;">&#8211;</span><span class="pln" style="color: #000000;">www</span><span class="pun" style="color: #666600;">&#8211;</span><span class="pln" style="color: #000000;">form</span><span class="pun" style="color: #666600;">&#8211;</span><span class="pln" style="color: #000000;">urlencoded</span><span class="pun" style="color: #666600;">，就像表单提交的一样；</span></li>
+<li class="L2"></li>
+<li class="L3"><span class="pln" style="color: #000000;">CURLOPT_PUT</span><span class="pun" style="color: #666600;">：启用时允许</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">发送文件，必须同时设置</span><span class="pln" style="color: #000000;">CURLOPT_INFILE</span><span class="pun" style="color: #666600;">和</span><span class="pln" style="color: #000000;">CURLOPT_INFILESIZE</span></li>
+<li class="L4"></li>
+<li class="L5"><span class="pln" style="color: #000000;">CURLOPT_RETURNTRANSFER</span><span class="pun" style="color: #666600;">：将</span><span class="pln" style="color: #000000;">curl_exec</span><span class="pun" style="color: #666600;">()获取的信息以文件流的形式返回，而不是直接输出；</span></li>
+<li class="L6"></li>
+<li class="L7"><span class="pln" style="color: #000000;">CURLOPT_UNRESTRICTED_AUTH</span><span class="pun" style="color: #666600;">：在使用</span><span class="pln" style="color: #000000;">CURLOPT_FOLLOWLOCATION</span><span class="pun" style="color: #666600;">产生的</span><span class="pln" style="color: #000000;">header</span><span class="pun" style="color: #666600;">中的多个</span><span class="pln" style="color: #000000;">locations</span><span class="pun" style="color: #666600;">中持续追加用户名和密码信息，即使域名已发生改变；</span></li>
+<li class="L8"></li>
+<li class="L9"><span class="pln" style="color: #000000;">CURLOPT_UPLOAD</span><span class="pun" style="color: #666600;">：启用时允许文件传输；</span></li>
+<li class="L0"></li>
+<li class="L1"><span class="pln" style="color: #000000;">CURLOPT_VERBOSE</span><span class="pun" style="color: #666600;">：启用时会汇报所有的信息，存放在</span><span class="pln" style="color: #000000;">STDERR</span><span class="pun" style="color: #666600;">或指定的</span><span class="pln" style="color: #000000;">CURLOPT_STDERR</span><span class="pun" style="color: #666600;">中；</span></li>
+<li class="L2"></li>
+<li class="L3"><span class="pln" style="color: #000000;">CURLOPT_BUFFERSIZE</span><span class="pun" style="color: #666600;">：每次获取的数据中读入缓存的大小，这个值每次都会被填满；</span></li>
+<li class="L4"></li>
+<li class="L5"><span class="pln" style="color: #000000;">CURLOPT_CLOSEPOLICY</span><span class="pun" style="color: #666600;">：不是</span><span class="pln" style="color: #000000;">CURLCLOSEPOLICY_LEAST_RECENTLY_USED</span><span class="pun" style="color: #666600;">就是</span><span class="pln" style="color: #000000;">CURLCLOSEPOLICY_OLDEST</span><span class="pun" style="color: #666600;">，还存在另外三个，但是</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">暂时还不支持；</span></li>
+<li class="L6"></li>
+<li class="L7"><span class="pln" style="color: #000000;">CURLOPT_CONNECTTIMEOUT</span><span class="pun" style="color: #666600;">：在发起连接前等待的时间，如果设置为</span><span class="lit" style="color: #006666;">0</span><span class="pun" style="color: #666600;">，则不等待；</span></li>
+<li class="L8"></li>
+<li class="L9"><span class="pln" style="color: #000000;">CURLOPT_DNS_CACHE_TIMEOUT</span><span class="pun" style="color: #666600;">：设置在内存中保存</span><span class="pln" style="color: #000000;">DNS</span><span class="pun" style="color: #666600;">信息的时间，默认为</span><span class="lit" style="color: #006666;">120</span><span class="pun" style="color: #666600;">秒；</span></li>
+<li class="L0"></li>
+<li class="L1"><span class="pln" style="color: #000000;">CURLOPT_HTTP_VERSION</span><span class="pun" style="color: #666600;">：设置</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">使用的</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">协议，</span><span class="pln" style="color: #000000;">CURL_HTTP_VERSION_NONE</span><span class="pun" style="color: #666600;">（让</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">自己判断），</span><span class="pln" style="color: #000000;">CURL_HTTP_VERSION_1_0</span><span class="pun" style="color: #666600;">（</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">/</span><span class="lit" style="color: #006666;">1.0</span><span class="pun" style="color: #666600;">），</span><span class="pln" style="color: #000000;">CURL_HTTP_VERSION_1_1</span><span class="pun" style="color: #666600;">（</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">/</span><span class="lit" style="color: #006666;">1.1</span><span class="pun" style="color: #666600;">）；</span></li>
+<li class="L2"></li>
+<li class="L3"><span class="pln" style="color: #000000;">CURLOPT_HTTPAUTH</span><span class="pun" style="color: #666600;">：使用的</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">验证方法，可选的值有：</span><span class="pln" style="color: #000000;">CURLAUTH_BASIC</span><span class="pun" style="color: #666600;">，</span><span class="pln" style="color: #000000;">CURLAUTH_DIGEST</span><span class="pun" style="color: #666600;">，</span><span class="pln" style="color: #000000;">CURLAUTH_GSSNEGOTIATE</span><span class="pun" style="color: #666600;">，</span><span class="pln" style="color: #000000;">CURLAUTH_NTLM</span><span class="pun" style="color: #666600;">，</span><span class="pln" style="color: #000000;">CURLAUTH_ANY</span><span class="pun" style="color: #666600;">，</span><span class="pln" style="color: #000000;">CURLAUTH_ANYSAFE</span><span class="pun" style="color: #666600;">，可以使用“|”操作符分隔多个值，</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">让服务器选择一个支持最好的值，</span><span class="pln" style="color: #000000;">CURLAUTH_ANY</span><span class="pun" style="color: #666600;">等价于</span><span class="pln" style="color: #000000;">CURLAUTH_BASIC </span><span class="pun" style="color: #666600;">|</span><span class="pln" style="color: #000000;"> CURLAUTH_DIGEST </span><span class="pun" style="color: #666600;">|</span><span class="pln" style="color: #000000;"> CURLAUTH_GSSNEGOTIATE </span><span class="pun" style="color: #666600;">|</span><span class="pln" style="color: #000000;"> CURLAUTH_NTLM</span><span class="pun" style="color: #666600;">，</span><span class="pln" style="color: #000000;">CURLAUTH_ANYSAFE</span><span class="pun" style="color: #666600;">等价于</span><span class="pln" style="color: #000000;">CURLAUTH_DIGEST </span><span class="pun" style="color: #666600;">|</span><span class="pln" style="color: #000000;"> CURLAUTH_GSSNEGOTIATE </span><span class="pun" style="color: #666600;">|</span><span class="pln" style="color: #000000;"> CURLAUTH_NTLM</span></li>
+<li class="L4"></li>
+<li class="L5"><span class="pln" style="color: #000000;">CURLOPT_INFILESIZE</span><span class="pun" style="color: #666600;">：设定上传文件的大小；</span><span class="pln" style="color: #000000;"> </span></li>
+<li class="L6"></li>
+<li class="L7"><span class="pln" style="color: #000000;">CURLOPT_LOW_SPEED_LIMIT</span><span class="pun" style="color: #666600;">：当传输速度小于</span><span class="pln" style="color: #000000;">CURLOPT_LOW_SPEED_LIMIT</span><span class="pun" style="color: #666600;">时，</span><span class="pln" style="color: #000000;">PHP</span><span class="pun" style="color: #666600;">会根</span><span class="pln" style="color: #000000;">CURLOPT_LOW_SPEED_TIME</span><span class="pun" style="color: #666600;">来判断是否因太慢而取消传输；</span></li>
+<li class="L8"></li>
+<li class="L9"><span class="pln" style="color: #000000;">CURLOPT_LOW_SPEED_TIME</span><span class="pun" style="color: #666600;">：</span><span class="typ" style="color: #660066;">The</span><span class="pln" style="color: #000000;"> number of seconds the transfer should be below CURLOPT_LOW_SPEED_LIMIT </span><span class="kwd" style="color: #000088;">for</span><span class="pln" style="color: #000000;"> PHP to consider the transfer too slow </span><span class="kwd" style="color: #000088;">and</span><span class="pln" style="color: #000000;"> abort</span><span class="pun" style="color: #666600;">；</span></li>
+<li class="L0"></li>
+<li class="L1"><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">当传输速度小于</span><span class="pln" style="color: #000000;">CURLOPT_LOW_SPEED_LIMIT</span><span class="pun" style="color: #666600;">时，</span><span class="pln" style="color: #000000;">PHP</span><span class="pun" style="color: #666600;">会根据</span><span class="pln" style="color: #000000;">CURLOPT_LOW_SPEED_TIME</span><span class="pun" style="color: #666600;">来判断是否因太慢而取消传输；</span></li>
+<li class="L2"></li>
+<li class="L3"><span class="pln" style="color: #000000;">CURLOPT_MAXCONNECTS</span><span class="pun" style="color: #666600;">：允许的最大连接数量，超过是会通过</span><span class="pln" style="color: #000000;">CURLOPT_CLOSEPOLICY</span><span class="pun" style="color: #666600;">决定应该停止哪些连接；</span></li>
+<li class="L4"></li>
+<li class="L5"><span class="pln" style="color: #000000;">CURLOPT_MAXREDIRS</span><span class="pun" style="color: #666600;">：指定最多的</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">重定向的数量，这个选项是和</span><span class="pln" style="color: #000000;">CURLOPT_FOLLOWLOCATION</span><span class="pun" style="color: #666600;">一起使用的；</span></li>
+<li class="L6"></li>
+<li class="L7"><span class="pln" style="color: #000000;">CURLOPT_PORT</span><span class="pun" style="color: #666600;">：一个可选的用来指定连接端口的量；</span></li>
+<li class="L8"></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">CURLOPT_RESUME_FROM</span><span class="pun" style="color: #666600;">：在恢复传输时传递一个字节偏移量（用来断点续传）</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">CURLOPT_SSL_VERIFYHOST</span><span class="pun" style="color: #666600;">：</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;"> </span><span class="lit" style="color: #006666;">1</span><span class="pln" style="color: #000000;"> to check the existence of a common name </span><span class="kwd" style="color: #000088;">in</span><span class="pln" style="color: #000000;"> the SSL peer certificate</span><span class="pun" style="color: #666600;">.</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;"> </span><span class="lit" style="color: #006666;">2</span><span class="pln" style="color: #000000;"> to check the existence of a common name </span><span class="kwd" style="color: #000088;">and</span><span class="pln" style="color: #000000;"> also verify that it matches the hostname provided</span><span class="pun" style="color: #666600;">.</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">CURLOPT_SSLVERSION</span><span class="pun" style="color: #666600;">：</span><span class="typ" style="color: #660066;">The</span><span class="pln" style="color: #000000;"> SSL version </span><span class="pun" style="color: #666600;">(</span><span class="lit" style="color: #006666;">2</span><span class="pln" style="color: #000000;"> </span><span class="kwd" style="color: #000088;">or</span><span class="pln" style="color: #000000;"> </span><span class="lit" style="color: #006666;">3</span><span class="pun" style="color: #666600;">)</span><span class="pln" style="color: #000000;"> to </span><span class="kwd" style="color: #000088;">use</span><span class="pun" style="color: #666600;">.</span><span class="pln" style="color: #000000;"> </span><span class="typ" style="color: #660066;">By</span><span class="pln" style="color: #000000;"> </span><span class="kwd" style="color: #000088;">default</span><span class="pln" style="color: #000000;"> PHP will </span><span class="kwd" style="color: #000088;">try</span><span class="pln" style="color: #000000;"> to determine </span><span class="kwd" style="color: #000088;">this</span><span class="pln" style="color: #000000;"> itself</span><span class="pun" style="color: #666600;">,</span><span class="pln" style="color: #000000;"> although </span><span class="kwd" style="color: #000088;">in</span><span class="pln" style="color: #000000;"> some cases </span><span class="kwd" style="color: #000088;">this</span><span class="pln" style="color: #000000;"> must be </span><span class="kwd" style="color: #000088;">set</span><span class="pln" style="color: #000000;"> manually</span><span class="pun" style="color: #666600;">.</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">CURLOPT_TIMECONDITION</span><span class="pun" style="color: #666600;">：如果在</span><span class="pln" style="color: #000000;">CURLOPT_TIMEVALUE</span><span class="pun" style="color: #666600;">指定的某个时间以后被编辑过，则使用</span><span class="pln" style="color: #000000;">CURL_TIMECOND_IFMODSINCE</span><span class="pun" style="color: #666600;">返回页面，如果没有被修改过，并且</span><span class="pln" style="color: #000000;">CURLOPT_HEADER</span><span class="pun" style="color: #666600;">为</span><span class="kwd" style="color: #000088;">true</span><span class="pun" style="color: #666600;">，则返回一个</span><span class="str" style="color: #008800;">&#8220;304 Not Modified&#8221;</span><span class="pun" style="color: #666600;">的</span><span class="pln" style="color: #000000;">header</span><span class="pun" style="color: #666600;">，</span><span class="pln" style="color: #000000;">CURLOPT_HEADER</span><span class="pun" style="color: #666600;">为</span><span class="kwd" style="color: #000088;">false</span><span class="pun" style="color: #666600;">，则使用</span><span class="pln" style="color: #000000;">CURL_TIMECOND_ISUNMODSINCE</span><span class="pun" style="color: #666600;">，默认值为</span><span class="pln" style="color: #000000;">CURL_TIMECOND_IFMODSINCE</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">CURLOPT_TIMEOUT</span><span class="pun" style="color: #666600;">：设置</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">允许执行的最长秒数</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;">CURLOPT_TIMEVALUE</span><span class="pun" style="color: #666600;">：设置一个</span><span class="pln" style="color: #000000;">CURLOPT_TIMECONDITION</span><span class="pun" style="color: #666600;">使用的时间戳，在默认状态下使用的是</span><span class="pln" style="color: #000000;">CURL_TIMECOND_IFMODSINCE</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;">CURLOPT_CAINFO</span><span class="pun" style="color: #666600;">：</span><span class="typ" style="color: #660066;">The</span><span class="pln" style="color: #000000;"> name of a file holding one </span><span class="kwd" style="color: #000088;">or</span><span class="pln" style="color: #000000;"> more certificates to verify the peer </span><span class="kwd" style="color: #000088;">with</span><span class="pun" style="color: #666600;">.</span><span class="pln" style="color: #000000;"> </span><span class="typ" style="color: #660066;">This</span><span class="pln" style="color: #000000;"> only makes sense </span><span class="kwd" style="color: #000088;">when</span><span class="pln" style="color: #000000;"> used </span><span class="kwd" style="color: #000088;">in</span><span class="pln" style="color: #000000;"> combination </span><span class="kwd" style="color: #000088;">with</span><span class="pln" style="color: #000000;"> CURLOPT_SSL_VERIFYPEER</span><span class="pun" style="color: #666600;">.</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">CURLOPT_CAPATH</span><span class="pun" style="color: #666600;">：</span><span class="pln" style="color: #000000;">A directory that holds multiple CA certificates</span><span class="pun" style="color: #666600;">.</span><span class="pln" style="color: #000000;"> </span><span class="typ" style="color: #660066;">Use</span><span class="pln" style="color: #000000;"> </span><span class="kwd" style="color: #000088;">this</span><span class="pln" style="color: #000000;"> option alongside CURLOPT_SSL_VERIFYPEER</span><span class="pun" style="color: #666600;">.</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">CURLOPT_COOKIE</span><span class="pun" style="color: #666600;">：设定</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">请求中“</span><span class="typ" style="color: #660066;">Set</span><span class="pun" style="color: #666600;">&#8211;</span><span class="typ" style="color: #660066;">Cookie</span><span class="pun" style="color: #666600;">:”部分的内容。</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">CURLOPT_COOKIEFILE</span><span class="pun" style="color: #666600;">：包含</span><span class="pln" style="color: #000000;">cookie</span><span class="pun" style="color: #666600;">信息的文件名称，这个</span><span class="pln" style="color: #000000;">cookie</span><span class="pun" style="color: #666600;">文件可以是</span><span class="typ" style="color: #660066;">Netscape</span><span class="pun" style="color: #666600;">格式或者</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">风格的</span><span class="pln" style="color: #000000;">header</span><span class="pun" style="color: #666600;">信息。</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;">CURLOPT_COOKIEJAR</span><span class="pun" style="color: #666600;">：连接关闭以后，存放</span><span class="pln" style="color: #000000;">cookie</span><span class="pun" style="color: #666600;">信息的文件名称</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;">CURLOPT_ENCODING</span><span class="pun" style="color: #666600;">：</span><span class="pln" style="color: #000000;">header</span><span class="pun" style="color: #666600;">中“</span><span class="typ" style="color: #660066;">Accept</span><span class="pun" style="color: #666600;">&#8211;</span><span class="typ" style="color: #660066;">Encoding</span><span class="pun" style="color: #666600;">:</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">”部分的内容，支持的编码格式为：</span><span class="str" style="color: #008800;">&#8220;identity&#8221;</span><span class="pun" style="color: #666600;">，</span><span class="str" style="color: #008800;">&#8220;deflate&#8221;</span><span class="pun" style="color: #666600;">，</span><span class="str" style="color: #008800;">&#8220;gzip&#8221;</span><span class="pun" style="color: #666600;">。如果设置为空字符串，则表示支持所有的编码格式</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">CURLOPT_INTERFACE</span><span class="pun" style="color: #666600;">：在外部网络接口中使用的名称，可以是一个接口名，</span><span class="pln" style="color: #000000;">IP</span><span class="pun" style="color: #666600;">或者主机名。</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">CURLOPT_KRB4LEVEL</span><span class="pun" style="color: #666600;">：</span><span class="pln" style="color: #000000;">KRB4</span><span class="pun" style="color: #666600;">(</span><span class="typ" style="color: #660066;">Kerberos</span><span class="pln" style="color: #000000;"> </span><span class="lit" style="color: #006666;">4</span><span class="pun" style="color: #666600;">)安全级别的设置，可以是一下几个值之一：</span><span class="str" style="color: #008800;">&#8220;clear&#8221;</span><span class="pun" style="color: #666600;">，</span><span class="str" style="color: #008800;">&#8220;safe&#8221;</span><span class="pun" style="color: #666600;">，</span><span class="str" style="color: #008800;">&#8220;confidential&#8221;</span><span class="pun" style="color: #666600;">，</span><span class="str" style="color: #008800;">&#8220;private&#8221;</span><span class="pun" style="color: #666600;">。默认的值为</span><span class="str" style="color: #008800;">&#8220;private&#8221;</span><span class="pun" style="color: #666600;">，设置为</span><span class="kwd" style="color: #000088;">null</span><span class="pun" style="color: #666600;">的时候表示禁用</span><span class="pln" style="color: #000000;">KRB4</span><span class="pun" style="color: #666600;">，现在</span><span class="pln" style="color: #000000;">KRB4</span><span class="pun" style="color: #666600;">安全仅能在</span><span class="pln" style="color: #000000;">FTP</span><span class="pun" style="color: #666600;">传输中使用。</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">CURLOPT_POSTFIELDS</span><span class="pun" style="color: #666600;">：在</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">中的“</span><span class="pln" style="color: #000000;">POST</span><span class="pun" style="color: #666600;">”操作。如果要传送一个文件，需要一个@开头的文件名</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;">CURLOPT_PROXY</span><span class="pun" style="color: #666600;">：设置通过的</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">代理服务器</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;">CURLOPT_PROXYUSERPWD</span><span class="pun" style="color: #666600;">：连接到代理服务器的，格式为“[</span><span class="pln" style="color: #000000;">username</span><span class="pun" style="color: #666600;">]:[</span><span class="pln" style="color: #000000;">password</span><span class="pun" style="color: #666600;">]”的用户名和密码。</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">CURLOPT_RANDOM_FILE</span><span class="pun" style="color: #666600;">：设定存放</span><span class="pln" style="color: #000000;">SSL</span><span class="pun" style="color: #666600;">用到的随机数种子的文件名称</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">CURLOPT_RANGE</span><span class="pun" style="color: #666600;">：设置</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">传输范围，可以用“</span><span class="pln" style="color: #000000;">X</span><span class="pun" style="color: #666600;">&#8211;</span><span class="pln" style="color: #000000;">Y</span><span class="pun" style="color: #666600;">”的形式设置一个传输区间，如果有多个</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">传输，则使用逗号分隔多个值，形如：</span><span class="str" style="color: #008800;">&#8220;X-Y,N-M&#8221;</span><span class="pun" style="color: #666600;">。</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">CURLOPT_REFERER</span><span class="pun" style="color: #666600;">：设置</span><span class="pln" style="color: #000000;">header</span><span class="pun" style="color: #666600;">中</span><span class="str" style="color: #008800;">&#8220;Referer: &#8220;</span><span class="pln" style="color: #000000;"> </span><span class="pun" style="color: #666600;">部分的值。</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;">CURLOPT_SSL_CIPHER_LIST</span><span class="pun" style="color: #666600;">：</span><span class="pln" style="color: #000000;">A list of ciphers to </span><span class="kwd" style="color: #000088;">use</span><span class="pln" style="color: #000000;"> </span><span class="kwd" style="color: #000088;">for</span><span class="pln" style="color: #000000;"> SSL</span><span class="pun" style="color: #666600;">.</span><span class="pln" style="color: #000000;"> </span><span class="typ" style="color: #660066;">For</span><span class="pln" style="color: #000000;"> example</span><span class="pun" style="color: #666600;">,</span><span class="pln" style="color: #000000;"> RC4</span><span class="pun" style="color: #666600;">&#8211;</span><span class="pln" style="color: #000000;">SHA </span><span class="kwd" style="color: #000088;">and</span><span class="pln" style="color: #000000;"> </span><span class="typ" style="color: #660066;">TLSv1</span><span class="pln" style="color: #000000;"> are valid cipher lists</span><span class="pun" style="color: #666600;">.</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;">CURLOPT_SSLCERT</span><span class="pun" style="color: #666600;">：传递一个包含</span><span class="pln" style="color: #000000;">PEM</span><span class="pun" style="color: #666600;">格式证书的字符串。</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">CURLOPT_SSLCERTPASSWD</span><span class="pun" style="color: #666600;">：传递一个包含使用</span><span class="pln" style="color: #000000;">CURLOPT_SSLCERT</span><span class="pun" style="color: #666600;">证书必需的密码。</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">CURLOPT_URL</span><span class="pun" style="color: #666600;">：需要获取的</span><span class="pln" style="color: #000000;">URL</span><span class="pun" style="color: #666600;">地址，也可以在</span><span class="pln" style="color: #000000;">PHP</span><span class="pun" style="color: #666600;">的</span><span class="pln" style="color: #000000;">curl_init</span><span class="pun" style="color: #666600;">()函数中设置。</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">CURLOPT_USERAGENT</span><span class="pun" style="color: #666600;">：在</span><span class="pln" style="color: #000000;">HTTP</span><span class="pun" style="color: #666600;">请求中包含一个”</span><span class="pln" style="color: #000000;">user</span><span class="pun" style="color: #666600;">&#8211;</span><span class="pln" style="color: #000000;">agent</span><span class="pun" style="color: #666600;">”头的字符串。</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;">CURLOPT_USERPWD</span><span class="pun" style="color: #666600;">：传递一个连接中需要的用户名和密码，格式为：“[</span><span class="pln" style="color: #000000;">username</span><span class="pun" style="color: #666600;">]:[</span><span class="pln" style="color: #000000;">password</span><span class="pun" style="color: #666600;">]”。</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;">CURLOPT_HTTP200ALIASES</span><span class="pun" style="color: #666600;">：设置不再以</span><span class="pln" style="color: #000000;">error</span><span class="pun" style="color: #666600;">的形式来处理</span><span class="pln" style="color: #000000;">HTTP </span><span class="lit" style="color: #006666;">200</span><span class="pun" style="color: #666600;">的响应，格式为一个数组。</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">CURLOPT_HTTPHEADER</span><span class="pun" style="color: #666600;">：设置一个</span><span class="pln" style="color: #000000;">header</span><span class="pun" style="color: #666600;">中传输内容的数组。</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">CURLOPT_POSTQUOTE</span><span class="pun" style="color: #666600;">：</span><span class="typ" style="color: #660066;">An</span><span class="pln" style="color: #000000;"> array of FTP commands to execute on the server after the FTP request has been performed</span><span class="pun" style="color: #666600;">.</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">CURLOPT_QUOTE</span><span class="pun" style="color: #666600;">：</span><span class="typ" style="color: #660066;">An</span><span class="pln" style="color: #000000;"> array of FTP commands to execute on the server prior to the FTP request</span><span class="pun" style="color: #666600;">.</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;">CURLOPT_FILE</span><span class="pun" style="color: #666600;">：设置输出文件的位置，值是一个资源类型，默认为</span><span class="pln" style="color: #000000;">STDOUT </span><span class="pun" style="color: #666600;">(浏览器)。</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;">CURLOPT_INFILE</span><span class="pun" style="color: #666600;">：在上传文件的时候需要读取的文件地址，值是一个资源类型。</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">CURLOPT_STDERR</span><span class="pun" style="color: #666600;">：设置一个错误输出地址，值是一个资源类型，取代默认的</span><span class="pln" style="color: #000000;">STDERR</span><span class="pun" style="color: #666600;">。</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">CURLOPT_WRITEHEADER</span><span class="pun" style="color: #666600;">：设置</span><span class="pln" style="color: #000000;">header</span><span class="pun" style="color: #666600;">部分内容的写入的文件地址，值是一个资源类型。</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">CURLOPT_HEADERFUNCTION</span><span class="pun" style="color: #666600;">：设置一个回调函数，这个函数有两个参数，第一个是</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">的资源句柄，第二个是输出的</span><span class="pln" style="color: #000000;">header</span><span class="pun" style="color: #666600;">数据。</span><span class="pln" style="color: #000000;">header</span><span class="pun" style="color: #666600;">数据的输出必须依赖这个函数，返回已写入的数据大小。</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;">CURLOPT_PASSWDFUNCTION</span><span class="pun" style="color: #666600;">：设置一个回调函数，有三个参数，第一个是</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">的资源句柄，第二个是一个密码提示符，第三个参数是密码长度允许的最大值。返回密码的值。</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;">CURLOPT_READFUNCTION</span><span class="pun" style="color: #666600;">：设置一个回调函数，有两个参数，第一个是</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">的资源句柄，第二个是读取到的数据。数据读取必须依赖这个函数。返回读取数据的大小，比如</span><span class="lit" style="color: #006666;">0</span><span class="pun" style="color: #666600;">或者</span><span class="pln" style="color: #000000;">EOF</span><span class="pun" style="color: #666600;">。</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">CURLOPT_WRITEFUNCTION</span><span class="pun" style="color: #666600;">：设置一个回调函数，有两个参数，第一个是</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">的资源句柄，第二个是写入的数据。数据写入必须依赖这个函数。返回精确的已写入数据的大小</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">curl_copy_handle</span><span class="pun" style="color: #666600;">()函数的作用是拷贝一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">连接资源的所有内容和参数</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">curl_error</span><span class="pun" style="color: #666600;">()函数的作用是返回一个包含当前会话错误信息的字符串。</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;">curl_errno</span><span class="pun" style="color: #666600;">()函数的作用是返回一个包含当前会话错误信息的数字编号。</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;">curl_multi_init</span><span class="pun" style="color: #666600;">()函数的作用是初始化一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">批处理句柄资源。</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">curl_multi_add_handle</span><span class="pun" style="color: #666600;">()函数的作用是向</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">批处理会话中添加单独的</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">句柄资源。</span><span class="pln" style="color: #000000;">curl_multi_add_handle</span><span class="pun" style="color: #666600;">()函数有两个参数，第一个参数表示一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">批处理句柄资源，第二个参数表示一个单独的</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">句柄资源。</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">curl_multi_exec</span><span class="pun" style="color: #666600;">()函数的作用是解析一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">批处理句柄，</span><span class="pln" style="color: #000000;">curl_multi_exec</span><span class="pun" style="color: #666600;">()函数有两个参数，第一个参数表示一个批处理句柄资源，第二个参数是一个引用值的参数，表示剩余需要处理的单个的</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">句柄资源数量。</span></li>
+<li class="L1"></li>
+<li class="L2"><span class="pln" style="color: #000000;">curl_multi_remove_handle</span><span class="pun" style="color: #666600;">()函数表示移除</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">批处理句柄资源中的某个句柄资源，</span><span class="pln" style="color: #000000;">curl_multi_remove_handle</span><span class="pun" style="color: #666600;">()函数有两个参数，第一个参数表示一个</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">批处理句柄资源，第二个参数表示一个单独的</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">句柄资源。</span></li>
+<li class="L3"></li>
+<li class="L4"><span class="pln" style="color: #000000;">curl_multi_close</span><span class="pun" style="color: #666600;">()函数的作用是关闭一个批处理句柄资源。</span></li>
+<li class="L5"></li>
+<li class="L6"><span class="pln" style="color: #000000;">curl_multi_getcontent</span><span class="pun" style="color: #666600;">()函数的作用是在设置了</span><span class="pln" style="color: #000000;">CURLOPT_RETURNTRANSFER</span><span class="pun" style="color: #666600;">的情况下，返回获取的输出的文本流。</span></li>
+<li class="L7"></li>
+<li class="L8"><span class="pln" style="color: #000000;">curl_multi_info_read</span><span class="pun" style="color: #666600;">()函数的作用是获取当前解析的</span><span class="pln" style="color: #000000;">curl</span><span class="pun" style="color: #666600;">的相关传输信息。</span></li>
+<li class="L9"></li>
+<li class="L0"><span class="pln" style="color: #000000;">curl_multi_select</span><span class="pun" style="color: #666600;">()：</span><span class="typ" style="color: #660066;">Get</span><span class="pln" style="color: #000000;"> all the sockets associated </span><span class="kwd" style="color: #000088;">with</span><span class="pln" style="color: #000000;"> the cURL extension</span><span class="pun" style="color: #666600;">,</span><span class="pln" style="color: #000000;"> which can </span><span class="kwd" style="color: #000088;">then</span><span class="pln" style="color: #000000;"> be </span><span class="str" style="color: #008800;">&#8220;selected&#8221;</span></li>
+</ol>
+<p><code class="prettyprint linenums lang-php prettyprinted" style="color: #323232;"></code></p>
+				<span class="align_left">&laquo; Prev：<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1054/index.html" rel="prev">Centos6 部署 PPTP + L2TP/IPSec 一键教程</a></span>
+				<span class="align_right"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1062/index.html" rel="next">[轉]SSL certificate problem: unable to get local issuer certificate SOLVED</a>：Next &raquo;</span>
+			</div>
+		</div>
+
+	<!-- You can start editing here. -->
+
+		
+<div class="comments-navi"></div>
+
+
+<div id="respond">
+<form action="http://blog.whatisit.cn/wp-comments-post.php" method="post" id="commentform">
+<h4 class="clear">Leave a Reply</h4>
+
+
+
+<div id="author_info">
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required='true' />
+<label for="author">Name  </label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required='true' />
+<label for="email">Mail (will not be published)  </label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url">Website</label></p>
+	</div>
+	
+<p><textarea name="comment" id="comment" cols="5" rows="10" tabindex="4" onkeydown="if(event.ctrlKey&&event.keyCode==13){document.getElementById('submit').click();return false};"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" class="subin" value="" />
+ <input type='hidden' name='comment_post_ID' value='1058' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+ 
+</p><div id="cancel_reply"><a rel="nofollow" id="cancel-comment-reply-link" href="/?p=1058#respond" style="display:none;">点击这里取消回复。</a></div>
+</form>
+</div>
+
+	
+            <div class="content_foot conleft"></div>
+        </div>
+        
+	<div id="sidebar" role="complementary">
+		<!-- Search Start -->
+		<div id="search">
+			<form method="get" id="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<span class="st"><input type="text" value="" name="s" id="s" class="searchtxt" /></span><span class="ss"><input type="submit" name="submit" value="" class="searchsm" /></span>
+			</form>
+		</div>
+		<div class="clear"></div>
+		<!-- Search End -->
+		<ul>
+			<li id="search-2" class="widget widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://blog.whatisit.cn/wp-content/plugins/really-static/static/">
+				<div>
+					<label class="screen-reader-text" for="s">搜索：</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="搜索" />
+				</div>
+			</form></li>
+		<li id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widgettitle">近期文章</h2>
+		<ul>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1137/index.html">Windows下降权MYSQL和apche的运行级别</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1135/index.html">[转]windows2008 mysql 提权</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1133/index.html">PHP一句话</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1130/index.html">[轉]怎样在CentOS 7.0上安装和配置VNC服务器</a>
+						</li>
+					<li>
+				<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/p=1128/index.html">Shadowsocks优化方案</a>
+						</li>
+				</ul>
+		</li>
+		<li id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widgettitle">近期评论</h2>
+<ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-85">自省三聲</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-100">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-99">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=870/index.html#comment-98">IT便利貼</a>》</li><li class="recentcomments"><span class="comment-author-link"><a href='http://weibo.com/tyand' rel='external nofollow' class='url'>韻秋</a></span>发表在《<a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/page_id=47/index.html#comment-84">自省三聲</a>》</li></ul></li>
+<li id="archives-2" class="widget widget_archive"><h2 class="widgettitle">文章归档</h2>
+		<ul>
+			<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201604/index.html'>2016年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201603/index.html'>2016年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201602/index.html'>2016年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201601/index.html'>2016年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201512/index.html'>2015年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201511/index.html'>2015年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201510/index.html'>2015年十月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201509/index.html'>2015年九月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201508/index.html'>2015年八月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201507/index.html'>2015年七月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201505/index.html'>2015年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201504/index.html'>2015年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201503/index.html'>2015年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201502/index.html'>2015年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201501/index.html'>2015年一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201412/index.html'>2014年十二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201411/index.html'>2014年十一月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201405/index.html'>2014年五月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201404/index.html'>2014年四月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201403/index.html'>2014年三月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201402/index.html'>2014年二月</a></li>
+	<li><a href='http://blog.whatisit.cn/wp-content/plugins/really-static/static/m=201401/index.html'>2014年一月</a></li>
+		</ul>
+		</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">分类目录</h2>
+		<ul>
+	<li class="cat-item cat-item-11"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=11/index.html" >Development</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=12/index.html" >Linux</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=13/index.html" >Safe for Network</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=14/index.html" >Serveice for Net</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=15/index.html" >Server For Win</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=1/index.html" >未分类</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=3/index.html" title="江湖恩怨几时休
+策马相依四海游
+几度春秋
+终是一朝泯恩仇
+
+">江湖舊事</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=4/index.html" >江湖軼卷</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=5/index.html" >浮生度秋技術宅</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=6/index.html" >破塵妖月</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=8/index.html" title="汝道 天道 道之所道
+吾道 心道 道汝道之所道">道是道痕</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=9/index.html" >附庸風雅</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/cat=10/index.html" >麗魅魍魎</a>
+</li>
+		</ul>
+</li>
+<li id="meta-2" class="widget widget_meta"><h2 class="widgettitle">功能</h2>
+			<ul>
+						<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/wp-login.php">登录</a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=rss2">文章<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://blog.whatisit.cn/wp-content/plugins/really-static/static/?feed=comments-rss2">评论<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://cn.wordpress.org/" title="基于WordPress，一个优美、先进的个人信息发布平台。">WordPress.org</a></li>			</ul>
+			</li>
+					</ul>
+  </div>
+       </div>
+
+<div id="footer" class="clear">
+       	 <div class="wrap">
+             <span><font  color="#d0d0d0"> 41 queries in 0.235 seconds.</font></span>
+         </div>
+</div>
+</div>
+<div id="wp-auto-top"><div id="wp-auto-top-top"></div><div id="wp-auto-top-comment"></div><div id="wp-auto-top-bottom"></div></div>
+<script> var commentPositionId = '#comments';var wpAutoTopSpeed = 1;</script><style>
+   #wp-auto-top{position:fixed;top:80%;right:50%;display:block;margin-right:-43%; z-index:9999;}
+   #wp-auto-top-top,#wp-auto-top-comment,#wp-auto-top-bottom{background:url(http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/img/23.png) no-repeat;position:relative;cursor:pointer;height:25px;width:29px;margin:10px 0 0;}
+   #wp-auto-top-comment{background-position:left -30px;height:32px;}#wp-auto-top-bottom{background-position:left -68px;}
+   #wp-auto-top-comment:hover{background-position:right -30px;}
+   #wp-auto-top-top:hover{background-position:right 0;}
+   #wp-auto-top-bottom:hover{background-position:right -68px ;}
+   </style><script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/comment-reply.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/wp-embed.min.js?ver=4.6.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://blog.whatisit.cn/wp-content/plugins/wp-auto-top/wp-auto-top.js?ver=4.6.1'></script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?99868b1eadabc674ab444818b2d365cb";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.232 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2016-11-15 20:30:54 -->
